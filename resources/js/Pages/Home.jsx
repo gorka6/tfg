@@ -1,47 +1,32 @@
-import { Head, Link } from '@inertiajs/react';
-import PrimaryButton from '@/Components/PrimaryButton';
-import '../../css/pages/home.css'
+import { Head, Link } from "@inertiajs/react";
+import PrimaryButton from "@/Components/PrimaryButton";
+import Header from "@/Components/Header";
+import "../../css/pages/home.css";
+import { useContextoIdioma } from "@/Contexts/ContextoIdioma";
 
 export default function Home({ auth }) {
+  const { t } = useContextoIdioma();
 
-    return (
-        <>
-            <Head title="Holaa" />
-            <div className="container">
-                <header className="header">
-                    <h1>Mi App</h1>
-                    <nav>
-                        {auth.user ? (
-                            <Link href={route('dashboard')}>
-                                <PrimaryButton>Perfil</PrimaryButton>
-                            </Link>
-                        ) : (
-                            <>
-                                <Link href={route('register')}>
-                                    <PrimaryButton>Registrate</PrimaryButton>
-                                </Link>
-                                <Link href={route('login')}>
-                                    <PrimaryButton>Entrar</PrimaryButton>
-                                </Link>
-                            </>
-                        )}
-                    </nav>
-                </header>
+  return (
+    <>
+      <Head title="Home" />
+      <div className="container">
+        <Header auth={auth}/>
 
-                <section className="home-hero">
-                    <h2 className="home-title">Hola, bienvenido 👋</h2>
-                    <p className="home-sub">Estoy en el coche sudando mogollón</p>
+        <section className="home-hero">
+          <h2 className="home-title">{t.home.title}</h2>
+          <p className="home-sub">{t.home.subtitle}</p>
 
-                    <div className="home-actions">
-                        <Link href={route('register')}>
-                            <PrimaryButton>Registrate</PrimaryButton>
-                        </Link>
-                        <Link href={route('login')}>
-                            <PrimaryButton>Entrar</PrimaryButton>
-                        </Link>
-                    </div>
-                </section>
-            </div>
-        </>
-    );
+          <div className="home-actions">
+            <Link href={route("register")}>
+              <PrimaryButton>{t.home.register}</PrimaryButton>
+            </Link>
+            <Link href={route("login")}>
+              <PrimaryButton>{t.home.login}</PrimaryButton>
+            </Link>
+          </div>
+        </section>
+      </div>
+    </>
+  );
 }

@@ -1,0 +1,31 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 10px 20px;
+    border-bottom: 1px solid #ccc;
+}
+
+.header-title {
+    margin: 0;
+    text-decoration: none;
+    color: inherit;
+}
+
+.header-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
+}
+
+.header-actions {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 5px;
+}
+
+.header-nav {
+    display: flex;
+    gap: 10px;
+}
