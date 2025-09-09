@@ -1,0 +1,25 @@
+:root{
+  --bg: #f8fafc;
+  --text: #111827;
+  --accent: #4f46e5;
+  --container-w: 1024px;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background:var(--bg);
+  color:var(--text);
+  -webkit-font-smoothing:antialiased;
+}
+.container{
+  max-width:var(--container-w);
+  margin:0 auto;
+  padding:1rem;
+}
+.header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:1rem 0;
+}
