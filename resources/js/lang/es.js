@@ -4,6 +4,8 @@ export default {
     subtitle: "Estoy en el coche sudando mogollón",
     register: "Registrarse",
     login: "Entrar",
+    logout: "Cerrar sesión",
     profile: "Perfil",
+    edit: "Editar perfil"
   },
 };

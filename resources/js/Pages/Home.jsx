@@ -1,32 +1,33 @@
 import { Head, Link } from "@inertiajs/react";
-import PrimaryButton from "@/Components/PrimaryButton";
 import Header from "@/Components/Header";
 import "../../css/pages/home.css";
 import { useContextoIdioma } from "@/Contexts/ContextoIdioma";
+import GuestLayout from "@/Layouts/GuestLayout";
+import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 
-export default function Home({ auth }) {
+export default function Home({ auth = {} }) {
   const { t } = useContextoIdioma();
+
+  if(auth?.user){
+    return(
+      <AuthenticatedLayout>
+          <Head title="Home"/>
+      </AuthenticatedLayout>
+    )
+  }
 
   return (
     <>
-      <Head title="Home" />
-      <div className="container">
-        <Header auth={auth}/>
+      <GuestLayout auth={auth}>
+        <Head title="Home" />
+        <div className="container">
 
-        <section className="home-hero">
-          <h2 className="home-title">{t.home.title}</h2>
-          <p className="home-sub">{t.home.subtitle}</p>
-
-          <div className="home-actions">
-            <Link href={route("register")}>
-              <PrimaryButton>{t.home.register}</PrimaryButton>
-            </Link>
-            <Link href={route("login")}>
-              <PrimaryButton>{t.home.login}</PrimaryButton>
-            </Link>
-          </div>
-        </section>
-      </div>
+          <section className="home-hero">
+            <h2 className="home-title">{t.home.title}</h2>
+            <p className="home-sub">{t.home.subtitle}</p>
+          </section>
+        </div>
+      </GuestLayout>
     </>
   );
 }

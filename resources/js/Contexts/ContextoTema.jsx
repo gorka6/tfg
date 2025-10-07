@@ -8,7 +8,6 @@ export function ContextoTemaProvider({ children }) {
   useEffect(() => {
     localStorage.setItem("tema", tema);
 
-    // Aplicar clase al :root
     document.documentElement.classList.remove("claro", "oscuro");
     document.documentElement.classList.add(tema);
   }, [tema]);
