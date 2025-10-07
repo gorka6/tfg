@@ -5,12 +5,12 @@ export default function CambioTema() {
   const { tema, setTema } = useContextoTema();
 
   const toggleTema = () => {
-    setTema(tema === 'claro' ? 'oscuro' : 'claro');
+    setTema(tema === 'c' ? 'o' : 'c');
   };
 
   return (
     <button className="theme-toggle-button" onClick={toggleTema}>
-      {tema === 'claro' ? '🌙' : '🌞'}
+      {tema === 'c' ? '🌙' : '🌞'}
     </button>
   );
 }

@@ -44,7 +44,7 @@ export default function Header({ auth }) {
                 </button>
               </Dropdown.Trigger>
 
-              <Dropdown.Content>
+              <Dropdown.Content className="dropdown-content">
                 <Dropdown.Link href={route("dashboard")}>
                   {t.home.profile}
                 </Dropdown.Link>
@@ -52,7 +52,7 @@ export default function Header({ auth }) {
                   {t.home.edit}
                 </Dropdown.Link>
                 <Dropdown.Link href={route("logout")} method="post" as="button">
-                  {t.home.logout || "Cerrar sesión"}
+                  {t.home.logout}
                 </Dropdown.Link>
               </Dropdown.Content>
             </Dropdown>

@@ -1,11 +1,11 @@
-:root.claro {
+:root.c {
   --bg: #f8fafc;
   --text: #111827;
   --accent: #4f46e5;
   --container-w: 1024px;
 }
 
-:root.oscuro {
+:root.o {
   --bg: #111827;
   --text: #f8fafc;
   --accent: #6366f1;
