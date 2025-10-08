@@ -19,7 +19,7 @@ class FichaController extends Controller
 
     public function index()
     {
-        $fichas = Auth::user()->fichas()->orderBy('created_at')->get();
+        $fichas = Auth::user()->fichas()->orderBy('created_at', 'desc')->get();
 
         return Inertia::render('Fichas/Index', ['fichas'=>$fichas]);
     }
@@ -47,15 +47,19 @@ class FichaController extends Controller
     }
 
 
-    public function show(string $id)
+    public function show(Ficha $ficha)
     {
-        //
+        $this->authorize('view', $ficha);
+
+        return Inertia::render('Fichas/Show', [
+            'ficha' => $ficha,
+        ]);
     }
 
 
     public function edit(Ficha $ficha)
     {
-        $this->authorize('view', $ficha);
+        $this->authorize('update', $ficha);
 
         return Inertia::render('Fichas/Edit', ['ficha' => $ficha,]);
     }
@@ -67,7 +71,7 @@ class FichaController extends Controller
 
         $data = $request->validate([
         'nombre' => 'required|string|max:255',
-        'ataque' => 'required|smallInteger|min:1',
+        'ataque' => 'required|integer|min:1',
         'alignment' => ['required', new Enum(Alignment::class)],
         ]);
 
