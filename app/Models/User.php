@@ -45,4 +45,9 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function fichas()
+    {
+        return $this->hasMany(\App\Models\Ficha::class);
+    }
 }
