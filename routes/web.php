@@ -26,8 +26,4 @@ Route::middleware('auth')->group(function () {
     Route::resource('fichas', FichaController::class);
 });
 
-Route::get('/hola', function(){
-    return Inertia::render('Hola');
-});
-
 require __DIR__.'/auth.php';

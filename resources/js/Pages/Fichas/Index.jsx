@@ -1,16 +1,17 @@
 import { Head, Link } from "@inertiajs/react";
-import "../../css/pages/home.css";
+import "../../../css/pages/home.css";
 import { useContextoIdioma } from "@/Contexts/ContextoIdioma";
 import GuestLayout from "@/Layouts/GuestLayout";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 
-export default function Home({ auth = {} }) {
+export default function FichasIndex({ auth = {} }) {
   const { t } = useContextoIdioma();
 
   if(auth?.user){
     return(
       <AuthenticatedLayout>
           <Head title="Home"/>
+          <p>index fichass</p>
       </AuthenticatedLayout>
     )
   }

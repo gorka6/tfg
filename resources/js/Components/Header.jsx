@@ -66,6 +66,9 @@ export default function Header({ auth }) {
               </Link>
             </>
           )}
+          <Link href={route("fichas.index")} className="header-btn">
+            {t.home.register}
+          </Link>
         </nav>
       </div>
     </header>
