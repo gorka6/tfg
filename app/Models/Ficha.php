@@ -2,11 +2,13 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Enums\Alignment;
 
 class Ficha extends Model
 {
-    protected $fillable = ['nombre', 'ataque', 'alignment'];
+    protected $fillable = ['user_id', 'nombre', 'ataque', 'alignment'];
 
     protected $casts = [
         'alignment' => Alignment::class,

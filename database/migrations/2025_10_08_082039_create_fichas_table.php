@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->string('nombre');
-            $table->smallInteger('ataque');
+            $table->integer('ataque');
             $table->enum('alignment', [
             'Lawful Good','Neutral Good','Chaotic Good',
             'Lawful Neutral','True Neutral','Chaotic Neutral',
