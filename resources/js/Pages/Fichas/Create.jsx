@@ -2,6 +2,7 @@ import { Head, Link, useForm } from "@inertiajs/react";
 import { useContextoIdioma } from "@/Contexts/ContextoIdioma";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import "../../../css/pages/fichas-create.css";
+import D6Button from "@/Components/Dados/D6";
 
 export default function FichasCreate({ auth }) {
 
@@ -54,16 +55,10 @@ export default function FichasCreate({ auth }) {
                         {errors.nombre && <p className="fichas-error">{errors.nombre}</p>}
                     </div>
 
-                    <div className="fichas-form-group">
-                        <label htmlFor="ataque">{t.create.atk}</label>
-                        <input
-                            id="ataque"
-                            type="number"
-                            min="1"
-                            value={data.ataque}
-                            onChange={(e) => setData("ataque", e.target.value)}
-                        />
-                        {errors.ataque && <p className="fichas-error">{errors.ataque}</p>}
+                    <div>
+                        <label>Ataque</label>
+                        <D6Button value={data.ataque} setValue={(val) => setData("ataque", val)} />
+                        {errors.ataque && <p>{errors.ataque}</p>}
                     </div>
 
                     <div className="fichas-form-group">
