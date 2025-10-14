@@ -9,6 +9,7 @@ use App\Enums\Alignment;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class FichaController extends Controller
 {

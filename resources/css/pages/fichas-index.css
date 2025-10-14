@@ -159,3 +159,34 @@ html.o {
     text-align: center;
   }
 }
+
+.ficha-btn-eliminar {
+  background-color: #e53e3e; /* rojo por defecto */
+  color: #fff;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.ficha-btn-eliminar:hover {
+  background-color: #c53030; /* rojo más oscuro al pasar el mouse */
+}
+
+/* Tema oscuro */
+.dark .ficha-btn-eliminar {
+  background-color: #9b2c2c;
+  color: #fff;
+}
+
+.dark .ficha-btn-eliminar:hover {
+  background-color: #822727;
+}
+
+/* Opcional: botón deshabilitado */
+.ficha-btn-eliminar:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

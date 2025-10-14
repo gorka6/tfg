@@ -1,0 +1,104 @@
+:root {
+  --bg: #f9fafb;
+  --card-bg: #ffffff;
+  --text-primary: #1f2937;
+  --text-secondary: #4b5563;
+  --border: #e5e7eb;
+  --btn-bg: #2563eb;
+  --btn-hover: #1d4ed8;
+  --shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.dark-theme {
+  --bg: #111827;
+  --card-bg: #1f2937;
+  --text-primary: #f9fafb;
+  --text-secondary: #d1d5db;
+  --border: #374151;
+  --btn-bg: #3b82f6;
+  --btn-hover: #60a5fa;
+  --shadow: 0 4px 10px rgba(255, 255, 255, 0.05);
+}
+
+.fichas-form-container {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: var(--card-bg);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  color: var(--text-primary);
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.fichas-form-title {
+  text-align: center;
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: var(--text-primary);
+}
+
+.fichas-form-group {
+  margin-bottom: 1.2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.fichas-form-group label {
+  margin-bottom: 0.4rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.fichas-form-group input,
+.fichas-form-group select {
+  padding: 0.6rem;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text-primary);
+  font-size: 1rem;
+  transition: background 0.3s ease, color 0.3s ease, border-color 0.2s ease;
+}
+
+.fichas-form-group input:focus,
+.fichas-form-group select:focus {
+  outline: 2px solid var(--btn-bg);
+  border-color: var(--btn-bg);
+}
+
+.fichas-error {
+  color: #ef4444;
+  font-size: 0.9rem;
+  margin-top: 0.2rem;
+}
+
+.fichas-btn-submit {
+  width: 100%;
+  padding: 0.8rem;
+  background-color: var(--btn-bg);
+  color: white;
+  font-weight: 600;
+  border: none;
+  border-radius: 10px;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  cursor: pointer;
+}
+
+.fichas-btn-submit:hover {
+  background-color: var(--btn-hover);
+  transform: translateY(-2px);
+}
+
+.fichas-btn-submit:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+body,
+.fichas-form-container,
+.fichas-form-group input,
+.fichas-form-group select {
+  transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
