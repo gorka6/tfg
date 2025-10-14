@@ -17,10 +17,10 @@ return new class extends Migration
             $table->string('nombre');
             $table->integer('ataque');
             $table->enum('alignment', [
-            'Lawful Good','Neutral Good','Chaotic Good',
-            'Lawful Neutral','True Neutral','Chaotic Neutral',
-            'Lawful Evil','Neutral Evil','Chaotic Evil'
-            ])->default('True Neutral');
+                'lg', 'ng', 'cg',
+                'ln', 'tn', 'cn',
+                'le', 'ne', 'ce'
+            ])->default('tn');
 
             $table->timestamps();
         });

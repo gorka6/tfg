@@ -41,7 +41,7 @@ export default function FichasIndex({ fichas }) {
                             <div key={ficha.id} className="ficha-card">
                                 <h2 className="ficha-nombre">{ficha.nombre}</h2>
                                 <p><strong>{t.create.atk}</strong> {ficha.ataque}</p>
-                                <p><strong>{t.create.align}</strong> {ficha.alignment}</p>
+                                <p><strong>{t.create.align}</strong> {t.alignments[ficha.alignment]}</p>
 
                                 <div className="ficha-acciones">
                                     <Link

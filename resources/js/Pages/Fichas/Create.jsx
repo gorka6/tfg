@@ -10,19 +10,19 @@ export default function FichasCreate({ auth }) {
     const { data, setData, post, processing, errors, reset } = useForm({
         nombre: "",
         ataque: "",
-        alignment: "True Neutral",
+        alignment: "tn",
     });
 
     const alignments = [
-        { value: 'LawfulGood', label: t.alignments.lg },
-        { value: 'NeutralGood', label: t.alignments.ng },
-        { value: 'ChaoticGood', label: t.alignments.cg },
-        { value: 'LawfulNeutral', label: t.alignments.ln },
-        { value: 'TrueNeutral', label: t.alignments.tn },
-        { value: 'ChaoticNeutral', label: t.alignments.cn },
-        { value: 'LawfulEvil', label: t.alignments.le },
-        { value: 'NeutralEvil', label: t.alignments.ne },
-        { value: 'ChaoticEvil', label: t.alignments.ce },
+        { value: 'lg', label: t.alignments.lg },
+        { value: 'ng', label: t.alignments.ng },
+        { value: 'cg', label: t.alignments.cg },
+        { value: 'ln', label: t.alignments.ln },
+        { value: 'tn', label: t.alignments.tn },
+        { value: 'cn', label: t.alignments.cn },
+        { value: 'le', label: t.alignments.le },
+        { value: 'ne', label: t.alignments.ne },
+        { value: 'ce', label: t.alignments.ce },
     ];
 
     const handleSubmit = (e) => {
