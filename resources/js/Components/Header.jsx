@@ -67,7 +67,7 @@ export default function Header({ auth }) {
             </>
           )}
           <Link href={route("fichas.index")} className="header-btn">
-            {t.home.register}
+            {t.home.sheet}
           </Link>
         </nav>
       </div>

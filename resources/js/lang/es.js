@@ -6,6 +6,7 @@ export default {
     login: "Entrar",
     logout: "Cerrar sesión",
     profile: "Perfil",
-    edit: "Editar perfil"
+    edit: "Editar perfil",
+    sheet: "Fichas"
   },
 };

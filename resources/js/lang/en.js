@@ -6,6 +6,7 @@ export default {
     login: "Login",
     logout: "Logout",
     profile: "Profile",
-    edit: "Edit profile"
+    edit: "Edit profile",
+    sheet: "Sheets"
   },
 };
