@@ -21,10 +21,16 @@ export default {
   create: {
     title: "Crear nueva ficha",
     name: "Nombre",
-    atk: "Ataque",
+    str: "Fuerza",
     align: "Alineamiento",
     saving: "Guardando...",
     save: "Guardar ficha",
+    str: "Fuerza",
+    dex: "Destreza",
+    con: "Constitucion",
+    int: "Inteligencia",
+    wis: "Sabiduría",
+    cha: "Carisma"
   },
   alignments: {
     lg: "Legal Bueno",

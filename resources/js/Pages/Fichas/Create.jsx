@@ -2,15 +2,15 @@ import { Head, Link, useForm } from "@inertiajs/react";
 import { useContextoIdioma } from "@/Contexts/ContextoIdioma";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import "../../../css/pages/fichas-create.css";
-import D6Button from "@/Components/Dados/D6";
+import D6Button from "@/Components/Dados/D6Atributos";
 
 export default function FichasCreate({ auth }) {
 
     const { t } = useContextoIdioma();
 
     const { data, setData, post, processing, errors, reset } = useForm({
-        nombre: "",
-        ataque: "",
+        name: "",
+        str: "",
         alignment: "tn",
     });
 
@@ -33,7 +33,6 @@ export default function FichasCreate({ auth }) {
         });
     };
 
-    console.log(t)
 
     return (
         <AuthenticatedLayout>
@@ -45,20 +44,50 @@ export default function FichasCreate({ auth }) {
                 <form onSubmit={handleSubmit} className="fichas-form">
 
                     <div className="fichas-form-group">
-                        <label htmlFor="nombre">{t.create.name}</label>
+                        <label htmlFor="name">{t.create.name}</label>
                         <input
-                            id="nombre"
+                            id="name"
                             type="text"
-                            value={data.nombre}
-                            onChange={(e) => setData("nombre", e.target.value)}
+                            value={data.name}
+                            onChange={(e) => setData("name", e.target.value)}
                         />
-                        {errors.nombre && <p className="fichas-error">{errors.nombre}</p>}
+                        {errors.name && <p className="fichas-error">{errors.name}</p>}
                     </div>
 
                     <div>
-                        <label>Ataque</label>
-                        <D6Button value={data.ataque} setValue={(val) => setData("ataque", val)} />
-                        {errors.ataque && <p>{errors.ataque}</p>}
+                        <label>{t.create.str}</label>
+                        <D6Button value={data.str} setValue={(val) => setData("str", val)} />
+                        {errors.str && <p>{errors.str}</p>}
+                    </div>
+
+                    <div>
+                        <label>{t.create.dex}</label>
+                        <D6Button value={data.dex} setValue={(val) => setData("dex", val)} />
+                        {errors.dex && <p>{errors.dex}</p>}
+                    </div>
+
+                    <div>
+                        <label>{t.create.con}</label>
+                        <D6Button value={data.con} setValue={(val) => setData("con", val)} />
+                        {errors.con && <p>{errors.con}</p>}
+                    </div>
+
+                    <div>
+                        <label>{t.create.int}</label>
+                        <D6Button value={data.int} setValue={(val) => setData("int", val)} />
+                        {errors.int && <p>{errors.int}</p>}
+                    </div>
+
+                    <div>
+                        <label>{t.create.wis}</label>
+                        <D6Button value={data.wis} setValue={(val) => setData("wis", val)} />
+                        {errors.wis && <p>{errors.wis}</p>}
+                    </div>
+
+                    <div>
+                        <label>{t.create.cha}</label>
+                        <D6Button value={data.cha} setValue={(val) => setData("cha", val)} />
+                        {errors.cha && <p>{errors.cha}</p>}
                     </div>
 
                     <div className="fichas-form-group">

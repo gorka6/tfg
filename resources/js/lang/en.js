@@ -21,10 +21,16 @@ export default {
   create: {
     title: "Create new sheet",
     name: "Name",
-    atk: "Attack",
+    str: "Strength",
     align: "Alignment",
     saving: "Saving...",
     save: "Save sheet",
+    str: "Strength",
+    dex: "Dexterity",
+    con: "Constitution",
+    int: "Intelligence",
+    wis: "Wisdom",
+    cha: "Charisma"
   },
   alignments: {
     lg: "Lawful Good",

@@ -3,6 +3,7 @@ import { useContextoIdioma } from "@/Contexts/ContextoIdioma";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import "../../../css/pages/fichas-index.css";
 import { useForm } from "@inertiajs/react";
+import FichaCard from "@/Components/FichaCard";
 
 export default function FichasIndex({ fichas }) {
     const { t } = useContextoIdioma();
@@ -38,31 +39,7 @@ export default function FichasIndex({ fichas }) {
                 ) : (
                     <div className="fichas-grid">
                         {fichas.map((ficha) => (
-                            <div key={ficha.id} className="ficha-card">
-                                <h2 className="ficha-nombre">{ficha.nombre}</h2>
-                                <p><strong>{t.create.atk}</strong> {ficha.ataque}</p>
-                                <p><strong>{t.create.align}</strong> {t.alignments[ficha.alignment]}</p>
-
-                                <div className="ficha-acciones">
-                                    <Link
-                                        href={route("fichas.show", ficha.id)}
-                                        className="ficha-btn-ver"
-                                    >
-                                        {t.index.show}
-                                    </Link>
-                                    <Link
-                                        href={route("fichas.edit", ficha.id)}
-                                        className="ficha-btn-editar"
-                                    >
-                                        {t.index.edit}
-                                    </Link>
-                                    <button 
-                                    className="ficha-btn-eliminar"
-                                    onClick={() => destroy(route("fichas.destroy", ficha.id))}>
-                                        {t.index.delete}
-                                    </button>
-                                </div>
-                            </div>
+                            <FichaCard key={ficha.id} ficha={ficha} t={t} />
                         ))}
                     </div>
                 )}

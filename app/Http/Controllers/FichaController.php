@@ -22,7 +22,7 @@ class FichaController extends Controller
     {
         $fichas = Auth::user()->fichas()->orderBy('created_at', 'desc')->get();
 
-        return Inertia::render('Fichas/Index', ['fichas'=>$fichas]);
+        return Inertia::render('Fichas/Index', ['fichas' => $fichas]);
     }
 
 
@@ -35,9 +35,19 @@ class FichaController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'nombre' => 'required|string|max:255',
-            'ataque' => 'required|integer|min:1',
+            'name' => 'required|string|max:255',
             'alignment' => ['required', new Enum(Alignment::class)],
+            'background_id' => 'required|integer|exists:backgrounds,background_id',
+            'race_id' => 'required|integer|exists:races,race_id',
+            'subrace_id' => 'nullable|integer|exists:subraces,subrace_id',
+            'class_id' => 'required|integer|exists:classes,class_id',
+            'exp' => 'required|integer|min:0',
+            'str' => 'required|integer|min:3|max:18',
+            'dex' => 'required|integer|min:3|max:18',
+            'con' => 'required|integer|min:3|max:18',
+            'int' => 'required|integer|min:3|max:18',
+            'wis' => 'required|integer|min:3|max:18',
+            'cha' => 'required|integer|min:3|max:18',
         ]);
 
         $data['user_id'] = Auth::id();
@@ -71,9 +81,19 @@ class FichaController extends Controller
         $this->authorize('update', $ficha);
 
         $data = $request->validate([
-        'nombre' => 'required|string|max:255',
-        'ataque' => 'required|integer|min:1',
-        'alignment' => ['required', new Enum(Alignment::class)],
+            'name' => 'required|string|max:255',
+            'alignment' => ['required', new Enum(Alignment::class)],
+            'background_id' => 'required|integer|exists:backgrounds,background_id',
+            'race_id' => 'required|integer|exists:races,race_id',
+            'subrace_id' => 'nullable|integer|exists:subraces,subrace_id',
+            'class_id' => 'required|integer|exists:classes,class_id',
+            'exp' => 'required|integer|min:0',
+            'str' => 'required|integer|min:3|max:18',
+            'dex' => 'required|integer|min:3|max:18',
+            'con' => 'required|integer|min:3|max:18',
+            'int' => 'required|integer|min:3|max:18',
+            'wis' => 'required|integer|min:3|max:18',
+            'cha' => 'required|integer|min:3|max:18',
         ]);
 
         $ficha->update($data);
