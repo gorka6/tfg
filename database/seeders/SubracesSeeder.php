@@ -33,24 +33,24 @@ class SubracesSeeder extends Seeder
 
             // Enanos (Dwarves)
             [
-                'race_id' => 3,
+                'race_id' => 1,
                 'name' => 'Hill Dwarf',
                 'description' => 'Stout dwarves with keen senses and toughness.',
             ],
             [
-                'race_id' => 3,
+                'race_id' => 1,
                 'name' => 'Mountain Dwarf',
                 'description' => 'Dwarves adapted to high mountains, stronger and hardy.',
             ],
 
             // Halflings
             [
-                'race_id' => 4,
+                'race_id' => 3,
                 'name' => 'Lightfoot Halfling',
                 'description' => 'Halflings who are naturally stealthy and lucky.',
             ],
             [
-                'race_id' => 4,
+                'race_id' => 3,
                 'name' => 'Stout Halfling',
                 'description' => 'Hardy halflings with a bit of dwarven blood.',
             ],

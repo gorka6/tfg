@@ -1,85 +1,80 @@
-import { Head, Link, useForm } from "@inertiajs/react";
+import { Head, useForm } from "@inertiajs/react";
 import { useContextoIdioma } from "@/Contexts/ContextoIdioma";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import "../../../css/pages/fichas-create.css";
 import D6Button from "@/Components/Dados/D6Atributos";
+import { useState } from "react";
 
-export default function FichasCreate({ auth }) {
-
+export default function FichasCreate({ auth, races = [], subraces = [], classes = [], backgrounds = [] }) {
     const { t } = useContextoIdioma();
+
+    const [step, setStep] = useState(1);
+    const [selectedRaceId, setSelectedRaceId] = useState(null);
 
     const { data, setData, post, processing, errors, reset } = useForm({
         name: "",
-        str: "",
+        str: 0,
+        dex: 0,
+        con: 0,
+        int: 0,
+        wis: 0,
+        cha: 0,
         alignment: "tn",
+        race_id: null,
+        class_id: null,
+        subrace_id: null,
+        background_id: null,
+        exp: 0,
     });
 
-    const alignments = [
-        { value: 'lg', label: t.alignments.lg },
-        { value: 'ng', label: t.alignments.ng },
-        { value: 'cg', label: t.alignments.cg },
-        { value: 'ln', label: t.alignments.ln },
-        { value: 'tn', label: t.alignments.tn },
-        { value: 'cn', label: t.alignments.cn },
-        { value: 'le', label: t.alignments.le },
-        { value: 'ne', label: t.alignments.ne },
-        { value: 'ce', label: t.alignments.ce },
+    // helper: slugify DB name to match translation keys like "hill_dwarf"
+    const slugify = (name = "") =>
+        name
+            .toString()
+            .trim()
+            .toLowerCase()
+            .replace(/\s+/g, "_")
+            .replace(/-/g, "_")
+            .replace(/[^\w_]/g, "");
+
+    const alignmentsList = [
+        { value: "lg", label: t.alignments.lg },
+        { value: "ng", label: t.alignments.ng },
+        { value: "cg", label: t.alignments.cg },
+        { value: "ln", label: t.alignments.ln },
+        { value: "tn", label: t.alignments.tn },
+        { value: "cn", label: t.alignments.cn },
+        { value: "le", label: t.alignments.le },
+        { value: "ne", label: t.alignments.ne },
+        { value: "ce", label: t.alignments.ce },
     ];
 
-    const classes = [
-        { value: 'barbarian', label: t.classes.barbarian },
-        { value: 'bard', label: t.classes.bard },
-        { value: 'cleric', label: t.classes.cleric },
-        { value: 'druid', label: t.classes.druid },
-        { value: 'fighter', label: t.classes.fighter },
-        { value: 'monk', label: t.classes.monk },
-        { value: 'paladin', label: t.classes.paladin },
-        { value: 'ranger', label: t.classes.ranger },
-        { value: 'rogue', label: t.classes.rogue },
-        { value: 'sorcerer', label: t.classes.sorcerer },
-        { value: 'warlock', label: t.classes.warlock },
-        { value: 'wizard', label: t.classes.wizard },
-    ];
-    const races = [
-        { value: 'dwarf', label: t.races.dwarf },
-        { value: 'elf', label: t.races.elf },
-        { value: 'halfling', label: t.races.halfling },
-        { value: 'human', label: t.races.human },
-        { value: 'dragonborn', label: t.races.dragonborn },
-        { value: 'gnome', label: t.races.gnome },
-        { value: 'halfelf', label: t.races.half_elf },
-        { value: 'halforc', label: t.races.half_orc },
-        { value: 'tiefling', label: t.races.tiefling },
-    ];
+    const racesOptions = races.map(r => {
+        const key = slugify(r.name);
+        return { value: r.race_id, label: t.races[key]};
+    });
 
-    const subraces = [
-        { value: 'hill_dwarf', label: t.subraces.hill_dwarf },
-        { value: 'mountain_dwarf', label: t.subraces.mountain_dwarf },
-        { value: 'high_elf', label: t.subraces.high_elf },
-        { value: 'wood_elf', label: t.subraces.wood_elf },
-        { value: 'dark_elf', label: t.subraces.dark_elf },
-        { value: 'lightfoot_halfling', label: t.subraces.lightfoot_halfling },
-        { value: 'stout_halfling', label: t.subraces.stout_halfling },
-        { value: 'forest_gnome', label: t.subraces.forest_gnome },
-        { value: 'rock_gnome', label: t.subraces.rock_gnome },
-    ];
+    const classesOptions = classes.map(c => {
+        const key = slugify(c.name);
+        return { value: c.class_id, label: t.classes[key]};
+    });
 
-    const backgrounds = [
-        { value: 'acolyte', label: t.backgrounds.acolyte },
-        { value: 'charlatan', label: t.backgrounds.charlatan },
-        { value: 'criminal', label: t.backgrounds.criminal },
-        { value: 'entertainer', label: t.backgrounds.entertainer },
-        { value: 'folk_hero', label: t.backgrounds.folk_hero },
-        { value: 'guild_artisan', label: t.backgrounds.guild_artisan },
-        { value: 'hermit', label: t.backgrounds.hermit },
-        { value: 'noble', label: t.backgrounds.noble },
-        { value: 'outlander', label: t.backgrounds.outlander },
-        { value: 'sage', label: t.backgrounds.sage },
-        { value: 'sailor', label: t.backgrounds.sailor },
-        { value: 'soldier', label: t.backgrounds.soldier },
-        { value: 'urchin', label: t.backgrounds.urchin },
-    ];
+    const subracesFiltered = selectedRaceId
+        ? subraces.filter(sr => Number(sr.race_id) === Number(selectedRaceId))
+        : [];
 
+    const subracesOptions = subracesFiltered.map(sr => {
+        const key = slugify(sr.name);
+        return { value: sr.subrace_id, label: t.subraces[key]};
+    });
+
+    const backgroundsOptions = backgrounds.map(b => {
+        const key = slugify(b.name);
+        return { value: b.background_id ?? b.id ?? b.value, label: t.backgrounds[key]};
+    });
+
+    const nextStep = () => setStep(cur => Math.min(cur + 1, 2));
+    const prevStep = () => setStep(cur => Math.max(cur - 1, 1));
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -87,7 +82,6 @@ export default function FichasCreate({ auth }) {
             onSuccess: () => reset(),
         });
     };
-
 
     return (
         <AuthenticatedLayout>
@@ -97,81 +91,187 @@ export default function FichasCreate({ auth }) {
                 <h1 className="fichas-form-title">{t.create.title}</h1>
 
                 <form onSubmit={handleSubmit} className="fichas-form">
+                    {step === 1 && (
+                        <>
+                            <div className="fichas-form-group">
+                                <label htmlFor="name">{t.create.name}</label>
+                                <input
+                                    id="name"
+                                    type="text"
+                                    value={data.name}
+                                    placeholder={t.create.enter_name}
+                                    onChange={(e) => setData("name", e.target.value)}
+                                />
+                                {errors.name && <p className="fichas-error">{errors.name}</p>}
+                            </div>
 
-                    <div className="fichas-form-group">
-                        <label htmlFor="name">{t.create.name}</label>
-                        <input
-                            id="name"
-                            type="text"
-                            value={data.name}
-                            onChange={(e) => setData("name", e.target.value)}
-                        />
-                        {errors.name && <p className="fichas-error">{errors.name}</p>}
-                    </div>
+                            <div className="fichas-form-group">
+                                <label htmlFor="race">{t.create.race}</label>
+                                <select
+                                    id="race"
+                                    value={data.race_id ?? ""}
+                                    onChange={(e) => {
+                                        const id = e.target.value === "" ? null : Number(e.target.value);
+                                        setData("race_id", id);
+                                        setSelectedRaceId(id);
+                                        setData("subrace_id", null);
+                                    }}
+                                >
+                                    <option value="">{t.create.select_race}</option>
+                                    {racesOptions.map(r => (
+                                        <option key={r.value} value={r.value}>{r.label}</option>
+                                    ))}
+                                </select>
+                                {errors.race_id && <p className="fichas-error">{errors.race_id}</p>}
+                            </div>
 
-                    <div>
-                        <label>{t.create.str}</label>
-                        <D6Button value={data.str} setValue={(val) => setData("str", val)} />
-                        {errors.str && <p>{errors.str}</p>}
-                    </div>
+                            <div className="fichas-form-group">
+                                <label htmlFor="class">{t.create.class}</label>
+                                <select
+                                    id="class"
+                                    value={data.class_id ?? ""}
+                                    onChange={(e) => setData("class_id", e.target.value === "" ? null : Number(e.target.value))}
+                                >
+                                    <option value="">{t.create.select_class}</option>
+                                    {classesOptions.map(c => (
+                                        <option key={c.value} value={c.value}>{c.label}</option>
+                                    ))}
+                                </select>
+                                {errors.class_id && <p className="fichas-error">{errors.class_id}</p>}
+                            </div>
 
-                    <div>
-                        <label>{t.create.dex}</label>
-                        <D6Button value={data.dex} setValue={(val) => setData("dex", val)} />
-                        {errors.dex && <p>{errors.dex}</p>}
-                    </div>
+                            <div style={{ marginTop: "1.5rem" }}>
+                                <button
+                                    type="button"
+                                    onClick={nextStep}
+                                    disabled={!data.name || !data.race_id || !data.class_id}
+                                    style={{
+                                        padding: "0.5rem 1.5rem",
+                                        fontSize: "1rem",
+                                        cursor: (!data.name || !data.race_id || !data.class_id) ? "not-allowed" : "pointer",
+                                        borderRadius: "4px",
+                                        border: "1px solid #333",
+                                        backgroundColor: "#28a745",
+                                        color: "white",
+                                        minWidth: "100px",
+                                        opacity: (!data.name || !data.race_id || !data.class_id) ? 0.6 : 1,
+                                    }}
+                                >
+                                    {t.create.next}
+                                </button>
+                            </div>
+                        </>
+                    )}
 
-                    <div>
-                        <label>{t.create.con}</label>
-                        <D6Button value={data.con} setValue={(val) => setData("con", val)} />
-                        {errors.con && <p>{errors.con}</p>}
-                    </div>
+                    {step === 2 && (
+                        <>
+                            <div className="fichas-form-group">
+                                <label htmlFor="subrace">{t.create.subrace}</label>
+                                <select
+                                    id="subrace"
+                                    value={data.subrace_id ?? ""}
+                                    onChange={(e) => setData("subrace_id", e.target.value === "" ? null : Number(e.target.value))}
+                                >
+                                    <option value="">{t.create.select_subrace}</option>
+                                    {subracesOptions.map(sr => (
+                                        <option key={sr.value} value={sr.value}>{sr.label}</option>
+                                    ))}
+                                </select>
+                                {errors.subrace_id && <p className="fichas-error">{errors.subrace_id}</p>}
+                            </div>
 
-                    <div>
-                        <label>{t.create.int}</label>
-                        <D6Button value={data.int} setValue={(val) => setData("int", val)} />
-                        {errors.int && <p>{errors.int}</p>}
-                    </div>
+                            <div>
+                                <label>{t.create.str}</label>
+                                <D6Button value={data.str} setValue={(val) => setData("str", val)} />
+                                {errors.str && <p className="fichas-error">{errors.str}</p>}
+                            </div>
 
-                    <div>
-                        <label>{t.create.wis}</label>
-                        <D6Button value={data.wis} setValue={(val) => setData("wis", val)} />
-                        {errors.wis && <p>{errors.wis}</p>}
-                    </div>
+                            <div>
+                                <label>{t.create.dex}</label>
+                                <D6Button value={data.dex} setValue={(val) => setData("dex", val)} />
+                                {errors.dex && <p className="fichas-error">{errors.dex}</p>}
+                            </div>
 
-                    <div>
-                        <label>{t.create.cha}</label>
-                        <D6Button value={data.cha} setValue={(val) => setData("cha", val)} />
-                        {errors.cha && <p>{errors.cha}</p>}
-                    </div>
+                            <div>
+                                <label>{t.create.con}</label>
+                                <D6Button value={data.con} setValue={(val) => setData("con", val)} />
+                                {errors.con && <p className="fichas-error">{errors.con}</p>}
+                            </div>
 
-                    <div className="fichas-form-group">
-                        <label htmlFor="alignment">{t.create.align}</label>
-                        <select
-                            id="alignment"
-                            value={data.alignment}
-                            onChange={(e) => setData("alignment", e.target.value)}
-                        >
-                            {alignments.map((align) => (
-                                <option key={align.value} value={align.value}>
-                                    {align.label}
-                                </option>
-                            ))}
-                        </select>
-                        {errors.alignment && (
-                            <p className="fichas-error">{errors.alignment}</p>
-                        )}
-                    </div>
+                            <div>
+                                <label>{t.create.int}</label>
+                                <D6Button value={data.int} setValue={(val) => setData("int", val)} />
+                                {errors.int && <p className="fichas-error">{errors.int}</p>}
+                            </div>
 
-                    <button
-                        type="submit"
-                        className="fichas-btn-submit"
-                        disabled={processing}
-                    >
-                        {processing ? "Guardando..." : "Guardar ficha"}
-                    </button>
+                            <div>
+                                <label>{t.create.wis}</label>
+                                <D6Button value={data.wis} setValue={(val) => setData("wis", val)} />
+                                {errors.wis && <p className="fichas-error">{errors.wis}</p>}
+                            </div>
+
+                            <div>
+                                <label>{t.create.cha}</label>
+                                <D6Button value={data.cha} setValue={(val) => setData("cha", val)} />
+                                {errors.cha && <p className="fichas-error">{errors.cha}</p>}
+                            </div>
+
+                            <div className="fichas-form-group">
+                                <label htmlFor="alignment">{t.create.align}</label>
+                                <select
+                                    id="alignment"
+                                    value={data.alignment}
+                                    onChange={(e) => setData("alignment", e.target.value)}
+                                >
+                                    {alignmentsList.map((align) => (
+                                        <option key={align.value} value={align.value}>
+                                            {align.label}
+                                        </option>
+                                    ))}
+                                </select>
+                                {errors.alignment && <p className="fichas-error">{errors.alignment}</p>}
+                            </div>
+
+                            <div style={{ marginTop: "1.5rem", display: "flex", gap: "1rem" }}>
+                                <button
+                                    type="button"
+                                    onClick={prevStep}
+                                    style={{
+                                        padding: "0.5rem 1.5rem",
+                                        fontSize: "1rem",
+                                        cursor: "pointer",
+                                        borderRadius: "4px",
+                                        border: "1px solid #333",
+                                        backgroundColor: "#6c757d",
+                                        color: "white",
+                                        minWidth: "100px",
+                                    }}
+                                >
+                                    {t.create.back}
+                                </button>
+
+                                <button
+                                    type="submit"
+                                    disabled={processing}
+                                    style={{
+                                        padding: "0.5rem 1.5rem",
+                                        fontSize: "1rem",
+                                        cursor: processing ? "not-allowed" : "pointer",
+                                        opacity: processing ? 0.6 : 1,
+                                        borderRadius: "4px",
+                                        border: "1px solid #333",
+                                        backgroundColor: "#007bff",
+                                        color: "white",
+                                        minWidth: "100px",
+                                    }}
+                                >
+                                    {processing ? t.create.saving : t.create.save}
+                                </button>
+                            </div>
+                        </>
+                    )}
                 </form>
             </div>
         </AuthenticatedLayout>
-    )
+    );
 }

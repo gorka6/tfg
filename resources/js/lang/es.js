@@ -21,6 +21,9 @@ export default {
   create: {
     title: "Crear nueva ficha",
     name: "Nombre",
+    race: "Raza",
+    class: "Clase",
+    subrace: "Subraza",
     str: "Fuerza",
     align: "Alineamiento",
     saving: "Guardando...",
@@ -30,7 +33,13 @@ export default {
     con: "Constitucion",
     int: "Inteligencia",
     wis: "Sabiduría",
-    cha: "Carisma"
+    cha: "Carisma",
+    next: "Siguiente",
+    back: "Atrás",
+    enter_name: "Introduce un nombre",
+    select_race: "Selecciona una raza",
+    select_subrace: "Selecciona una subraza",
+    select_class: "Selecciona una clase"
   },
   alignments: {
     lg: "Legal Bueno",

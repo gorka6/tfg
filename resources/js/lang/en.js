@@ -21,6 +21,9 @@ export default {
   create: {
     title: "Create new sheet",
     name: "Name",
+    race: "Race",
+    class: "Class",
+    subrace: "Subrace",
     str: "Strength",
     align: "Alignment",
     saving: "Saving...",
@@ -30,7 +33,13 @@ export default {
     con: "Constitution",
     int: "Intelligence",
     wis: "Wisdom",
-    cha: "Charisma"
+    cha: "Charisma",
+    next: "Next",
+    back: "Back",
+    enter_name: "Enter a name",
+    select_race: "Select a race",
+    select_subrace: "Select a subrace",
+    select_class: "Select a class"
   },
   alignments: {
     lg: "Lawful Good",
