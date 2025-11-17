@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 use App\Models\Ficha;
 use Illuminate\Validation\Rules\Enum;
 use App\Enums\Alignment;
+use App\Enums\Background;
+use App\Enums\Race;
+use App\Enums\Subrace;
+use App\Models\CharacterClass;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Redirect;
@@ -37,10 +41,10 @@ class FichaController extends Controller
         $data = $request->validate([
             'name' => 'required|string|max:255',
             'alignment' => ['required', new Enum(Alignment::class)],
-            'background_id' => 'required|integer|exists:backgrounds,background_id',
-            'race_id' => 'required|integer|exists:races,race_id',
-            'subrace_id' => 'nullable|integer|exists:subraces,subrace_id',
-            'class_id' => 'required|integer|exists:classes,class_id',
+            'background_id' => ['required', new Enum(Background::class)],
+            'race_id' => ['required', new Enum(Race::class)],
+            'subrace_id' => ['required', new Enum(Subrace::class)],
+            'class_id' => ['required', new Enum(CharacterClass::class)],
             'exp' => 'required|integer|min:0',
             'str' => 'required|integer|min:3|max:18',
             'dex' => 'required|integer|min:3|max:18',
