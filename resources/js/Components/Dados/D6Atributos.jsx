@@ -16,7 +16,7 @@ export default function D6Button({ value, setValue }) {
         setTimeout(() => {
             setValue(total);
             setIsRolling(false);
-        }, 1000); 
+        }, 1000);
     };
 
     return (
@@ -34,16 +34,17 @@ export default function D6Button({ value, setValue }) {
                 {rolls.map((roll, i) => (
                     <img
                         key={i}
-                        src={`/images/dice/dice${roll}.gif?${refreshKey}`} 
+                        src={`/images/dice/dice${roll}.gif?${refreshKey}`}
                         alt={`Dado ${roll}`}
                         className="dice-face"
                     />
                 ))}
             </div>
 
-            {!isRolling && rolls.length > 0 && (
-                <p className="dice-result">Total: {value}</p>
-            )}
+            <p className="dice-result">
+                Total: {isRolling ? "—" : value}
+            </p>
+
         </div>
     );
 }
