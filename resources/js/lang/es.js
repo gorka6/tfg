@@ -41,7 +41,7 @@ export default {
     select_subrace: "Selecciona una subraza",
     no_subrace: "Sin subraza",
     select_class: "Selecciona una clase",
-    background: "Selecciona un origen"
+    background: "Origen"
   },
   alignments: {
     lg: "Legal Bueno",

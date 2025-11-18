@@ -41,7 +41,7 @@ export default {
     select_subrace: "Select a subrace",
     no_subrace: "No subrace",
     select_class: "Select a class",
-    background: "Select a background"
+    background: "Background"
 
   },
   alignments: {

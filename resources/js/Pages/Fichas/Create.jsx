@@ -1,5 +1,6 @@
 import { Head, useForm } from "@inertiajs/react";
 import { useContextoIdioma } from "@/Contexts/ContextoIdioma";
+import { useNormTexto } from "@/Hooks/useNormTexto";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import "../../../css/pages/fichas-create.css";
 import D6Button from "@/Components/Dados/D6Atributos";
@@ -49,12 +50,12 @@ export default function FichasCreate({ auth, races = [], subraces = [], classes 
     ];
 
     const racesOptions = races.map(r => {
-        const key = slugify(r.name);
+        const key = useNormTexto(r.name);
         return { value: r.id, label: t.races[key] };
     });
 
     const classesOptions = classes.map(c => {
-        const key = slugify(c.name);
+        const key = useNormTexto(c.name)
         return { value: c.id, label: t.classes[key] };
     });
 
@@ -63,12 +64,12 @@ export default function FichasCreate({ auth, races = [], subraces = [], classes 
         : [];
 
     const subracesOptions = subracesFiltered.map(sr => {
-        const key = slugify(sr.name);
+        const key = useNormTexto(sr.name);
         return { value: sr.id, label: t.subraces[key] };
     });
 
     const backgroundsOptions = backgrounds.map(b => {
-        const key = slugify(b.name);
+        const key = useNormTexto(b.name);
         return { value: b.id, label: t.backgrounds[key] };
     });
 

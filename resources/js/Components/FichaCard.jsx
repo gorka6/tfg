@@ -1,11 +1,32 @@
 import { Link, useForm } from "@inertiajs/react";
+import { useNormTexto } from "@/Hooks/useNormTexto";
+
 
 export default function FichaCard({ ficha, t }) {
     const { delete: destroy } = useForm();
 
+    const razaNorm = useNormTexto(ficha.race.name);
+    const subrazaNorm = useNormTexto(ficha.subrace.name);
+    const origenNorm = useNormTexto(ficha.background.name);
+    const claseNorm = useNormTexto(ficha.character_class.name);
+
+    console.log(ficha.character_class.name)
+
     return (
         <div className="ficha-card">
             <h2 className="ficha-nombre">{ficha.name}</h2>
+            <p>
+                <strong>{t.create.race}: {t.races[razaNorm]}</strong>
+            </p>
+            <p>
+                <strong>{t.create.subrace}: {t.subraces[subrazaNorm]}</strong>
+            </p>
+            <p>
+                <strong>{t.create.background}: {t.backgrounds[origenNorm]}</strong>
+            </p>
+            <p>
+                <strong>{t.create.class}: {t.classes[claseNorm]}</strong>
+            </p>
             <p>
                 <strong>{t.create.str}:</strong> {ficha.str}
             </p>
@@ -27,9 +48,7 @@ export default function FichaCard({ ficha, t }) {
             <p>
                 <strong>{t.create.align}:</strong> {t.alignments[ficha.alignment]}
             </p>
-                        <p>
-                <strong>{ficha.race.name}:</strong> {ficha.cha}
-            </p>
+
 
             <div className="ficha-acciones">
                 <Link
