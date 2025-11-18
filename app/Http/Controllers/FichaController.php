@@ -21,7 +21,11 @@ class FichaController extends Controller
 
     public function index()
     {
-        $fichas = Auth::user()->fichas()->orderBy('created_at', 'desc')->get();
+        $fichas = Auth::user()
+        ->fichas()
+        ->with(['race', 'subrace', 'characterClass', 'background'])
+        ->orderBy('created_at', 'desc')
+        ->get();
 
         return Inertia::render('Fichas/Index', ['fichas' => $fichas]);
     }
@@ -48,10 +52,10 @@ class FichaController extends Controller
         $data = $request->validate([
             'name' => 'required|string|max:255',
             'alignment' => ['required', new Enum(Alignment::class)],
-            'background_id' => 'required|integer|exists:backgrounds,background_id',
-            'race_id' => 'required|integer|exists:races,race_id',
-            'subrace_id' => 'required|integer|exists:subraces,subrace_id',
-            'class_id' => 'required|integer|exists:classes,class_id',
+            'background_id' => 'required|integer|exists:backgrounds,id',
+            'race_id' => 'required|integer|exists:races,id',
+            'subrace_id' => 'nullable|integer|exists:subraces,id',
+            'class_id' => 'required|integer|exists:classes,id',
             'exp' => 'required|integer|min:0',
             'str' => 'required|integer|min:3|max:18',
             'dex' => 'required|integer|min:3|max:18',
@@ -94,10 +98,10 @@ class FichaController extends Controller
         $data = $request->validate([
             'name' => 'required|string|max:255',
             'alignment' => ['required', new Enum(Alignment::class)],
-            'background_id' => 'required|integer|exists:backgrounds,background_id',
-            'race_id' => 'required|integer|exists:races,race_id',
-            'subrace_id' => 'nullable|integer|exists:subraces,subrace_id',
-            'class_id' => 'required|integer|exists:classes,class_id',
+            'background_id' => 'required|integer|exists:backgrounds,id',
+            'race_id' => 'required|integer|exists:races,id',
+            'subrace_id' => 'nullable|integer|exists:subraces,id',
+            'class_id' => 'required|integer|exists:classes,id',
             'exp' => 'required|integer|min:0',
             'str' => 'required|integer|min:3|max:18',
             'dex' => 'required|integer|min:3|max:18',

@@ -16,17 +16,17 @@ public $incrementing = false;
 protected $primaryKey = null;
 
 
-protected $fillable = ['character_id', 'skill_id'];
+protected $fillable = ['ficha_id', 'skill_id'];
 
 
-public function character()
+public function ficha()
 {
-return $this->belongsTo(Character::class, 'character_id', 'character_id');
+return $this->belongsTo(Ficha::class, 'ficha_id', 'id');
 }
 
 
 public function skill()
 {
-return $this->belongsTo(Skill::class, 'skill_id', 'skill_id');
+return $this->belongsTo(Skill::class, 'skill_id', 'id');
 }
 }

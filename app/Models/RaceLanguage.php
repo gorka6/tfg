@@ -21,12 +21,12 @@ protected $fillable = ['race_id', 'language_id'];
 
 public function race()
 {
-return $this->belongsTo(Race::class, 'race_id', 'race_id');
+return $this->belongsTo(Race::class, 'race_id', 'id');
 }
 
 
 public function language()
 {
-return $this->belongsTo(Language::class, 'language_id', 'language_id');
+return $this->belongsTo(Language::class, 'language_id', 'id');
 }
 }

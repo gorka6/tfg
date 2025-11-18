@@ -11,7 +11,7 @@ use HasFactory;
 
 
 protected $table = 'classes';
-protected $primaryKey = 'class_id';
+protected $primaryKey = 'id';
 public $incrementing = true;
 protected $keyType = 'int';
 public $timestamps = false;
@@ -31,13 +31,13 @@ protected $fillable = [
 
 public function savingThrowAttribute1()
 {
-return $this->belongsTo(Attribute::class, 'sav_throw_1', 'attribute_id');
+return $this->belongsTo(Attribute::class, 'sav_throw_1', 'id');
 }
 
 
 public function savingThrowAttribute2()
 {
-return $this->belongsTo(Attribute::class, 'sav_throw_2', 'attribute_id');
+return $this->belongsTo(Attribute::class, 'sav_throw_2', 'id');
 }
 
 
@@ -49,6 +49,6 @@ return $this->belongsToMany(Skill::class, 'classes_skills', 'class_id', 'skill_i
 
 public function traits()
 {
-return $this->hasMany(CharacterTrait::class, 'class_id', 'class_id');
+return $this->hasMany(CharacterTrait::class, 'class_id', 'id');
 }
 }

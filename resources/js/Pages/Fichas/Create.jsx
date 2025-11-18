@@ -4,11 +4,11 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import "../../../css/pages/fichas-create.css";
 import D6Button from "@/Components/Dados/D6Atributos";
 import { useState } from "react";
+import PrimaryButton from "@/Components/PrimaryButton";
 
 export default function FichasCreate({ auth, races = [], subraces = [], classes = [], backgrounds = [] }) {
     const { t } = useContextoIdioma();
 
-    const [step, setStep] = useState(1);
     const [selectedRaceId, setSelectedRaceId] = useState(null);
 
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -27,7 +27,6 @@ export default function FichasCreate({ auth, races = [], subraces = [], classes 
         exp: 0,
     });
 
-    // helper: slugify DB name to match translation keys like "hill_dwarf"
     const slugify = (name = "") =>
         name
             .toString()
@@ -51,12 +50,12 @@ export default function FichasCreate({ auth, races = [], subraces = [], classes 
 
     const racesOptions = races.map(r => {
         const key = slugify(r.name);
-        return { value: r.race_id, label: t.races[key]};
+        return { value: r.id, label: t.races[key] };
     });
 
     const classesOptions = classes.map(c => {
         const key = slugify(c.name);
-        return { value: c.class_id, label: t.classes[key]};
+        return { value: c.id, label: t.classes[key] };
     });
 
     const subracesFiltered = selectedRaceId
@@ -65,16 +64,13 @@ export default function FichasCreate({ auth, races = [], subraces = [], classes 
 
     const subracesOptions = subracesFiltered.map(sr => {
         const key = slugify(sr.name);
-        return { value: sr.subrace_id, label: t.subraces[key]};
+        return { value: sr.id, label: t.subraces[key] };
     });
 
     const backgroundsOptions = backgrounds.map(b => {
         const key = slugify(b.name);
-        return { value: b.background_id ?? b.id ?? b.value, label: t.backgrounds[key]};
+        return { value: b.id, label: t.backgrounds[key] };
     });
-
-    const nextStep = () => setStep(cur => Math.min(cur + 1, 2));
-    const prevStep = () => setStep(cur => Math.max(cur - 1, 1));
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -91,185 +87,153 @@ export default function FichasCreate({ auth, races = [], subraces = [], classes 
                 <h1 className="fichas-form-title">{t.create.title}</h1>
 
                 <form onSubmit={handleSubmit} className="fichas-form">
-                    {step === 1 && (
-                        <>
-                            <div className="fichas-form-group">
-                                <label htmlFor="name">{t.create.name}</label>
-                                <input
-                                    id="name"
-                                    type="text"
-                                    value={data.name}
-                                    placeholder={t.create.enter_name}
-                                    onChange={(e) => setData("name", e.target.value)}
-                                />
-                                {errors.name && <p className="fichas-error">{errors.name}</p>}
-                            </div>
+                    {/* Nombre */}
+                    <div className="fichas-form-group">
+                        <label htmlFor="name">{t.create.name}</label>
+                        <input
+                            id="name"
+                            type="text"
+                            value={data.name}
+                            placeholder={t.create.enter_name}
+                            onChange={(e) => setData("name", e.target.value)}
+                        />
+                        {errors.name && <p className="fichas-error">{errors.name}</p>}
+                    </div>
 
-                            <div className="fichas-form-group">
-                                <label htmlFor="race">{t.create.race}</label>
-                                <select
-                                    id="race"
-                                    value={data.race_id ?? ""}
-                                    onChange={(e) => {
-                                        const id = e.target.value === "" ? null : Number(e.target.value);
-                                        setData("race_id", id);
-                                        setSelectedRaceId(id);
-                                        setData("subrace_id", null);
-                                    }}
-                                >
-                                    <option value="">{t.create.select_race}</option>
-                                    {racesOptions.map(r => (
-                                        <option key={r.value} value={r.value}>{r.label}</option>
-                                    ))}
-                                </select>
-                                {errors.race_id && <p className="fichas-error">{errors.race_id}</p>}
-                            </div>
+                    {/* Raza */}
+                    <div className="fichas-form-group">
+                        <label htmlFor="race">{t.create.race}</label>
+                        <select
+                            id="race"
+                            value={data.race_id ?? ""}
+                            onChange={(e) => {
+                                const id = e.target.value === "" ? null : Number(e.target.value);
+                                setData("race_id", id);
+                                setSelectedRaceId(id);
+                                setData("subrace_id", null);
+                            }}
+                        >
+                            <option value="">{t.create.select_race}</option>
+                            {racesOptions.map(r => (
+                                <option key={r.value} value={r.value}>{r.label}</option>
+                            ))}
+                        </select>
+                        {errors.race_id && <p className="fichas-error">{errors.race_id}</p>}
+                    </div>
 
-                            <div className="fichas-form-group">
-                                <label htmlFor="class">{t.create.class}</label>
-                                <select
-                                    id="class"
-                                    value={data.class_id ?? ""}
-                                    onChange={(e) => setData("class_id", e.target.value === "" ? null : Number(e.target.value))}
-                                >
-                                    <option value="">{t.create.select_class}</option>
-                                    {classesOptions.map(c => (
-                                        <option key={c.value} value={c.value}>{c.label}</option>
-                                    ))}
-                                </select>
-                                {errors.class_id && <p className="fichas-error">{errors.class_id}</p>}
-                            </div>
+                    {/* Clase */}
+                    <div className="fichas-form-group">
+                        <label htmlFor="class">{t.create.class}</label>
+                        <select
+                            id="class"
+                            value={data.class_id ?? ""}
+                            onChange={(e) => setData("class_id", e.target.value === "" ? null : Number(e.target.value))}
+                        >
+                            <option value="">{t.create.select_class}</option>
+                            {classesOptions.map(c => (
+                                <option key={c.value} value={c.value}>{c.label}</option>
+                            ))}
+                        </select>
+                        {errors.class_id && <p className="fichas-error">{errors.class_id}</p>}
+                    </div>
 
-                            <div style={{ marginTop: "1.5rem" }}>
-                                <button
-                                    type="button"
-                                    onClick={nextStep}
-                                    disabled={!data.name || !data.race_id || !data.class_id}
-                                    style={{
-                                        padding: "0.5rem 1.5rem",
-                                        fontSize: "1rem",
-                                        cursor: (!data.name || !data.race_id || !data.class_id) ? "not-allowed" : "pointer",
-                                        borderRadius: "4px",
-                                        border: "1px solid #333",
-                                        backgroundColor: "#28a745",
-                                        color: "white",
-                                        minWidth: "100px",
-                                        opacity: (!data.name || !data.race_id || !data.class_id) ? 0.6 : 1,
-                                    }}
-                                >
-                                    {t.create.next}
-                                </button>
-                            </div>
-                        </>
-                    )}
-
-                    {step === 2 && (
-                        <>
-                            <div className="fichas-form-group">
-                                <label htmlFor="subrace">{t.create.subrace}</label>
-                                <select
-                                    id="subrace"
-                                    value={data.subrace_id ?? ""}
-                                    onChange={(e) => setData("subrace_id", e.target.value === "" ? null : Number(e.target.value))}
-                                >
-                                    <option value="">{t.create.select_subrace}</option>
+                    {/* Subraza */}
+                    <div className="fichas-form-group">
+                        <label htmlFor="subrace">{t.create.subrace}</label>
+                        <select
+                            id="subrace"
+                            value={data.subrace_id ?? ""}
+                            onChange={(e) => setData("subrace_id", e.target.value === "" ? null : Number(e.target.value))}
+                            disabled={subracesFiltered.length === 0}
+                        >
+                            {subracesFiltered.length === 0 ? (
+                                <option value="">{selectedRaceId ? t.create.no_subrace : t.create.select_race}</option>
+                            ) : (
+                                <>
+                                    <option value="">{t.create.no_subrace}</option>
                                     {subracesOptions.map(sr => (
                                         <option key={sr.value} value={sr.value}>{sr.label}</option>
                                     ))}
-                                </select>
-                                {errors.subrace_id && <p className="fichas-error">{errors.subrace_id}</p>}
-                            </div>
+                                </>
+                            )}
+                        </select>
+                        {errors.subrace_id && <p className="fichas-error">{errors.subrace_id}</p>}
+                    </div>
 
-                            <div>
-                                <label>{t.create.str}</label>
-                                <D6Button value={data.str} setValue={(val) => setData("str", val)} />
-                                {errors.str && <p className="fichas-error">{errors.str}</p>}
-                            </div>
+                    {/* Stats */}
+                    <div>
+                        <label>{t.create.str}</label>
+                        <D6Button value={data.str} setValue={(val) => setData("str", val)} />
+                        {errors.str && <p className="fichas-error">{errors.str}</p>}
+                    </div>
 
-                            <div>
-                                <label>{t.create.dex}</label>
-                                <D6Button value={data.dex} setValue={(val) => setData("dex", val)} />
-                                {errors.dex && <p className="fichas-error">{errors.dex}</p>}
-                            </div>
+                    <div>
+                        <label>{t.create.dex}</label>
+                        <D6Button value={data.dex} setValue={(val) => setData("dex", val)} />
+                        {errors.dex && <p className="fichas-error">{errors.dex}</p>}
+                    </div>
 
-                            <div>
-                                <label>{t.create.con}</label>
-                                <D6Button value={data.con} setValue={(val) => setData("con", val)} />
-                                {errors.con && <p className="fichas-error">{errors.con}</p>}
-                            </div>
+                    <div>
+                        <label>{t.create.con}</label>
+                        <D6Button value={data.con} setValue={(val) => setData("con", val)} />
+                        {errors.con && <p className="fichas-error">{errors.con}</p>}
+                    </div>
 
-                            <div>
-                                <label>{t.create.int}</label>
-                                <D6Button value={data.int} setValue={(val) => setData("int", val)} />
-                                {errors.int && <p className="fichas-error">{errors.int}</p>}
-                            </div>
+                    <div>
+                        <label>{t.create.int}</label>
+                        <D6Button value={data.int} setValue={(val) => setData("int", val)} />
+                        {errors.int && <p className="fichas-error">{errors.int}</p>}
+                    </div>
 
-                            <div>
-                                <label>{t.create.wis}</label>
-                                <D6Button value={data.wis} setValue={(val) => setData("wis", val)} />
-                                {errors.wis && <p className="fichas-error">{errors.wis}</p>}
-                            </div>
+                    <div>
+                        <label>{t.create.wis}</label>
+                        <D6Button value={data.wis} setValue={(val) => setData("wis", val)} />
+                        {errors.wis && <p className="fichas-error">{errors.wis}</p>}
+                    </div>
 
-                            <div>
-                                <label>{t.create.cha}</label>
-                                <D6Button value={data.cha} setValue={(val) => setData("cha", val)} />
-                                {errors.cha && <p className="fichas-error">{errors.cha}</p>}
-                            </div>
+                    <div>
+                        <label>{t.create.cha}</label>
+                        <D6Button value={data.cha} setValue={(val) => setData("cha", val)} />
+                        {errors.cha && <p className="fichas-error">{errors.cha}</p>}
+                    </div>
 
-                            <div className="fichas-form-group">
-                                <label htmlFor="alignment">{t.create.align}</label>
-                                <select
-                                    id="alignment"
-                                    value={data.alignment}
-                                    onChange={(e) => setData("alignment", e.target.value)}
-                                >
-                                    {alignmentsList.map((align) => (
-                                        <option key={align.value} value={align.value}>
-                                            {align.label}
-                                        </option>
-                                    ))}
-                                </select>
-                                {errors.alignment && <p className="fichas-error">{errors.alignment}</p>}
-                            </div>
+                    {/* Alineamiento */}
+                    <div className="fichas-form-group">
+                        <label htmlFor="alignment">{t.create.align}</label>
+                        <select
+                            id="alignment"
+                            value={data.alignment}
+                            onChange={(e) => setData("alignment", e.target.value)}
+                        >
+                            {alignmentsList.map((align) => (
+                                <option key={align.value} value={align.value}>
+                                    {align.label}
+                                </option>
+                            ))}
+                        </select>
+                        {errors.alignment && <p className="fichas-error">{errors.alignment}</p>}
+                    </div>
 
-                            <div style={{ marginTop: "1.5rem", display: "flex", gap: "1rem" }}>
-                                <button
-                                    type="button"
-                                    onClick={prevStep}
-                                    style={{
-                                        padding: "0.5rem 1.5rem",
-                                        fontSize: "1rem",
-                                        cursor: "pointer",
-                                        borderRadius: "4px",
-                                        border: "1px solid #333",
-                                        backgroundColor: "#6c757d",
-                                        color: "white",
-                                        minWidth: "100px",
-                                    }}
-                                >
-                                    {t.create.back}
-                                </button>
+                    {/* Background */}
+                    <div className="fichas-form-group">
+                        <label htmlFor="background">{t.create.background}</label>
+                        <select
+                            id="background"
+                            value={data.background_id ?? ""}
+                            onChange={(e) => setData("background_id", e.target.value === "" ? null : Number(e.target.value))}
+                        >
+                            <option value="">{t.create.select_class}</option>
+                            {backgroundsOptions.map(b => (
+                                <option key={b.value} value={b.value}>{b.label}</option>
+                            ))}
+                        </select>
+                        {errors.background_id && <p className="fichas-error">{errors.background_id}</p>}
+                    </div>
 
-                                <button
-                                    type="submit"
-                                    disabled={processing}
-                                    style={{
-                                        padding: "0.5rem 1.5rem",
-                                        fontSize: "1rem",
-                                        cursor: processing ? "not-allowed" : "pointer",
-                                        opacity: processing ? 0.6 : 1,
-                                        borderRadius: "4px",
-                                        border: "1px solid #333",
-                                        backgroundColor: "#007bff",
-                                        color: "white",
-                                        minWidth: "100px",
-                                    }}
-                                >
-                                    {processing ? t.create.saving : t.create.save}
-                                </button>
-                            </div>
-                        </>
-                    )}
+                    <PrimaryButton disabled={processing} type="submit" className="min-w-[100px]">
+                        {processing ? t.create.saving : t.create.save}
+                    </PrimaryButton>
+
                 </form>
             </div>
         </AuthenticatedLayout>

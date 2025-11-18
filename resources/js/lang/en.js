@@ -39,7 +39,10 @@ export default {
     enter_name: "Enter a name",
     select_race: "Select a race",
     select_subrace: "Select a subrace",
-    select_class: "Select a class"
+    no_subrace: "No subrace",
+    select_class: "Select a class",
+    background: "Select a background"
+
   },
   alignments: {
     lg: "Lawful Good",

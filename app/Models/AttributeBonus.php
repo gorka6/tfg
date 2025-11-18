@@ -11,7 +11,7 @@ use HasFactory;
 
 
 protected $table = 'attribute_bonuses';
-protected $primaryKey = 'bonus_id';
+protected $primaryKey = 'id';
 public $incrementing = true;
 protected $keyType = 'int';
 public $timestamps = false;
@@ -27,18 +27,18 @@ protected $fillable = [
 
 public function race()
 {
-return $this->belongsTo(Race::class, 'race_id', 'race_id');
+return $this->belongsTo(Race::class, 'race_id', 'id');
 }
 
 
 public function subrace()
 {
-return $this->belongsTo(Subrace::class, 'subrace_id', 'subrace_id');
+return $this->belongsTo(Subrace::class, 'subrace_id', 'id');
 }
 
 
 public function attribute()
 {
-return $this->belongsTo(Attribute::class, 'attribute_id', 'attribute_id');
+return $this->belongsTo(Attribute::class, 'attribute_id', 'id');
 }
 }

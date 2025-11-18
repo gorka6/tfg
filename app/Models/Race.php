@@ -11,7 +11,7 @@ use HasFactory;
 
 
 protected $table = 'races';
-protected $primaryKey = 'race_id';
+protected $primaryKey = 'id';
 public $incrementing = true;
 protected $keyType = 'int';
 public $timestamps = false;
@@ -25,19 +25,19 @@ protected $fillable = [
 
 public function subraces()
 {
-return $this->hasMany(Subrace::class, 'race_id', 'race_id');
+return $this->hasMany(Subrace::class, 'race_id', 'id');
 }
 
 
 public function traits()
 {
-return $this->hasMany(CharacterTrait::class, 'race_id', 'race_id');
+return $this->hasMany(CharacterTrait::class, 'race_id', 'id');
 }
 
 
 public function attributeBonuses()
 {
-return $this->hasMany(AttributeBonus::class, 'race_id', 'race_id');
+return $this->hasMany(AttributeBonus::class, 'race_id', 'id');
 }
 
 

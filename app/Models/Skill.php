@@ -11,7 +11,7 @@ use HasFactory;
 
 
 protected $table = 'skills';
-protected $primaryKey = 'skill_id';
+protected $primaryKey = 'id';
 public $incrementing = true;
 protected $keyType = 'int';
 public $timestamps = false;
@@ -26,7 +26,7 @@ protected $fillable = [
 
 public function attribute()
 {
-return $this->belongsTo(Attribute::class, 'attribute_id', 'attribute_id');
+return $this->belongsTo(Attribute::class, 'attribute_id', 'id');
 }
 
 

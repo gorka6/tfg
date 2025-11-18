@@ -8,12 +8,12 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create('skills', function (Blueprint $table) {
-            $table->bigIncrements('skill_id');
+            $table->bigIncrements('id');
             $table->string('name', 50);
             $table->text('description')->nullable();
             $table->unsignedBigInteger('attribute_id');
 
-            $table->foreign('attribute_id')->references('attribute_id')->on('attributes');
+            $table->foreign('attribute_id')->references('id')->on('attributes');
         });
     }
 

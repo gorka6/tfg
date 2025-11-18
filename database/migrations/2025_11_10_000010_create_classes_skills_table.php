@@ -13,8 +13,8 @@ return new class extends Migration {
 
             $table->primary(['class_id', 'skill_id']);
 
-            $table->foreign('class_id')->references('class_id')->on('classes');
-            $table->foreign('skill_id')->references('skill_id')->on('skills');
+            $table->foreign('class_id')->references('id')->on('classes');
+            $table->foreign('skill_id')->references('id')->on('skills');
         });
     }
 

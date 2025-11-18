@@ -7,10 +7,28 @@ export default function FichaCard({ ficha, t }) {
         <div className="ficha-card">
             <h2 className="ficha-nombre">{ficha.name}</h2>
             <p>
-                <strong>{t.create.atk}</strong> {ficha.str}
+                <strong>{t.create.str}:</strong> {ficha.str}
             </p>
             <p>
-                <strong>{t.create.align}</strong> {t.alignments[ficha.alignment]}
+                <strong>{t.create.dex}:</strong> {ficha.dex}
+            </p>
+            <p>
+                <strong>{t.create.con}:</strong> {ficha.con}
+            </p>
+            <p>
+                <strong>{t.create.int}:</strong> {ficha.int}
+            </p>
+            <p>
+                <strong>{t.create.wis}:</strong> {ficha.wis}
+            </p>
+            <p>
+                <strong>{t.create.cha}:</strong> {ficha.cha}
+            </p>
+            <p>
+                <strong>{t.create.align}:</strong> {t.alignments[ficha.alignment]}
+            </p>
+                        <p>
+                <strong>{ficha.race.name}:</strong> {ficha.cha}
             </p>
 
             <div className="ficha-acciones">

@@ -27,7 +27,7 @@ class SubracesSeeder extends Seeder
             ],
             [
                 'race_id' => 2,
-                'name' => 'Drow (Dark Elf)',
+                'name' => 'Dark Elf',
                 'description' => 'Elves adapted to life underground, with innate magical abilities.',
             ],
 

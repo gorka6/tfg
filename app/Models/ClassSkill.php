@@ -21,12 +21,12 @@ protected $fillable = ['class_id', 'skill_id'];
 
 public function characterClass()
 {
-return $this->belongsTo(CharacterClass::class, 'class_id', 'class_id');
+return $this->belongsTo(CharacterClass::class, 'class_id', 'id');
 }
 
 
 public function skill()
 {
-return $this->belongsTo(Skill::class, 'skill_id', 'skill_id');
+return $this->belongsTo(Skill::class, 'skill_id', 'id');
 }
 }

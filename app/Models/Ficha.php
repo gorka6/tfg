@@ -35,25 +35,25 @@ class Ficha extends Model
     }
     public function background()
     {
-        return $this->belongsTo(Background::class, 'background_id', 'background_id');
+        return $this->belongsTo(Background::class, 'background_id', 'id');
     }
 
 
     public function race()
     {
-        return $this->belongsTo(Race::class, 'race_id', 'race_id');
+        return $this->belongsTo(Race::class, 'race_id', 'id');
     }
 
 
     public function subrace()
     {
-        return $this->belongsTo(Subrace::class, 'subrace_id', 'subrace_id');
+        return $this->belongsTo(Subrace::class, 'subrace_id', 'id');
     }
 
 
     public function characterClass()
     {
-        return $this->belongsTo(CharacterClass::class, 'class_id', 'class_id');
+        return $this->belongsTo(CharacterClass::class, 'class_id', 'id');
     }
 
 
@@ -65,6 +65,6 @@ class Ficha extends Model
 
     public function traitsLearnt()
     {
-        return $this->belongsToMany(CharacterTrait::class, 'traits_learnt', 'character_id', 'trait_id');
+        return $this->belongsToMany(CharacterTrait::class, 'traits_learnt', 'ficha_id', 'trait_id');
     }
 }

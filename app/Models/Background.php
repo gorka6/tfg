@@ -11,7 +11,7 @@ use HasFactory;
 
 
 protected $table = 'backgrounds';
-protected $primaryKey = 'background_id';
+protected $primaryKey = 'id';
 public $incrementing = true;
 protected $keyType = 'int';
 public $timestamps = false;
@@ -27,12 +27,12 @@ protected $fillable = [
 
 public function skill1()
 {
-return $this->belongsTo(Skill::class, 'skill1_id', 'skill_id');
+return $this->belongsTo(Skill::class, 'skill1_id', 'id');
 }
 
 
 public function skill2()
 {
-return $this->belongsTo(Skill::class, 'skill2_id', 'skill_id');
+return $this->belongsTo(Skill::class, 'skill2_id', 'id');
 }
 }

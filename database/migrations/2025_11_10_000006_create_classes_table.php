@@ -8,7 +8,7 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create('classes', function (Blueprint $table) {
-            $table->bigIncrements('class_id');
+            $table->bigIncrements('id');
             $table->string('name', 50);
             $table->bigInteger('hit_die');
             $table->unsignedBigInteger('sav_throw_1');
@@ -18,8 +18,8 @@ return new class extends Migration {
             $table->text('start_eq_3')->nullable();
             $table->text('start_eq_4')->nullable();
 
-            $table->foreign('sav_throw_1')->references('attribute_id')->on('attributes');
-            $table->foreign('sav_throw_2')->references('attribute_id')->on('attributes');
+            $table->foreign('sav_throw_1')->references('id')->on('attributes');
+            $table->foreign('sav_throw_2')->references('id')->on('attributes');
         });
     }
 

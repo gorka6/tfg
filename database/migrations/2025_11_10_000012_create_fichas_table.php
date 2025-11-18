@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('fichas', function (Blueprint $table) {
-            $table->bigIncrements('character_id');
+            $table->bigIncrements('id');
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->string('name', 100);
             $table->unsignedBigInteger('background_id');
@@ -27,10 +27,10 @@ return new class extends Migration
             $table->bigInteger('wis');
             $table->bigInteger('cha');
 
-            $table->foreign('background_id')->references('background_id')->on('backgrounds');
-            $table->foreign('race_id')->references('race_id')->on('races');
-            $table->foreign('subrace_id')->references('subrace_id')->on('subraces');
-            $table->foreign('class_id')->references('class_id')->on('classes');
+            $table->foreign('background_id')->references('id')->on('backgrounds');
+            $table->foreign('race_id')->references('id')->on('races');
+            $table->foreign('subrace_id')->references('id')->on('subraces');
+            $table->foreign('class_id')->references('id')->on('classes');
             $table->enum('alignment', [
                 'lg', 'ng', 'cg',
                 'ln', 'tn', 'cn',

@@ -39,7 +39,9 @@ export default {
     enter_name: "Introduce un nombre",
     select_race: "Selecciona una raza",
     select_subrace: "Selecciona una subraza",
-    select_class: "Selecciona una clase"
+    no_subrace: "Sin subraza",
+    select_class: "Selecciona una clase",
+    background: "Selecciona un origen"
   },
   alignments: {
     lg: "Legal Bueno",

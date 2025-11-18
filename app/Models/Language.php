@@ -11,7 +11,7 @@ use HasFactory;
 
 
 protected $table = 'languages';
-protected $primaryKey = 'language_id';
+protected $primaryKey = 'id';
 public $incrementing = true;
 protected $keyType = 'int';
 public $timestamps = false;
