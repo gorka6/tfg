@@ -105,5 +105,26 @@ export default {
     stout_halfling: "Stout Halfling",
     forest_gnome: "Forest Gnome",
     rock_gnome: "Rock Gnome",
+  },
+  skills: {
+    athletics: "Athletics",
+    acrobatics: "Acrobatics",
+    sleight_of_hand: "Sleight of Hand",
+    stealth: "Stealth",
+    arcana: "Arcana",
+    history: "History",
+    investigation: "Investigation",
+    nature: "Nature",
+    religion: "Religion",
+    animal_handling: "Animal Handling",
+    insight: "Insight",
+    medicine: "Medicine",
+    perception: "Perception",
+    survival: "Survival",
+    deception: "Deception",
+    intimidation: "Intimidation",
+    performance: "Performance",
+    persuasion: "Persuasion",
   }
+
 };

@@ -7,10 +7,18 @@ import D6Button from "@/Components/Dados/D6Atributos";
 import { useState } from "react";
 import PrimaryButton from "@/Components/PrimaryButton";
 
-export default function FichasCreate({ auth, races = [], subraces = [], classes = [], backgrounds = [] }) {
+export default function FichasCreate({ auth,
+    races = [],
+    subraces = [],
+    classes = [],
+    backgrounds = [],
+    skills = [],
+    classesSkills = []
+}) {
     const { t } = useContextoIdioma();
 
     const [selectedRaceId, setSelectedRaceId] = useState(null);
+    const [selectedClassId, setSelectedClassId] = useState(null);
 
     const { data, setData, post, processing, errors, reset } = useForm({
         name: "",
@@ -26,16 +34,8 @@ export default function FichasCreate({ auth, races = [], subraces = [], classes 
         subrace_id: null,
         background_id: null,
         exp: 0,
+        skills: []
     });
-
-    const slugify = (name = "") =>
-        name
-            .toString()
-            .trim()
-            .toLowerCase()
-            .replace(/\s+/g, "_")
-            .replace(/-/g, "_")
-            .replace(/[^\w_]/g, "");
 
     const alignmentsList = [
         { value: "lg", label: t.alignments.lg },
@@ -72,6 +72,16 @@ export default function FichasCreate({ auth, races = [], subraces = [], classes 
         const key = useNormTexto(b.name);
         return { value: b.id, label: t.backgrounds[key] };
     });
+
+    const classSkillsFiltered = selectedClassId
+        ? classesSkills.filter(cs => Number(cs.class_id) ===
+            Number(selectedClassId))
+        : [];
+
+    const skillsOptions = classSkillsFiltered.map(cs => ({
+        value: cs.skill_id,
+        label: t.skills[useNormTexto(cs.skill.name)]
+    }));
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -128,7 +138,12 @@ export default function FichasCreate({ auth, races = [], subraces = [], classes 
                         <select
                             id="class"
                             value={data.class_id ?? ""}
-                            onChange={(e) => setData("class_id", e.target.value === "" ? null : Number(e.target.value))}
+                            onChange={e => {
+                                const id = e.target.value === "" ? null : Number(e.target.value);
+                                setData("class_id", id);
+                                setSelectedClassId(id);
+                                setData("skills", []);
+                            }}
                         >
                             <option value="">{t.create.select_class}</option>
                             {classesOptions.map(c => (
@@ -137,6 +152,32 @@ export default function FichasCreate({ auth, races = [], subraces = [], classes 
                         </select>
                         {errors.class_id && <p className="fichas-error">{errors.class_id}</p>}
                     </div>
+
+                    {/* Habilidades */}
+                    {skillsOptions.map(skill => (
+                        <div key={skill.value}>
+                            <label>
+                                <input
+                                    type="checkbox"
+                                    name="skills[]"
+                                    value={skill.value}
+                                    checked={data.skills.includes(skill.value)}
+                                    onChange={(e) => {
+                                        const checked = e.target.checked;
+                                        const id = skill.value;
+                                        if (checked) {
+                                            if (data.skills.length < 4) {
+                                                setData("skills", [...data.skills, id]);
+                                            }
+                                        } else {
+                                            setData("skills", data.skills.filter(sid => sid !== id));
+                                        }
+                                    }}
+                                />
+                                {skill.label}
+                            </label>
+                        </div>
+                    ))}
 
                     {/* Subraza */}
                     <div className="fichas-form-group">
@@ -230,6 +271,8 @@ export default function FichasCreate({ auth, races = [], subraces = [], classes 
                         </select>
                         {errors.background_id && <p className="fichas-error">{errors.background_id}</p>}
                     </div>
+
+
 
                     <PrimaryButton disabled={processing} type="submit" className="min-w-[100px]">
                         {processing ? t.create.saving : t.create.save}

@@ -34,4 +34,12 @@ public function characterClasses()
 {
 return $this->belongsToMany(CharacterClass::class, 'classes_skills', 'skill_id', 'class_id');
 }
+
+public function fichas()
+{
+    return $this->belongsToMany(Ficha::class, 'skills_learnt', 'skill_id', 'ficha_id');
 }
+
+}
+
+

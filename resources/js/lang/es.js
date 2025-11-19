@@ -104,5 +104,26 @@ export default {
     stout_halfling: "Mediano Robusto",
     forest_gnome: "Gnomo del Bosque",
     rock_gnome: "Gnomo de las Rocas",
+  },
+  skills: {
+    athletics: "Atletismo",
+    acrobatics: "Acrobacias",
+    sleight_of_hand: "Juego de manos",
+    stealth: "Sigilo",
+    arcana: "Arcana",
+    history: "Historia",
+    investigation: "Investigación",
+    nature: "Naturaleza",
+    religion: "Religión",
+    animal_handling: "Trato con animales",
+    insight: "Perspicacia",
+    medicine: "Medicina",
+    perception: "Percepción",
+    survival: "Supervivencia",
+    deception: "Engaño",
+    intimidation: "Intimidación",
+    performance: "Actuación",
+    persuasion: "Persuasión",
   }
+
 };

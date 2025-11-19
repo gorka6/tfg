@@ -57,9 +57,9 @@ class Ficha extends Model
     }
 
 
-    public function skillsLearnt()
+    public function skills()
     {
-        return $this->belongsToMany(Skill::class, 'skills_learnt', 'character_id', 'skill_id');
+        return $this->belongsToMany(Skill::class, 'skills_learnt', 'ficha_id', 'skill_id');
     }
 
 
