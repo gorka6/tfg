@@ -1,5 +1,5 @@
-// useNormalizeText.js
-export const useNormTexto = (name = "") => {
+// utils/normalizeText.js (o donde quieras)
+export function normTexto(name = "") {
   return name
     .toString()
     .trim()
@@ -7,4 +7,4 @@ export const useNormTexto = (name = "") => {
     .replace(/\s+/g, "_")
     .replace(/-/g, "_")
     .replace(/[^\w_]/g, "");
-};
+}

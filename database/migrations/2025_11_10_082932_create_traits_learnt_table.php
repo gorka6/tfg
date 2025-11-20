@@ -8,12 +8,12 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create('traits_learnt', function (Blueprint $table) {
-            $table->unsignedBigInteger('character_id');
+            $table->unsignedBigInteger('ficha_id');
             $table->unsignedBigInteger('trait_id');
 
-            $table->primary(['character_id', 'trait_id']);
+            $table->primary(['ficha_id', 'trait_id']);
 
-            $table->foreign('character_id')->references('id')->on('fichas');
+            $table->foreign('ficha_id')->references('id')->on('fichas');
             $table->foreign('trait_id')->references('id')->on('traits');
         });
     }

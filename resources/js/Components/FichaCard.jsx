@@ -1,14 +1,13 @@
 import { Link, useForm } from "@inertiajs/react";
-import { useNormTexto } from "@/Hooks/useNormTexto";
-
+import { normTexto } from "@/utils/normTexto";
 
 export default function FichaCard({ ficha, t }) {
     const { delete: destroy } = useForm();
 
-    const razaNorm = useNormTexto(ficha.race.name);
-    const subrazaNorm = useNormTexto(ficha.subrace.name);
-    const origenNorm = useNormTexto(ficha.background.name);
-    const claseNorm = useNormTexto(ficha.character_class.name);
+    const razaNorm = normTexto(ficha.race.name);
+    const subrazaNorm = normTexto(ficha.subrace.name);
+    const origenNorm = normTexto(ficha.background.name);
+    const claseNorm = normTexto(ficha.character_class.name);
 
     console.log(ficha.character_class.name)
 

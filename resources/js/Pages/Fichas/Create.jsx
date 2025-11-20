@@ -1,19 +1,22 @@
 import { Head, useForm } from "@inertiajs/react";
 import { useContextoIdioma } from "@/Contexts/ContextoIdioma";
-import { useNormTexto } from "@/Hooks/useNormTexto";
+import { normTexto } from "@/utils/normTexto";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import "../../../css/pages/fichas-create.css";
 import D6Button from "@/Components/Dados/D6Atributos";
-import { useState } from "react";
+import { useState, useMemo, useCallback } from "react";
 import PrimaryButton from "@/Components/PrimaryButton";
+import Selector from "@/Components/Selector";
+import { opcionesBuild } from "@/utils/opcionesBuild";
+import { filtraOpciones } from "@/utils/filtraOpciones";
 
 export default function FichasCreate({ auth,
     races = [],
     subraces = [],
     classes = [],
     backgrounds = [],
-    skills = [],
-    classesSkills = []
+    classesSkills = [],
+    traits = []
 }) {
     const { t } = useContextoIdioma();
 
@@ -34,7 +37,8 @@ export default function FichasCreate({ auth,
         subrace_id: null,
         background_id: null,
         exp: 0,
-        skills: []
+        skills: [],
+        traits: []
     });
 
     const alignmentsList = [
@@ -49,47 +53,82 @@ export default function FichasCreate({ auth,
         { value: "ce", label: t.alignments.ce },
     ];
 
-    const racesOptions = races.map(r => {
-        const key = useNormTexto(r.name);
-        return { value: r.id, label: t.races[key] };
-    });
+    const racesOptions = useMemo(() => {
+        return opcionesBuild(races, t.races);
+    }, [races, t.races]);
 
-    const classesOptions = classes.map(c => {
-        const key = useNormTexto(c.name)
-        return { value: c.id, label: t.classes[key] };
-    });
+    const classesOptions = useMemo(() => {
+        return opcionesBuild(classes, t.classes);
+    }, [classes, t.classes]);
 
-    const subracesFiltered = selectedRaceId
-        ? subraces.filter(sr => Number(sr.race_id) === Number(selectedRaceId))
-        : [];
+    const backgroundsOptions = useMemo(() => {
+        return opcionesBuild(backgrounds, t.backgrounds);
+    }, [backgrounds, t.backgrounds]);
 
-    const subracesOptions = subracesFiltered.map(sr => {
-        const key = useNormTexto(sr.name);
-        return { value: sr.id, label: t.subraces[key] };
-    });
+    const subracesFiltered = useMemo(() => {
+        return filtraOpciones(subraces, "race_id", selectedRaceId);
+    }, [subraces, selectedRaceId]);
 
-    const backgroundsOptions = backgrounds.map(b => {
-        const key = useNormTexto(b.name);
-        return { value: b.id, label: t.backgrounds[key] };
-    });
+    const subracesOptions = useMemo(() => {
+        return opcionesBuild(subracesFiltered, t.subraces);
+    }, [subracesFiltered, t.subraces]);
 
-    const classSkillsFiltered = selectedClassId
-        ? classesSkills.filter(cs => Number(cs.class_id) ===
-            Number(selectedClassId))
-        : [];
+    const classSkillsFiltered = useMemo(() => {
+        return filtraOpciones(classesSkills, "class_id", selectedClassId);
+    }, [classesSkills, selectedClassId]);
 
-    const skillsOptions = classSkillsFiltered.map(cs => ({
-        value: cs.skill_id,
-        label: t.skills[useNormTexto(cs.skill.name)]
-    }));
+    const skillsOptions = useMemo(() => {
+        return classSkillsFiltered.map(cs => ({
+            value: cs.skill_id,
+            label: t.skills[normTexto(cs.skill.name)]
+        }));
+    }, [classSkillsFiltered, t.skills]);
 
-    const handleSubmit = (e) => {
+    const traitsFiltered = useMemo(() => {
+        if (!selectedRaceId && !data.subrace_id && !selectedClassId) return [];
+
+        return traits.filter(item => {
+            const rId = item.race_id ?? null;
+            const srId = item.subrace_id ?? null;
+            const cId = item.class_id ?? null;
+
+            return (selectedRaceId && Number(rId) === Number(selectedRaceId))
+                || (data.subrace_id && Number(srId) === Number(data.subrace_id))
+                || (selectedClassId && Number(cId) === Number(selectedClassId));
+        });
+    }, [traits, selectedRaceId, data.subrace_id, selectedClassId]);
+
+    const traitsOptions = useMemo(() => {
+        const seen = new Set();
+        const out = [];
+        for (const tr of traitsFiltered) {
+            const id = tr.id ?? tr.trait_id;
+            if (seen.has(Number(id))) continue;
+            seen.add(Number(id));
+            out.push({
+                value: id,
+                label: t.traits[normTexto(tr.name)] ?? tr.name
+            });
+        }
+        return out;
+    }, [traitsFiltered, t.traits]);
+
+    const handleSubmit = useCallback((e) => {
         e.preventDefault();
         post(route("fichas.store"), {
             onSuccess: () => reset(),
         });
-    };
+    }, [post, reset]);
 
+    const handleSetSkills = useCallback((newSkills) => {
+        setData("skills", newSkills);
+    }, [setData]);
+
+    const handleSetTraits = useCallback((newTraits) => {
+        setData("traits", newTraits)
+    }, [setData]);
+
+    console.log(traits);
     return (
         <AuthenticatedLayout>
             <Head title="Crear Ficha" />
@@ -132,53 +171,6 @@ export default function FichasCreate({ auth,
                         {errors.race_id && <p className="fichas-error">{errors.race_id}</p>}
                     </div>
 
-                    {/* Clase */}
-                    <div className="fichas-form-group">
-                        <label htmlFor="class">{t.create.class}</label>
-                        <select
-                            id="class"
-                            value={data.class_id ?? ""}
-                            onChange={e => {
-                                const id = e.target.value === "" ? null : Number(e.target.value);
-                                setData("class_id", id);
-                                setSelectedClassId(id);
-                                setData("skills", []);
-                            }}
-                        >
-                            <option value="">{t.create.select_class}</option>
-                            {classesOptions.map(c => (
-                                <option key={c.value} value={c.value}>{c.label}</option>
-                            ))}
-                        </select>
-                        {errors.class_id && <p className="fichas-error">{errors.class_id}</p>}
-                    </div>
-
-                    {/* Habilidades */}
-                    {skillsOptions.map(skill => (
-                        <div key={skill.value}>
-                            <label>
-                                <input
-                                    type="checkbox"
-                                    name="skills[]"
-                                    value={skill.value}
-                                    checked={data.skills.includes(skill.value)}
-                                    onChange={(e) => {
-                                        const checked = e.target.checked;
-                                        const id = skill.value;
-                                        if (checked) {
-                                            if (data.skills.length < 4) {
-                                                setData("skills", [...data.skills, id]);
-                                            }
-                                        } else {
-                                            setData("skills", data.skills.filter(sid => sid !== id));
-                                        }
-                                    }}
-                                />
-                                {skill.label}
-                            </label>
-                        </div>
-                    ))}
-
                     {/* Subraza */}
                     <div className="fichas-form-group">
                         <label htmlFor="subrace">{t.create.subrace}</label>
@@ -201,6 +193,51 @@ export default function FichasCreate({ auth,
                         </select>
                         {errors.subrace_id && <p className="fichas-error">{errors.subrace_id}</p>}
                     </div>
+
+                    {/* Clase */}
+                    <div className="fichas-form-group">
+                        <label htmlFor="class">{t.create.class}</label>
+                        <select
+                            id="class"
+                            value={data.class_id ?? ""}
+                            onChange={e => {
+                                const id = e.target.value === "" ? null : Number(e.target.value);
+                                setData("class_id", id);
+                                setSelectedClassId(id);
+                                setData("skills", []);
+                            }}
+                        >
+                            <option value="">{t.create.select_class}</option>
+                            {classesOptions.map(c => (
+                                <option key={c.value} value={c.value}>{c.label}</option>
+                            ))}
+                        </select>
+                        {errors.class_id && <p className="fichas-error">{errors.class_id}</p>}
+                    </div>
+                    <p>Habilidades</p>
+                    {/* Habilidades */}
+                    <Selector
+                        options={skillsOptions}
+                        selected={data.skills}
+                        onChange={handleSetSkills}
+                        max={4}
+                    />
+                    <p>rasgos</p>
+                    {/* Rasgos (traits) */}
+                    {traitsOptions.length === 0 ? (
+                        <p className="fichas-note">
+                            {(selectedRaceId || data.subrace_id || selectedClassId)
+                                ? "No hay rasgos disponibles para la selección actual."
+                                : "Selecciona raza, subraza o clase para ver rasgos."}
+                        </p>
+                    ) : (
+                        <Selector
+                            options={traitsOptions}
+                            selected={data.traits}
+                            onChange={handleSetTraits}
+                            max={6}
+                        />
+                    )}
 
                     {/* Stats */}
                     <div>

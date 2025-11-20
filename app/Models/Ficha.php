@@ -63,7 +63,7 @@ class Ficha extends Model
     }
 
 
-    public function traitsLearnt()
+    public function traits()
     {
         return $this->belongsToMany(CharacterTrait::class, 'traits_learnt', 'ficha_id', 'trait_id');
     }

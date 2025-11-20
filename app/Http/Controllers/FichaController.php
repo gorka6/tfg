@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Ficha;
 use Illuminate\Validation\Rules\Enum;
 use App\Enums\Alignment;
+use App\Models\AttributeBonus;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Redirect;
@@ -38,16 +39,17 @@ class FichaController extends Controller
         $subraces = \App\Models\Subrace::all();
         $classes = \App\Models\CharacterClass::all();
         $backgrounds = \App\Models\Background::all();
-        $skills = \App\Models\Skill::all();
         $classesSkills = \App\Models\ClassSkill::with('skill')->get();
+        $traits = \App\Models\CharacterTrait::with(['race', 'subrace', 'characterClass'])->get();
+        $attributeBonuses = AttributeBonus::with('attribute')->get();
 
         return Inertia::render('Fichas/Create', [
             'races' => $races,
             'subraces' => $subraces,
             'classes' => $classes,
             'backgrounds' => $backgrounds,
-            'skills' => $skills,
             'classesSkills' => $classesSkills,
+            'traits' => $traits
         ]);
     }
 
@@ -68,8 +70,10 @@ class FichaController extends Controller
             'int' => 'required|integer|min:3|max:18',
             'wis' => 'required|integer|min:3|max:18',
             'cha' => 'required|integer|min:3|max:18',
-            'skills'        => 'array|max:4',
-            'skills.*'      => 'integer|exists:skills,id',
+            'skills' => 'array|max:4',
+            'skills.*' => 'integer|exists:skills,id',
+            'traits' => 'array|max:6',
+            'traits.*' => 'integer|exists:traits,id',
         ]);
 
         $data['user_id'] = Auth::id();
@@ -78,6 +82,9 @@ class FichaController extends Controller
 
         if ($request->has('skills')) {
             $ficha->skills()->sync($request->skills);
+        }
+        if ($request->has('traits')) {
+            $ficha->traits()->sync($request->traits);
         }
 
         return Redirect::route('fichas.index')->with('success', 'Ficha creada');
