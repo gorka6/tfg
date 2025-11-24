@@ -1,4 +1,5 @@
 export default {
+  lang:"en",
   home: {
     title: "Hello, welcome",
     subtitle: "I'm in the car sweating a lot",

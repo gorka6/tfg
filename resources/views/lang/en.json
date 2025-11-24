@@ -40,7 +40,9 @@
     "select_subrace": "Select a subrace",
     "no_subrace": "No subrace",
     "select_class": "Select a class",
-    "background": "Background"
+    "background": "Background",
+    "skills": "Skills",
+    "traits": "Traits"
   },
   "alignments": {
     "lg": "Lawful Good",

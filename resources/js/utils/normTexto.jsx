@@ -1,4 +1,3 @@
-// utils/normalizeText.js (o donde quieras)
 export function normTexto(name = "") {
   return name
     .toString()

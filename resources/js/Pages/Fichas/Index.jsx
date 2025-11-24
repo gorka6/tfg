@@ -2,13 +2,12 @@ import { Head, Link } from "@inertiajs/react";
 import { useContextoIdioma } from "@/Contexts/ContextoIdioma";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import "../../../css/pages/fichas-index.css";
-import { useForm } from "@inertiajs/react";
 import FichaCard from "@/Components/FichaCard";
 
 export default function FichasIndex({ fichas }) {
     const { t } = useContextoIdioma();
-    const { delete: destroy } = useForm();
 
+    console.log(t)
     return (
         <AuthenticatedLayout>
             <Head title="Mis Fichas" />

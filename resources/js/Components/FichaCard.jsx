@@ -1,14 +1,13 @@
 import { Link, useForm } from "@inertiajs/react";
 import { normTexto } from "@/utils/normTexto";
 
-export default function FichaCard({ ficha, t }) {
+export default function FichaCard({ ficha, t}) {
     const { delete: destroy } = useForm();
-    console.log(localStorage.lang)
-
     const razaNorm = normTexto(ficha.race.name);
     const subrazaNorm = ficha.subrace ? normTexto(ficha.subrace.name) : null;
     const origenNorm = normTexto(ficha.background.name);
     const claseNorm = normTexto(ficha.character_class.name);
+    console.log(t.lang)
 
     return (
         <div className="ficha-card">
@@ -50,7 +49,7 @@ export default function FichaCard({ ficha, t }) {
             </p>
 
             <div className="ficha-acciones">
-                <a className="ficha-btn-ver" href={`/fichas/${ficha.id}/pdf-${localStorage.lang}`} target="_blank" rel="noopener noreferrer">Ver PDF</a>
+                <a className="ficha-btn-ver" href={`/fichas/${ficha.id}/pdf-${t.lang}`} target="_blank" rel="noopener noreferrer">Ver PDF</a>
                 <Link
                     href={route("fichas.edit", ficha.id)}
                     className="ficha-btn-editar"
