@@ -59,6 +59,11 @@ class TraitsSeeder extends Seeder
             ['name' => 'Hellish Resistance', 'description' => 'Resistencia al daño por fuego.', 'race_id' => 8, 'subrace_id' => null, 'class_id' => null],
             ['name' => 'Infernal Legacy', 'description' => 'Conoces el cantrip Thaumaturgia. Al nivel 3 puedes lanzar Reprensión infernal; al nivel 5 Oscuridad.', 'race_id' => 8, 'subrace_id' => null, 'class_id' => null],
 
+            ['name' => 'Blood Rite', 'description' => 'Puedes sacrificar parte de tus puntos de golpe para imbuir tu arma con energía rúnica que añade daño extra.', 'race_id' => null, 'subrace_id' => null, 'class_id' => 9],
+            ['name' => 'Crimson Bond', 'description' => 'Puedes crear un lazo sensorial con un objetivo, permitiéndote conocer su ubicación y estado a costa de tu propia energía.', 'race_id' => null, 'subrace_id' => null, 'class_id' => 9],
+            ['name' => 'Rite Mastery', 'description' => 'Dominas varios Rituales de Sangre, permitiéndote activar uno adicional sin penalización y mejorar su efecto.', 'race_id' => null, 'subrace_id' => null, 'class_id' => 9],
+            ['name' => 'Blood Curse', 'description' => 'Puedes infligir maldiciones de sangre que debilitan al enemigo, pudiendo amplificarlas si aceptas recibir daño.', 'race_id' => null, 'subrace_id' => null, 'class_id' => 9],
+
             ['name' => 'Spellcasting', 'description' => 'Capacidad para lanzar conjuros de la lista propia, usando la habilidad indicada y recuperando espacios tras reposo largo.', 'race_id' => null, 'subrace_id' => null, 'class_id' => 1], // Bardo
             ['name' => 'Bardic Inspiration', 'description' => 'Como acción adicional, otorgas a un aliado un dado de inspiración (d6) que puede sumar a una tirada.', 'race_id' => null, 'subrace_id' => null, 'class_id' => 1],
             ['name' => 'Expertise', 'description' => 'Duplica tu bonificación de competencia en dos habilidades elegidas.', 'race_id' => null, 'subrace_id' => null, 'class_id' => 1], // Bardo, Pícaro
@@ -89,6 +94,36 @@ class TraitsSeeder extends Seeder
 
             ['name' => 'Ki', 'description' => 'Usas puntos de ki para realizar técnicas especiales.', 'race_id' => null, 'subrace_id' => null, 'class_id' => 6], // Monje
             ['name' => 'Unarmored Defense', 'description' => 'CA = 10 + Destreza + Sabiduría cuando no llevas armadura.', 'race_id' => null, 'subrace_id' => null, 'class_id' => 6],
+
+            ['name' => 'Arcane Echo', 'description' => 'Un residuo mágico permanece tras tus conjuros, permitiéndote potenciar tu siguiente hechizo.', 'race_id' => null, 'subrace_id' => null, 'class_id' => 7],
+            ['name' => 'Mystic Focus', 'description' => 'Canalizas tu concentración en un punto arcano, reduciendo distracciones y mejorando tu precisión mágica.', 'race_id' => null, 'subrace_id' => null, 'class_id' => 7],
+            ['name' => 'Mana Surge', 'description' => 'Una oleada repentina de energía arcana te permite lanzar un conjuro menor sin consumir recursos.', 'race_id' => null, 'subrace_id' => null, 'class_id' => 7],
+            ['name' => 'Spellguard', 'description' => 'Una barrera mágica te protege brevemente tras lanzar un conjuro.', 'race_id' => null, 'subrace_id' => null, 'class_id' => 7],
+
+            ['name' => 'Battle Instincts', 'description' => 'Tus reflejos entrenados te permiten anticiparte a ataques repentinos.', 'race_id' => null, 'subrace_id' => null, 'class_id' => 8],
+            ['name' => 'Adrenal Surge', 'description' => 'La adrenalina te concede un breve impulso de fuerza física.', 'race_id' => null, 'subrace_id' => null, 'class_id' => 8],
+            ['name' => 'Weapon Expertise', 'description' => 'Tu dominio con las armas te permite aprovechar pequeñas aperturas en la defensa enemiga.', 'race_id' => null, 'subrace_id' => null, 'class_id' => 8],
+            ['name' => 'Tactical Rush', 'description' => 'Puedes moverte con rapidez táctica para reposicionarte en combate.', 'race_id' => null, 'subrace_id' => null, 'class_id' => 8],
+
+            ['name' => 'Blood Rite', 'description' => 'Puedes sacrificar parte de tus puntos de golpe para imbuir tu arma con energía rúnica que añade daño extra.', 'race_id' => null, 'subrace_id' => null, 'class_id' => 9],
+            ['name' => 'Crimson Bond', 'description' => 'Puedes crear un lazo sensorial con un objetivo, permitiéndote conocer su ubicación y estado a costa de tu propia energía.', 'race_id' => null, 'subrace_id' => null, 'class_id' => 9],
+            ['name' => 'Rite Mastery', 'description' => 'Dominas varios Rituales de Sangre, permitiéndote activar uno adicional sin penalización y mejorar su efecto.', 'race_id' => null, 'subrace_id' => null, 'class_id' => 9],
+            ['name' => 'Blood Curse', 'description' => 'Puedes infligir maldiciones de sangre que debilitan al enemigo, pudiendo amplificarlas si aceptas recibir daño.', 'race_id' => null, 'subrace_id' => null, 'class_id' => 9],
+
+            ['name' => 'Nature’s Boon', 'description' => 'La naturaleza te concede un pequeño favor que te protege en momentos de peligro.', 'race_id' => null, 'subrace_id' => null, 'class_id' => 10],
+            ['name' => 'Primal Guidance', 'description' => 'Un instinto primitivo te orienta hacia la mejor acción en situaciones difíciles.', 'race_id' => null, 'subrace_id' => null, 'class_id' => 10],
+            ['name' => 'Wild Focus', 'description' => 'Canalizas la energía salvaje para reforzar tus capacidades temporales.', 'race_id' => null, 'subrace_id' => null, 'class_id' => 10],
+            ['name' => 'Beast Affinity', 'description' => 'Tu conexión con las criaturas salvajes te permite comprender sus intenciones con mayor facilidad.', 'race_id' => null, 'subrace_id' => null, 'class_id' => 10],
+
+            ['name' => 'Shadow Step', 'description' => 'Puedes deslizarte brevemente entre sombras, moviéndote con sigilo sobrenatural.', 'race_id' => null, 'subrace_id' => null, 'class_id' => 11],
+            ['name' => 'Silent Precision', 'description' => 'Tu entrenamiento te permite actuar sin dejar rastro perceptible.', 'race_id' => null, 'subrace_id' => null, 'class_id' => 11],
+            ['name' => 'Marked Target', 'description' => 'Puedes fijar un objetivo para estudiar sus patrones y debilidades.', 'race_id' => null, 'subrace_id' => null, 'class_id' => 11],
+            ['name' => 'Evasion Tactics', 'description' => 'Desarrollas técnicas para esquivar ataques con movimientos ágiles y precisos.', 'race_id' => null, 'subrace_id' => null, 'class_id' => 11],
+
+            ['name' => 'Divine Insight', 'description' => 'Recibes una revelación divina que guía tus decisiones en momentos críticos.', 'race_id' => null, 'subrace_id' => null, 'class_id' => 12],
+            ['name' => 'Holy Ward', 'description' => 'Una energía sagrada te envuelve temporalmente, protegiéndote del daño.', 'race_id' => null, 'subrace_id' => null, 'class_id' => 12],
+            ['name' => 'Blessed Channeling', 'description' => 'Canalizas poder divino para reforzar tu siguiente acción espiritual.', 'race_id' => null, 'subrace_id' => null, 'class_id' => 12],
+            ['name' => 'Sanctified Aura', 'description' => 'Una tenue aura sagrada afecta a quienes se encuentran cerca de ti, inspirando determinación.', 'race_id' => null, 'subrace_id' => null, 'class_id' => 12],
         ]);
     }
 }

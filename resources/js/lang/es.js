@@ -104,6 +104,7 @@ export default {
     stout_halfling: "Mediano Robusto",
     forest_gnome: "Gnomo del Bosque",
     rock_gnome: "Gnomo de las Rocas",
+    no_subrace: "Sin subraza"
   },
   skills: {
     athletics: "Atletismo",

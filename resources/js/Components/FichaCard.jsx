@@ -5,7 +5,7 @@ export default function FichaCard({ ficha, t }) {
     const { delete: destroy } = useForm();
 
     const razaNorm = normTexto(ficha.race.name);
-    const subrazaNorm = normTexto(ficha.subrace.name);
+const subrazaNorm = ficha.subrace ? normTexto(ficha.subrace.name) : null;
     const origenNorm = normTexto(ficha.background.name);
     const claseNorm = normTexto(ficha.character_class.name);
 
@@ -17,9 +17,12 @@ export default function FichaCard({ ficha, t }) {
             <p>
                 <strong>{t.create.race}: {t.races[razaNorm]}</strong>
             </p>
-            <p>
-                <strong>{t.create.subrace}: {t.subraces[subrazaNorm]}</strong>
-            </p>
+<p>
+  <strong>
+    {t.create.subrace}: {subrazaNorm ? t.subraces[subrazaNorm] : t.subraces.no_subrace}
+  </strong>
+</p>
+
             <p>
                 <strong>{t.create.background}: {t.backgrounds[origenNorm]}</strong>
             </p>

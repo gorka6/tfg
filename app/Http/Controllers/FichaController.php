@@ -105,8 +105,26 @@ class FichaController extends Controller
     public function edit(Ficha $ficha)
     {
         $this->authorize('update', $ficha);
+        $ficha->load(['skills', 'traits', 'race', 'subrace', 'characterClass', 'background']);
 
-        return Inertia::render('Fichas/Edit', ['ficha' => $ficha,]);
+        $races = \App\Models\Race::all();
+        $subraces = \App\Models\Subrace::all();
+        $classes = \App\Models\CharacterClass::all();
+        $backgrounds = \App\Models\Background::all();
+        $classesSkills = \App\Models\ClassSkill::with('skill')->get();
+        $traits = \App\Models\CharacterTrait::with(['race', 'subrace', 'characterClass'])->get();
+        $attributeBonuses = AttributeBonus::with('attribute')->get();
+
+        return Inertia::render('Fichas/Edit', [
+            'ficha' => $ficha,
+            'races' => $races,
+            'subraces' => $subraces,
+            'classes' => $classes,
+            'backgrounds' => $backgrounds,
+            'classesSkills' => $classesSkills,
+            'traits' => $traits,
+            'attributeBonuses' => $attributeBonuses,
+        ]);
     }
 
 
@@ -128,9 +146,21 @@ class FichaController extends Controller
             'int' => 'required|integer|min:3|max:18',
             'wis' => 'required|integer|min:3|max:18',
             'cha' => 'required|integer|min:3|max:18',
+            'skills' => 'sometimes|array|max:4',
+            'skills.*' => 'integer|exists:skills,id',
+            'traits' => 'sometimes|array|max:6',
+            'traits.*' => 'integer|exists:traits,id',
         ]);
 
         $ficha->update($data);
+
+        if ($request->has('skills')) {
+            $ficha->skills()->sync($request->input('skills', []));
+        }
+
+        if ($request->has('traits')) {
+            $ficha->traits()->sync($request->input('traits', []));
+        }
 
         return Redirect::route('fichas.index')->with('success', 'Ficha actualizada');
     }

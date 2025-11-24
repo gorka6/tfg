@@ -13,7 +13,7 @@ return new class extends Migration {
 
             $table->primary(['ficha_id', 'skill_id']);
 
-            $table->foreign('ficha_id')->references('id')->on('fichas');
+            $table->foreign('ficha_id')->references('id')->on('fichas')->onDelete('cascade');
             $table->foreign('skill_id')->references('id')->on('skills');
         });
     }

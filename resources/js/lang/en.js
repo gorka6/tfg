@@ -105,6 +105,7 @@ export default {
     stout_halfling: "Stout Halfling",
     forest_gnome: "Forest Gnome",
     rock_gnome: "Rock Gnome",
+    no_subrace: "No subrace"
   },
   skills: {
     athletics: "Athletics",
