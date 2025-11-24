@@ -3,13 +3,12 @@ import { normTexto } from "@/utils/normTexto";
 
 export default function FichaCard({ ficha, t }) {
     const { delete: destroy } = useForm();
+    console.log(localStorage.lang)
 
     const razaNorm = normTexto(ficha.race.name);
-const subrazaNorm = ficha.subrace ? normTexto(ficha.subrace.name) : null;
+    const subrazaNorm = ficha.subrace ? normTexto(ficha.subrace.name) : null;
     const origenNorm = normTexto(ficha.background.name);
     const claseNorm = normTexto(ficha.character_class.name);
-
-    console.log(ficha.character_class.name)
 
     return (
         <div className="ficha-card">
@@ -17,12 +16,11 @@ const subrazaNorm = ficha.subrace ? normTexto(ficha.subrace.name) : null;
             <p>
                 <strong>{t.create.race}: {t.races[razaNorm]}</strong>
             </p>
-<p>
-  <strong>
-    {t.create.subrace}: {subrazaNorm ? t.subraces[subrazaNorm] : t.subraces.no_subrace}
-  </strong>
-</p>
-
+            <p>
+                <strong>
+                    {t.create.subrace}: {subrazaNorm ? t.subraces[subrazaNorm] : t.subraces.no_subrace}
+                </strong>
+            </p>
             <p>
                 <strong>{t.create.background}: {t.backgrounds[origenNorm]}</strong>
             </p>
@@ -51,14 +49,8 @@ const subrazaNorm = ficha.subrace ? normTexto(ficha.subrace.name) : null;
                 <strong>{t.create.align}:</strong> {t.alignments[ficha.alignment]}
             </p>
 
-
             <div className="ficha-acciones">
-                <Link
-                    href={route("fichas.show", ficha.id)}
-                    className="ficha-btn-ver"
-                >
-                    {t.index.show}
-                </Link>
+                <a className="ficha-btn-ver" href={`/fichas/${ficha.id}/pdf-${localStorage.lang}`} target="_blank" rel="noopener noreferrer">Ver PDF</a>
                 <Link
                     href={route("fichas.edit", ficha.id)}
                     className="ficha-btn-editar"

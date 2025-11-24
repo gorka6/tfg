@@ -12,6 +12,7 @@ use Inertia\Inertia;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\DB;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 
 class FichaController extends Controller
@@ -173,5 +174,21 @@ class FichaController extends Controller
         $ficha->delete();
 
         return Redirect::route('fichas.index')->with('success', 'Ficha eliminada');
+    }
+
+    public function pdfEs(Ficha $ficha)
+    {
+        $this->authorize('view', $ficha);
+        $ficha->load(['race', 'subrace', 'characterClass', 'background', 'skills', 'traits']);
+        $pdf = Pdf::loadView('pdf_es', ['ficha' => $ficha]);
+        return $pdf->stream('ficha_' . $ficha->id . '_es.pdf');
+    }
+
+    public function pdfEn(Ficha $ficha)
+    {
+        $this->authorize('view', $ficha);
+        $ficha->load(['race', 'subrace', 'characterClass', 'background', 'skills', 'traits']);
+        $pdf = Pdf::loadView('pdf_en', ['ficha' => $ficha]);
+        return $pdf->stream('ficha_' . $ficha->id . '_en.pdf');
     }
 }

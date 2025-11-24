@@ -23,7 +23,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('fichas/{ficha}/pdf-es', [FichaController::class, 'pdfEs'])->name('fichas.pdf_es');
+    Route::get('fichas/{ficha}/pdf-en', [FichaController::class, 'pdfEn'])->name('fichas.pdf_en');
     Route::resource('fichas', FichaController::class);
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
