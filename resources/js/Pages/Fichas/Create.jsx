@@ -161,6 +161,7 @@ export default function FichasCreate({ auth,
                                 setData("race_id", id);
                                 setSelectedRaceId(id);
                                 setData("subrace_id", null);
+                                setData("traits", []);
                             }}
                         >
                             <option value="">{t.create.select_race}</option>
@@ -177,7 +178,11 @@ export default function FichasCreate({ auth,
                         <select
                             id="subrace"
                             value={data.subrace_id ?? ""}
-                            onChange={(e) => setData("subrace_id", e.target.value === "" ? null : Number(e.target.value))}
+                            onChange={(e) => {
+                                const value = e.target.value === "" ? null : Number(e.target.value);
+                                setData("subrace_id", value);
+                                setData("traits", []);
+                            }}
                             disabled={subracesFiltered.length === 0}
                         >
                             {subracesFiltered.length === 0 ? (
@@ -205,6 +210,7 @@ export default function FichasCreate({ auth,
                                 setData("class_id", id);
                                 setSelectedClassId(id);
                                 setData("skills", []);
+                                setData("traits", []);
                             }}
                         >
                             <option value="">{t.create.select_class}</option>

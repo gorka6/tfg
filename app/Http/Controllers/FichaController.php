@@ -49,7 +49,8 @@ class FichaController extends Controller
             'classes' => $classes,
             'backgrounds' => $backgrounds,
             'classesSkills' => $classesSkills,
-            'traits' => $traits
+            'traits' => $traits,
+            'attributeBonuses' => $attributeBonuses,
         ]);
     }
 
