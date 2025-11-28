@@ -1,26 +1,25 @@
 export default function Selector({ options, selected, onChange, max = 4 }) {
-  const toggle = (id) => {
-    if (selected.includes(id)) {
-      onChange(selected.filter(s => s !== id));
-    } else if (selected.length < max) {
-      onChange([...selected, id]);
-    }
+  const toggle = (value) => {
+    const newSelected = selected.includes(value)
+      ? selected.filter(s => s !== value)
+      : selected.length < max
+        ? [...selected, value]
+        : selected;
+    onChange(newSelected);
   };
 
   return (
     <div>
-      {options.map(opt => (
-        <div key={opt.value}>
-          <label>
-            <input
-              type="checkbox"
-              value={opt.value}
-              checked={selected.includes(opt.value)}
-              onChange={() => toggle(opt.value)}
-            />
-            {opt.label}
-          </label>
-        </div>
+      {options.map(({ value, label }) => (
+        <label key={value} style={{ display: "block" }}>
+          <input
+            type="checkbox"
+            value={value}
+            checked={selected.includes(value)}
+            onChange={() => toggle(value)}
+          />
+          {label}
+        </label>
       ))}
     </div>
   );
