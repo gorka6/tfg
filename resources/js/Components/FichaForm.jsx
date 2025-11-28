@@ -54,10 +54,6 @@ export default function FichaForm({
     const racesOptions = opcionesBuild(races, t.races);
     const classesOptions = opcionesBuild(classes, t.classes);
     const backgroundsOptions = opcionesBuild(backgrounds, t.backgrounds);
-
-    /* -------------------------
-       Subrazas filtradas por raza
-       -------------------------*/
     const subracesOptions = opcionesBuild(filtraOpciones(subraces, "race_id", selectedRaceId), t.subraces);
 
     /* -------------------------
@@ -86,13 +82,13 @@ export default function FichaForm({
        -------------------------*/
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (typeof onSubmit === "function") {
+        if (onSubmit) {
             onSubmit();
-            return;
+        } else {
+            post(route("fichas.store"), {
+                onSuccess: () => reset(),
+            });
         }
-        post(route("fichas.store"), {
-            onSuccess: () => reset(),
-        });
     };
 
     const onRaceChange = (e) => {
@@ -176,7 +172,11 @@ export default function FichaForm({
 
                 {/* Habilidades */}
                 <p>Habilidades</p>
-                <Selector options={skillsOptions} selected={data.skills} onChange={(newSkills) => setData("skills", newSkills)} />
+                {skillsOptions.length === 0 ? (
+                    <p className="fichas-note">{selectedClassId ? "No hay rasgos disponibles para la selección actual." : "Selecciona raza, subraza o clase para ver rasgos."}</p>
+                ) : (
+                    <Selector options={skillsOptions} selected={data.skills} onChange={(newSkills) => setData("skills", newSkills)} />
+                )}
                 {errors.skills && <p className="fichas-error">{errors.skills}</p>}
 
                 {/* Rasgos */}
@@ -236,7 +236,7 @@ export default function FichaForm({
                     <label htmlFor="background">{t.create.background}</label>
                     <select id="background"
                         value={data.background_id ?? ""}
-                        onChange={(e) => setData("background_id", e.target.value === "" ? null : Number(e.target.value))}>
+                        onChange={(e) => setData("background_id", Number(e.target.value))}>
                         <option value="">{t.create.background}</option>
                         {backgroundsOptions.map(b => <option key={b.value} value={b.value}>{b.label}</option>)}
                     </select>
