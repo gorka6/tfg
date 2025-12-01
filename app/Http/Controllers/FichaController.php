@@ -7,6 +7,7 @@ use App\Models\Ficha;
 use Illuminate\Validation\Rules\Enum;
 use App\Enums\Alignment;
 use App\Models\AttributeBonus;
+use App\Models\CharacterClass;
 use App\Models\Language;
 use App\Models\RaceLanguage;
 use Illuminate\Support\Facades\Auth;
@@ -198,6 +199,7 @@ class FichaController extends Controller
     public function tiradas()
     {
         $attributeBonuses = AttributeBonus::with('attribute')->get();
+        $characterClasses = CharacterClass::with(['savingThrowAttribute1', 'savingThrowAttribute2'])->get();
         $fichas = Auth::user()
             ->fichas()
             ->with(['race', 'subrace', 'characterClass', 'background'])
@@ -207,6 +209,7 @@ class FichaController extends Controller
         return Inertia::render('Fichas/Tiradas', [
             'fichas' => $fichas,
             'bonus' => $attributeBonuses,
+            'characterClasses' => $characterClasses,
         ]);
     }
 }

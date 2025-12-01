@@ -21,13 +21,10 @@ export default function Edit({ ficha, races, subraces, classes, backgrounds, cla
     traits: (ficha.traits ?? []).map(trait => trait.id)
   });
 
-  console.log(ficha);
-
   const handleSubmit = () => {
     form.put(route("fichas.update", ficha.id), {
       onSuccess: () => {
-      },
-      preserveScroll: true
+      }
     });
   };
 

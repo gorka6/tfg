@@ -2,10 +2,10 @@ import D20Atributos from "@/Components/Dados/D20Atributos";
 import { useContextoIdioma } from "@/Contexts/ContextoIdioma";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { filtraOpciones } from "@/utils/filtraOpciones";
-import { Link } from "@inertiajs/react";
+import { Head, Link } from "@inertiajs/react";
 import { useState } from "react";
 
-export default function Tiradas({ fichas, bonus }) {
+export default function Tiradas({ fichas, bonus, characterClasses }) {
     const { t } = useContextoIdioma();
     const [selectedFichaId, setSelectedFichaId] = useState("");
     const [selectedFicha, setSelectedFicha] = useState(null);
@@ -25,8 +25,11 @@ export default function Tiradas({ fichas, bonus }) {
             )
         : [];
 
+    const claseFicha = selectedFicha ? filtraOpciones(characterClasses, "id", selectedFicha.class_id) : [];
+    
     return (
         <AuthenticatedLayout>
+            <Head title="Tiradas" />
             <p>Selecciona la ficha</p>
             {fichas.length === 0 ? (
                 <div className="fichas-vacio">
@@ -51,7 +54,13 @@ export default function Tiradas({ fichas, bonus }) {
                             {fichas.map(f => <option key={f.id} value={f.id}>{f.name}</option>)}
                         </select>
                     </div>
-                    <D20Atributos ficha={selectedFicha} bonus={bonusRaza}></D20Atributos>
+                    <D20Atributos
+                        ficha={selectedFicha}
+                        bonus={bonusRaza}
+                        savThrow1={claseFicha[0]?.saving_throw_attribute1.abbrev}
+                        savThrow2={claseFicha[0]?.saving_throw_attribute2.abbrev}
+                    />
+
                 </div>
 
             )}
