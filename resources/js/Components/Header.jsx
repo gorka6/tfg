@@ -48,6 +48,9 @@ export default function Header({ auth }) {
                 <Dropdown.Link href={route("dashboard")}>
                   {t.home.profile}
                 </Dropdown.Link>
+                <Dropdown.Link href={route("dashboard")}>
+                  {t.home.profile}
+                </Dropdown.Link>
                 <Dropdown.Link href={route("profile.edit")}>
                   {t.home.edit}
                 </Dropdown.Link>

@@ -17,6 +17,7 @@ export default function FichaForm({
     backgrounds = [],
     classesSkills = [],
     traits = [],
+    languages = [],
     onSubmit
 }) {
     const { t } = useContextoIdioma();
@@ -55,6 +56,12 @@ export default function FichaForm({
     const classesOptions = opcionesBuild(classes, t.classes);
     const backgroundsOptions = opcionesBuild(backgrounds, t.backgrounds);
     const subracesOptions = opcionesBuild(filtraOpciones(subraces, "race_id", selectedRaceId), t.subraces);
+    const languagesFiltered = opcionesBuild(
+        filtraOpciones(languages, "race_id", selectedRaceId).map(l =>
+            ({ id: l.language.id, name: l.language.name })),
+        t.languages
+    );
+
 
     /* -------------------------
        Habilidades por clase
@@ -73,9 +80,7 @@ export default function FichaForm({
             ...filtraOpciones(traits, "race_id", selectedRaceId),
             ...filtraOpciones(traits, "subrace_id", selectedSubraceId),
             ...filtraOpciones(traits, "class_id", selectedClassId)
-        ],
-        t.traits
-    );
+        ],t.traits);
 
     /* -------------------------
        Handlers
@@ -138,7 +143,17 @@ export default function FichaForm({
                     </select>
                     {errors.race_id && <p className="fichas-error">{errors.race_id}</p>}
                 </div>
-
+                {/* Idiomas que habla lña raza */}
+                {languagesFiltered.length > 0 && (
+                    <div className="fichas-languages-list">
+                        <p><strong>{t.create.languages}:</strong></p>
+                        <ul>
+                            {languagesFiltered.map(lang => (
+                                <li key={lang.value}>{lang.label}</li>
+                            ))}
+                        </ul>
+                    </div>
+                )}
                 {/* Subraza */}
                 <div className="fichas-form-group">
                     <label htmlFor="subrace">{t.create.subrace}</label>

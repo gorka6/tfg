@@ -7,6 +7,8 @@ use App\Models\Ficha;
 use Illuminate\Validation\Rules\Enum;
 use App\Enums\Alignment;
 use App\Models\AttributeBonus;
+use App\Models\Language;
+use App\Models\RaceLanguage;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Redirect;
@@ -43,6 +45,7 @@ class FichaController extends Controller
         $classesSkills = \App\Models\ClassSkill::with('skill')->get();
         $traits = \App\Models\CharacterTrait::with(['race', 'subrace', 'characterClass'])->get();
         $attributeBonuses = AttributeBonus::with('attribute')->get();
+        $languages = RaceLanguage::with('language')->get();
 
         return Inertia::render('Fichas/Create', [
             'races' => $races,
@@ -52,6 +55,7 @@ class FichaController extends Controller
             'classesSkills' => $classesSkills,
             'traits' => $traits,
             'attributeBonuses' => $attributeBonuses,
+            'languages' => $languages,
         ]);
     }
 

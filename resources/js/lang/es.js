@@ -42,7 +42,8 @@ export default {
     select_subrace: "Selecciona una subraza",
     no_subrace: "Sin subraza",
     select_class: "Selecciona una clase",
-    background: "Origen"
+    background: "Origen",
+    languages: "Idiomas"
   },
   alignments: {
     lg: "Legal Bueno",
@@ -210,5 +211,23 @@ export default {
     holy_ward: "Protección Sagrada",
     blessed_channeling: "Canalización Bendita",
     sanctified_aura: "Aura Santificada"
+  },
+    languages: {
+    common: "Común",
+    dwarvish: "Enano",
+    elvish: "Élfico",
+    giant: "Gigante",
+    gnomish: "Gnómico",
+    goblin: "Goblin",
+    halfling: "Mediano",
+    orc: "Orco",
+    abyssal: "Abisal",
+    celestial: "Celestial",
+    draconic: "Dracónico",
+    deep_speech: "Habla Profunda",
+    infernal: "Infernal",
+    primordial: "Primordial",
+    sylvan: "Silvano",
+    undercommon: "Infracomún"
   }
 };

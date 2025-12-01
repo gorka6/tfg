@@ -1,5 +1,5 @@
 export default {
-  lang:"en",
+  lang: "en",
   home: {
     title: "Hello, welcome",
     subtitle: "I'm in the car sweating a lot",
@@ -42,8 +42,8 @@ export default {
     select_subrace: "Select a subrace",
     no_subrace: "No subrace",
     select_class: "Select a class",
-    background: "Background"
-
+    background: "Background",
+    languages: "Languages"
   },
   alignments: {
     lg: "Lawful Good",
@@ -211,5 +211,23 @@ export default {
     holy_ward: "Holy Ward",
     blessed_channeling: "Blessed Channeling",
     sanctified_aura: "Sanctified Aura"
+  },
+  languages: {
+    common: "Common",
+    dwarvish: "Dwarvish",
+    elvish: "Elvish",
+    giant: "Giant",
+    gnomish: "Gnomish",
+    goblin: "Goblin",
+    halfling: "Halfling",
+    orc: "Orc",
+    abyssal: "Abyssal",
+    celestial: "Celestial",
+    draconic: "Draconic",
+    deep_speech: "Deep Speech",
+    infernal: "Infernal",
+    primordial: "Primordial",
+    sylvan: "Sylvan",
+    undercommon: "Undercommon",
   }
 };
