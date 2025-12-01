@@ -12,9 +12,9 @@ export default function D20Atributos({ ficha, bonus, savThrow1, savThrow2 }) {
 
         const baseMod = Math.floor((ficha[atributo] - 10) / 2);
 
-        const classSavThrow1 = savThrow1 === savThrow1 ? 1 : 0;
+        const classSavThrow1 = savThrow1 === atributo ? 1 : 0;
 
-        const classSavThrow2 = savThrow2 === savThrow1 ? 1 : 0;
+        const classSavThrow2 = savThrow2 === atributo ? 1 : 0;
 
 
         const bonusAtributo = bonus
