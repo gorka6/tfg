@@ -118,7 +118,7 @@ class FichaController extends Controller
         $backgrounds = \App\Models\Background::all();
         $classesSkills = \App\Models\ClassSkill::with('skill')->get();
         $traits = \App\Models\CharacterTrait::with(['race', 'subrace', 'characterClass'])->get();
-        $attributeBonuses = AttributeBonus::with('attribute')->get();
+
 
         return Inertia::render('Fichas/Edit', [
             'ficha' => $ficha,
@@ -128,7 +128,6 @@ class FichaController extends Controller
             'backgrounds' => $backgrounds,
             'classesSkills' => $classesSkills,
             'traits' => $traits,
-            'attributeBonuses' => $attributeBonuses,
         ]);
     }
 
@@ -194,5 +193,20 @@ class FichaController extends Controller
         $ficha->load(['race', 'subrace', 'characterClass', 'background', 'skills', 'traits']);
         $pdf = Pdf::loadView('pdf_en', ['ficha' => $ficha]);
         return $pdf->stream('ficha_' . $ficha->id . '_en.pdf');
+    }
+
+    public function tiradas()
+    {
+        $attributeBonuses = AttributeBonus::with('attribute')->get();
+        $fichas = Auth::user()
+            ->fichas()
+            ->with(['race', 'subrace', 'characterClass', 'background'])
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        return Inertia::render('Fichas/Tiradas', [
+            'fichas' => $fichas,
+            'bonus' => $attributeBonuses,
+        ]);
     }
 }

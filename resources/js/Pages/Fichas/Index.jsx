@@ -4,7 +4,7 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import "../../../css/pages/fichas-index.css";
 import FichaCard from "@/Components/FichaCard";
 
-export default function FichasIndex({ fichas }) {
+export default function Index({ fichas }) {
     const { t } = useContextoIdioma();
 
     console.log(t)

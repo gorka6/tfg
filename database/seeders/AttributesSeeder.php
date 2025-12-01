@@ -13,13 +13,14 @@ class AttributesSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('attributes')->insert([
-            ['name' => 'Strength'],
-            ['name' => 'Dexterity'],
-            ['name' => 'Constitution'],
-            ['name' => 'Intelligence'],
-            ['name' => 'Wisdom'],
-            ['name' => 'Charisma'],
-        ]);
+DB::table('attributes')->insert([
+    ['name' => 'Strength',     'abbrev' => 'str'],
+    ['name' => 'Dexterity',    'abbrev' => 'dex'],
+    ['name' => 'Constitution', 'abbrev' => 'con'],
+    ['name' => 'Intelligence', 'abbrev' => 'int'],
+    ['name' => 'Wisdom',       'abbrev' => 'wis'],
+    ['name' => 'Charisma',     'abbrev' => 'cha'],
+]);
+
     }
 }

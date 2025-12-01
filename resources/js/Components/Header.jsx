@@ -48,9 +48,6 @@ export default function Header({ auth }) {
                 <Dropdown.Link href={route("dashboard")}>
                   {t.home.profile}
                 </Dropdown.Link>
-                <Dropdown.Link href={route("dashboard")}>
-                  {t.home.profile}
-                </Dropdown.Link>
                 <Dropdown.Link href={route("profile.edit")}>
                   {t.home.edit}
                 </Dropdown.Link>
@@ -71,6 +68,9 @@ export default function Header({ auth }) {
           )}
           <Link href={route("fichas.index")} className="header-btn">
             {t.home.sheet}
+          </Link>
+          <Link href={route("fichas.tiradas")} className="header-btn">
+            {t.home.throws}
           </Link>
         </nav>
       </div>

@@ -25,6 +25,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('fichas/{ficha}/pdf-es', [FichaController::class, 'pdfEs'])->name('fichas.pdf_es');
     Route::get('fichas/{ficha}/pdf-en', [FichaController::class, 'pdfEn'])->name('fichas.pdf_en');
+    Route::get('fichas/tiradas', [FichaController::class, 'tiradas'])->name('fichas.tiradas');
     Route::resource('fichas', FichaController::class);
 });
 

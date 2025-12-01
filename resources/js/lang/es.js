@@ -8,7 +8,8 @@ export default {
     logout: "Cerrar sesión",
     profile: "Perfil",
     edit: "Editar perfil",
-    sheet: "Fichas"
+    sheet: "Fichas",
+    throws: "Tiradas"
   },
   index: {
     mysheets: "Mis fichas",

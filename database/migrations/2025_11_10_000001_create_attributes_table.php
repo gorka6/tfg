@@ -10,6 +10,7 @@ return new class extends Migration {
         Schema::create('attributes', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name', 50);
+            $table->string('abbrev', 10);
         });
     }
 
