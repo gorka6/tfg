@@ -1,5 +1,6 @@
 import { useContextoIdioma } from "@/Contexts/ContextoIdioma";
 import { useEffect, useState } from "react";
+import DadosRoller from "./DadosRoller";
 
 export default function D20Atributos({ ficha, bonus, savThrow1, savThrow2 }) {
 
@@ -8,6 +9,8 @@ export default function D20Atributos({ ficha, bonus, savThrow1, savThrow2 }) {
     const [atributo, setAtributo] = useState("str");
     const [dc, setDc] = useState("");
     const atributos = ["str", "dex", "con", "int", "wis", "cha"];
+    const [refreshKey, setRefreshKey] = useState(0);
+
     const tirar = () => {
         if (!ficha || !dc) return alert("Selecciona ficha y pon un DC");
 
@@ -30,6 +33,7 @@ export default function D20Atributos({ ficha, bonus, savThrow1, savThrow2 }) {
         const exito = total >= Number(dc);
 
         setResultado({ d20, baseMod, bonusAtributo, classSavThrow1, classSavThrow2, mod, total, exito });
+        setRefreshKey(Date.now());
     };
 
     useEffect(() => {
@@ -51,6 +55,7 @@ export default function D20Atributos({ ficha, bonus, savThrow1, savThrow2 }) {
                 <button onClick={tirar}>Tirar</button>
                 {resultado && (
                     <div style={{ marginTop: "10px" }}>
+                        <DadosRoller dieType="d20" rolls={[resultado.d20]} refreshKey={refreshKey} />
                         <p>d20: {resultado.d20}</p>
                         <p>{t.throws.base_mod} ({atributo.toUpperCase()}): {resultado.baseMod > 0 ? `+${resultado.baseMod}` : resultado.baseMod}</p>
                         <p>{t.throws.race_bonus}: +{resultado.bonusAtributo}</p>

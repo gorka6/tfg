@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "../../../css/components/d6atributos.css";
 import { useContextoIdioma } from "@/Contexts/ContextoIdioma";
+import DadosRoller from "./DadosRoller";
 
 export default function D6Button({ value, setValue }) {
 
@@ -34,14 +35,7 @@ export default function D6Button({ value, setValue }) {
             </button>
 
             <div className="dice-display">
-                {rolls.map((roll, i) => (
-                    <img
-                        key={i}
-                        src={`/images/dice/dice${roll}.gif?${refreshKey}`}
-                        alt={`Dado ${roll}`}
-                        className="dice-face"
-                    />
-                ))}
+                <DadosRoller dieType="d6" rolls={rolls} refreshKey={refreshKey} />
             </div>
 
             <p className="dice-result">
