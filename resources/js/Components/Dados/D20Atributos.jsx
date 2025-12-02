@@ -1,6 +1,9 @@
+import { useContextoIdioma } from "@/Contexts/ContextoIdioma";
 import { useEffect, useState } from "react";
 
 export default function D20Atributos({ ficha, bonus, savThrow1, savThrow2 }) {
+
+    const { t } = useContextoIdioma();
     const [resultado, setResultado] = useState(null);
     const [atributo, setAtributo] = useState("str");
     const [dc, setDc] = useState("");
@@ -49,13 +52,13 @@ export default function D20Atributos({ ficha, bonus, savThrow1, savThrow2 }) {
                 {resultado && (
                     <div style={{ marginTop: "10px" }}>
                         <p>d20: {resultado.d20}</p>
-                        <p>Modificador base ({atributo.toUpperCase()}): {resultado.baseMod}</p>
-                        <p>Bonus de raza/subraza: {resultado.bonusAtributo}</p>
-                        <p>Bonus de pericia por clase 1 {savThrow1}: {resultado.classSavThrow1}</p>
-                        <p>Bonus de pericia por clase 2 {savThrow2}: {resultado.classSavThrow2}</p>
-                        <p>Modificador total: {resultado.mod}</p>
-                        <p>Total (d20 + modificador): {resultado.total}</p>
-                        <p>{resultado.exito ? "✅ ¡Éxito!" : "❌ Fallo"}</p>
+                        <p>{t.throws.base_mod} ({atributo.toUpperCase()}): {resultado.baseMod > 0 ? `+${resultado.baseMod}` : resultado.baseMod}</p>
+                        <p>{t.throws.race_bonus}: +{resultado.bonusAtributo}</p>
+                        <p>{t.throws.sav_throw1}({savThrow1}): +{resultado.classSavThrow1}</p>
+                        <p>{t.throws.sav_throw2}({savThrow2}): +{resultado.classSavThrow2}</p>
+                        <p>{t.throws.total_mod}: {resultado.mod}</p>
+                        <p>Total (d20 + {t.throws.mod}): {resultado.total}</p>
+                        <p>{resultado.exito ? t.throws.pass : t.throws.fail}</p>
                     </div>
                 )}
             </div>

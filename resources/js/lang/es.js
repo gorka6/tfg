@@ -44,7 +44,9 @@ export default {
     no_subrace: "Sin subraza",
     select_class: "Selecciona una clase",
     background: "Origen",
-    languages: "Idiomas"
+    languages: "Idiomas",
+    rolling: "Rolling",
+    roll: "Roll 3D6"
   },
   alignments: {
     lg: "Legal Bueno",
@@ -213,7 +215,7 @@ export default {
     blessed_channeling: "Canalización Bendita",
     sanctified_aura: "Aura Santificada"
   },
-    languages: {
+  languages: {
     common: "Común",
     dwarvish: "Enano",
     elvish: "Élfico",
@@ -230,5 +232,17 @@ export default {
     primordial: "Primordial",
     sylvan: "Silvano",
     undercommon: "Infracomún"
+  },
+  throws: {
+    select: "Selecciona la ficha",
+    choose_one: "Elige una ficha",
+    base_mod: "Modificador base",
+    race_bonus: "Bonus de raza/subraza",
+    sav_throw1: "Bonus por clase 1",
+    sav_throw2: "Bonus por clase 2",
+    total_mod: "Modificador total",
+    mod: "Modificador",
+    pass: "✅¡Éxito!",
+    fail: "❌Fallo..."
   }
 };

@@ -44,7 +44,9 @@ export default {
     no_subrace: "No subrace",
     select_class: "Select a class",
     background: "Background",
-    languages: "Languages"
+    languages: "Languages",
+    rolling: "Rolling",
+    roll: "Roll 3D6"
   },
   alignments: {
     lg: "Lawful Good",
@@ -230,5 +232,18 @@ export default {
     primordial: "Primordial",
     sylvan: "Sylvan",
     undercommon: "Undercommon",
+  },
+  throws: {
+    select: "Select a character",
+    choose_one: "Choose one",
+    base_mod: "Base modifier",
+    race_bonus: "Race/subrace bonus",
+    sav_throw1: "Class bonus 1",
+    sav_throw2: "Class bonus 2",
+    total_mod: "Total modifier",
+    mod: "Modifier",
+    pass: "✅Success!",
+    fail: "❌Failure..."
   }
+
 };

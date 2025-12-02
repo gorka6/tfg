@@ -26,11 +26,11 @@ export default function Tiradas({ fichas, bonus, characterClasses }) {
         : [];
 
     const claseFicha = selectedFicha ? filtraOpciones(characterClasses, "id", selectedFicha.class_id) : [];
-    
+
     return (
         <AuthenticatedLayout>
             <Head title="Tiradas" />
-            <p>Selecciona la ficha</p>
+            <p>{t.throws.select}</p>
             {fichas.length === 0 ? (
                 <div className="fichas-vacio">
                     <p className="fichas-texto-vacio">
@@ -46,11 +46,11 @@ export default function Tiradas({ fichas, bonus, characterClasses }) {
             ) : (
                 <div>
                     <div className="fichas-form-group">
-                        <label htmlFor="fichas">Fichas</label>
+                        <label htmlFor="fichas">{t.index.mysheets}</label>
                         <select id="fichas"
                             value={selectedFichaId}
                             onChange={handleSelectFicha}>
-                            <option value="">Selecciona una ficha</option>
+                            <option value="">{t.choose_one}</option>
                             {fichas.map(f => <option key={f.id} value={f.id}>{f.name}</option>)}
                         </select>
                     </div>

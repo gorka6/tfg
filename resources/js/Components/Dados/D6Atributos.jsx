@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import "../../../css/components/d6atributos.css";
+import { useContextoIdioma } from "@/Contexts/ContextoIdioma";
 
 export default function D6Button({ value, setValue }) {
+
+    const { t } = useContextoIdioma();
     const [rolls, setRolls] = useState([]);
     const [isRolling, setIsRolling] = useState(false);
     const [refreshKey, setRefreshKey] = useState(0);
@@ -27,7 +30,7 @@ export default function D6Button({ value, setValue }) {
                 className={`d6-button ${isRolling ? "rolling" : ""}`}
                 disabled={isRolling}
             >
-                {isRolling ? "Rodando..." : "Tirar 3D6"}
+                {isRolling ? t.create.rolling : t.create.roll}
             </button>
 
             <div className="dice-display">
