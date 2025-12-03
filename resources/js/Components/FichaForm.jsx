@@ -1,12 +1,9 @@
-import React, { useMemo, useCallback } from "react";
 import { useContextoIdioma } from "@/Contexts/ContextoIdioma";
-import { normTexto } from "@/utils/normTexto";
 import Selector from "@/Components/Selector";
 import D6Button from "@/Components/Dados/D6Atributos";
-import PrimaryButton from "@/Components/PrimaryButton";
+import PrimaryButton from "@/Components/Framework/PrimaryButton";
 import { opcionesBuild } from "@/utils/opcionesBuild";
 import { filtraOpciones } from "@/utils/filtraOpciones";
-import "../../css/pages/fichas-create.css";
 
 export default function FichaForm({
     mode = "create",
@@ -117,10 +114,10 @@ export default function FichaForm({
     };
 
     return (
-        <div className="fichas-form-container">
-            <form onSubmit={handleSubmit} className="fichas-form">
+        <div >
+            <form onSubmit={handleSubmit} >
                 {/* Nombre */}
-                <div className="fichas-form-group">
+                <div >
                     <label htmlFor="name">{t.create.name}</label>
                     <input
                         id="name"
@@ -129,11 +126,11 @@ export default function FichaForm({
                         placeholder={t.create.enter_name}
                         onChange={(e) => setData("name", e.target.value)}
                     />
-                    {errors.name && <p className="fichas-error">{errors.name}</p>}
+                    {errors.name && <p >{errors.name}</p>}
                 </div>
 
                 {/* Raza */}
-                <div className="fichas-form-group">
+                <div >
                     <label htmlFor="race">{t.create.race}</label>
                     <select id="race"
                         value={data.race_id ?? ""}
@@ -141,11 +138,11 @@ export default function FichaForm({
                         <option value="">{t.create.select_race}</option>
                         {racesOptions.map(r => <option key={r.value} value={r.value}>{r.label}</option>)}
                     </select>
-                    {errors.race_id && <p className="fichas-error">{errors.race_id}</p>}
+                    {errors.race_id && <p >{errors.race_id}</p>}
                 </div>
                 {/* Idiomas que habla lña raza */}
                 {languagesFiltered.length > 0 && (
-                    <div className="fichas-languages-list">
+                    <div >
                         <p><strong>{t.create.languages}:</strong></p>
                         <ul>
                             {languagesFiltered.map(lang => (
@@ -155,7 +152,7 @@ export default function FichaForm({
                     </div>
                 )}
                 {/* Subraza */}
-                <div className="fichas-form-group">
+                <div >
                     <label htmlFor="subrace">{t.create.subrace}</label>
                     <select id="subrace"
                         value={data.subrace_id ?? ""}
@@ -170,11 +167,11 @@ export default function FichaForm({
                             </>
                         )}
                     </select>
-                    {errors.subrace_id && <p className="fichas-error">{errors.subrace_id}</p>}
+                    {errors.subrace_id && <p >{errors.subrace_id}</p>}
                 </div>
 
                 {/* Clase */}
-                <div className="fichas-form-group">
+                <div >
                     <label htmlFor="class">{t.create.class}</label>
                     <select id="class"
                         value={data.class_id ?? ""}
@@ -182,72 +179,72 @@ export default function FichaForm({
                         <option value="">{t.create.select_class}</option>
                         {classesOptions.map(c => <option key={c.value} value={c.value}>{c.label}</option>)}
                     </select>
-                    {errors.class_id && <p className="fichas-error">{errors.class_id}</p>}
+                    {errors.class_id && <p >{errors.class_id}</p>}
                 </div>
 
                 {/* Habilidades */}
                 <p>Habilidades</p>
                 {skillsOptions.length === 0 ? (
-                    <p className="fichas-note">{selectedClassId ? "No hay rasgos disponibles para la selección actual." : "Selecciona raza, subraza o clase para ver rasgos."}</p>
+                    <p  >{selectedClassId ? "No hay rasgos disponibles para la selección actual." : "Selecciona raza, subraza o clase para ver rasgos."}</p>
                 ) : (
                     <Selector options={skillsOptions} selected={data.skills} onChange={(newSkills) => setData("skills", newSkills)} />
                 )}
-                {errors.skills && <p className="fichas-error">{errors.skills}</p>}
+                {errors.skills && <p  >{errors.skills}</p>}
 
                 {/* Rasgos */}
                 <p>Rasgos</p>
                 {traitsOptions.length === 0 ? (
-                    <p className="fichas-note">{(selectedRaceId || selectedClassId) ? "No hay rasgos disponibles para la selección actual." : "Selecciona raza, subraza o clase para ver rasgos."}</p>
+                    <p  >{(selectedRaceId || selectedClassId) ? "No hay rasgos disponibles para la selección actual." : "Selecciona raza, subraza o clase para ver rasgos."}</p>
                 ) : (
                     <Selector options={traitsOptions} selected={data.traits} onChange={(newTraits) => setData("traits", newTraits)} max={6} />
                 )}
-                {errors.traits && <p className="fichas-error">{errors.traits}</p>}
+                {errors.traits && <p  >{errors.traits}</p>}
 
                 {/* Stats */}
                 <div>
                     <label>{t.create.str}</label>
                     <D6Button value={data.str} setValue={(val) => setData("str", val)} />
-                    {errors.str && <p className="fichas-error">{errors.str}</p>}
+                    {errors.str && <p  >{errors.str}</p>}
                 </div>
                 <div>
                     <label>{t.create.dex}</label>
                     <D6Button value={data.dex} setValue={(val) => setData("dex", val)} />
-                    {errors.dex && <p className="fichas-error">{errors.dex}</p>}
+                    {errors.dex && <p  >{errors.dex}</p>}
                 </div>
                 <div>
                     <label>{t.create.con}</label>
                     <D6Button value={data.con} setValue={(val) => setData("con", val)} />
-                    {errors.con && <p className="fichas-error">{errors.con}</p>}
+                    {errors.con && <p  >{errors.con}</p>}
                 </div>
                 <div>
                     <label>{t.create.int}</label>
                     <D6Button value={data.int} setValue={(val) => setData("int", val)} />
-                    {errors.int && <p className="fichas-error">{errors.int}</p>}
+                    {errors.int && <p  >{errors.int}</p>}
                 </div>
                 <div>
                     <label>{t.create.wis}</label>
                     <D6Button value={data.wis} setValue={(val) => setData("wis", val)} />
-                    {errors.wis && <p className="fichas-error">{errors.wis}</p>}
+                    {errors.wis && <p  >{errors.wis}</p>}
                 </div>
                 <div>
                     <label>{t.create.cha}</label>
                     <D6Button value={data.cha} setValue={(val) => setData("cha", val)} />
-                    {errors.cha && <p className="fichas-error">{errors.cha}</p>}
+                    {errors.cha && <p  >{errors.cha}</p>}
                 </div>
 
                 {/* Alineamiento */}
-                <div className="fichas-form-group">
+                <div  >
                     <label htmlFor="alignment">{t.create.align}</label>
                     <select id="alignment"
                         value={data.alignment}
                         onChange={(e) => setData("alignment", e.target.value)}>
                         {alignmentsList.map((align) => <option key={align.value} value={align.value}>{align.label}</option>)}
                     </select>
-                    {errors.alignment && <p className="fichas-error">{errors.alignment}</p>}
+                    {errors.alignment && <p  >{errors.alignment}</p>}
                 </div>
 
                 {/* Background */}
-                <div className="fichas-form-group">
+                <div  >
                     <label htmlFor="background">{t.create.background}</label>
                     <select id="background"
                         value={data.background_id ?? ""}
@@ -255,10 +252,10 @@ export default function FichaForm({
                         <option value="">{t.create.background}</option>
                         {backgroundsOptions.map(b => <option key={b.value} value={b.value}>{b.label}</option>)}
                     </select>
-                    {errors.background_id && <p className="fichas-error">{errors.background_id}</p>}
+                    {errors.background_id && <p  >{errors.background_id}</p>}
                 </div>
 
-                <PrimaryButton disabled={processing} type="submit" className="min-w-[100px]">
+                <PrimaryButton disabled={processing} type="submit"  >
                     {processing ? t.create.saving : (mode === "edit" ? t.create.update ?? t.create.save : t.create.save)}
                 </PrimaryButton>
             </form>

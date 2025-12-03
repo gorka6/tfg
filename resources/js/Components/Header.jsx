@@ -1,36 +1,35 @@
 import { Link } from "@inertiajs/react";
-import Dropdown from "@/Components/Dropdown";
+import Dropdown from "@/Components/Framework/Dropdown";
 import { useContextoIdioma } from "@/Contexts/ContextoIdioma";
 import CambioIdioma from "@/Components/CambioIdioma";
 import CambioTema from "@/Components/CambioTema";
-import "../../css/components/header.css";
 
 export default function Header({ auth }) {
   const { t } = useContextoIdioma();
   const user = auth?.user;
 
   return (
-    <header className="header">
-      <div className="header-left">
-        <Link href={route("home")} className="header-logo">
+    <header  >
+      <div  >
+        <Link href={route("home")}  >
           <h1>DND</h1>
         </Link>
       </div>
 
-      <div className="header-right">
-        <div className="header-actions">
+      <div  >
+        <div  >
           <CambioIdioma />
           <CambioTema />
         </div>
 
-        <nav className="header-nav">
+        <nav  >
           {user ? (
             <Dropdown>
               <Dropdown.Trigger>
-                <button className="dropdown-trigger">
+                <button  >
                   {user.name}
                   <svg
-                    className="dropdown-icon"
+                     
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 20 20"
                     fill="currentColor"
@@ -44,7 +43,7 @@ export default function Header({ auth }) {
                 </button>
               </Dropdown.Trigger>
 
-              <Dropdown.Content className="dropdown-content">
+              <Dropdown.Content  >
                 <Dropdown.Link href={route("dashboard")}>
                   {t.home.profile}
                 </Dropdown.Link>
@@ -58,18 +57,18 @@ export default function Header({ auth }) {
             </Dropdown>
           ) : (
             <>
-              <Link href={route("register")} className="header-btn">
+              <Link href={route("register")}  >
                 {t.home.register}
               </Link>
-              <Link href={route("login")} className="header-btn">
+              <Link href={route("login")}  >
                 {t.home.login}
               </Link>
             </>
           )}
-          <Link href={route("fichas.index")} className="header-btn">
+          <Link href={route("fichas.index")}  >
             {t.home.sheet}
           </Link>
-          <Link href={route("fichas.tiradas")} className="header-btn">
+          <Link href={route("fichas.tiradas")}  >
             {t.home.throws}
           </Link>
         </nav>

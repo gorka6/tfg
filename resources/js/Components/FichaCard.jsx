@@ -10,8 +10,8 @@ export default function FichaCard({ ficha, t}) {
     console.log(t.lang)
 
     return (
-        <div className="ficha-card">
-            <h2 className="ficha-nombre">{ficha.name}</h2>
+        <div>
+            <h2>{ficha.name}</h2>
             <p>
                 <strong>{t.create.race}: {t.races[razaNorm]}</strong>
             </p>
@@ -48,16 +48,15 @@ export default function FichaCard({ ficha, t}) {
                 <strong>{t.create.align}:</strong> {t.alignments[ficha.alignment]}
             </p>
 
-            <div className="ficha-acciones">
-                <a className="ficha-btn-ver" href={`/fichas/${ficha.id}/pdf-${t.lang}`} target="_blank" rel="noopener noreferrer">Ver PDF</a>
+            <div>
+                <a href={`/fichas/${ficha.id}/pdf-${t.lang}`} target="_blank" rel="noopener noreferrer">Ver PDF</a>
                 <Link
                     href={route("fichas.edit", ficha.id)}
-                    className="ficha-btn-editar"
+                    
                 >
                     {t.index.edit}
                 </Link>
                 <button
-                    className="ficha-btn-eliminar"
                     onClick={() => destroy(route("fichas.destroy", ficha.id))}
                 >
                     {t.index.delete}

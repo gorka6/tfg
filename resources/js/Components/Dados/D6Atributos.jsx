@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "../../../css/components/d6atributos.css";
 import { useContextoIdioma } from "@/Contexts/ContextoIdioma";
 import DadosRoller from "./DadosRoller";
 
@@ -24,21 +23,20 @@ export default function D6Button({ value, setValue }) {
     };
 
     return (
-        <div className="d6-container">
+        <div>
             <button
                 type="button"
                 onClick={rollDice}
-                className={`d6-button ${isRolling ? "rolling" : ""}`}
                 disabled={isRolling}
             >
                 {isRolling ? t.create.rolling : t.create.roll}
             </button>
 
-            <div className="dice-display">
+            <div>
                 <DadosRoller dieType="d6" rolls={rolls} refreshKey={refreshKey} />
             </div>
 
-            <p className="dice-result">
+            <p>
                 Total: {isRolling ? "—" : value}
             </p>
 

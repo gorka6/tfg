@@ -1,5 +1,4 @@
 import { useContextoTema } from "@/Contexts/ContextoTema";
-import '../../css/components/cambiotema.css';
 
 export default function CambioTema() {
   const { tema, setTema } = useContextoTema();
@@ -9,7 +8,7 @@ export default function CambioTema() {
   };
 
   return (
-    <button className="theme-toggle-button" onClick={toggleTema}>
+    <button onClick={toggleTema}>
       {tema === 'c' ? '🌙' : '🌞'}
     </button>
   );

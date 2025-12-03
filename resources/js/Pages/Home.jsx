@@ -1,5 +1,4 @@
-import { Head, Link } from "@inertiajs/react";
-import "../../css/pages/home.css";
+import { Head } from "@inertiajs/react";
 import { useContextoIdioma } from "@/Contexts/ContextoIdioma";
 import GuestLayout from "@/Layouts/GuestLayout";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
@@ -19,11 +18,11 @@ export default function Home({ auth = {} }) {
     <>
       <GuestLayout auth={auth}>
         <Head title="Home" />
-        <div className="container">
+        <div  >
 
-          <section className="home-hero">
-            <h2 className="home-title">{t.home.title}</h2>
-            <p className="home-sub">{t.home.subtitle}</p>
+          <section  >
+            <h2  >{t.home.title}</h2>
+            <p  >{t.home.subtitle}</p>
           </section>
         </div>
       </GuestLayout>

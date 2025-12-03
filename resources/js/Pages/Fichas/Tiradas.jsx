@@ -32,20 +32,20 @@ export default function Tiradas({ fichas, bonus, characterClasses }) {
             <Head title="Tiradas" />
             <p>{t.throws.select}</p>
             {fichas.length === 0 ? (
-                <div className="fichas-vacio">
-                    <p className="fichas-texto-vacio">
+                <div  >
+                    <p  >
                         {t.index.nosheets}
                     </p>
                     <Link
                         href={route("fichas.create")}
-                        className="fichas-btn-crear"
+                         
                     >
                         {t.index.firstsheet}
                     </Link>
                 </div>
             ) : (
                 <div>
-                    <div className="fichas-form-group">
+                    <div  >
                         <label htmlFor="fichas">{t.index.mysheets}</label>
                         <select id="fichas"
                             value={selectedFichaId}

@@ -1,9 +1,8 @@
 import React from "react";
-import "../../../css/components/d6atributos.css";
 
 export default function DadosRoller({ dieType = "d6", rolls = [], refreshKey = 0 }) {
   return (
-    <div className="dice-display">
+    <div>
       {rolls.map((roll, i) => {
         const imageName = `${dieType}_roll_${roll}.gif`;
         return (
@@ -11,7 +10,6 @@ export default function DadosRoller({ dieType = "d6", rolls = [], refreshKey = 0
             key={`${i}-${refreshKey}`}
             src={`/images/dice/${imageName}?${refreshKey}`}
             alt={`${dieType} ${roll}`}
-            className="dice-face"
           />
         );
       })}
