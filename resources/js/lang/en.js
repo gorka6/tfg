@@ -1,8 +1,8 @@
 export default {
   lang: "en",
   home: {
-    title: "Hello, welcome",
-    subtitle: "I'm in the car sweating a lot",
+    title: "Welcome to Hero Forge",
+    subtitle: "The ultimate tool to create, customize, and manage your Dungeons & Dragons character sheets effortlessly and in style",
     register: "Sign up",
     login: "Login",
     logout: "Logout",

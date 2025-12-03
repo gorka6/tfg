@@ -7,7 +7,6 @@ export default function FichaCard({ ficha, t}) {
     const subrazaNorm = ficha.subrace ? normTexto(ficha.subrace.name) : null;
     const origenNorm = normTexto(ficha.background.name);
     const claseNorm = normTexto(ficha.character_class.name);
-    console.log(t.lang)
 
     return (
         <div>

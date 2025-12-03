@@ -6,7 +6,6 @@ import FichaCard from "@/Components/FichaCard";
 export default function Index({ fichas }) {
     const { t } = useContextoIdioma();
 
-    console.log(t)
     return (
         <AuthenticatedLayout>
             <Head title="Mis Fichas" />

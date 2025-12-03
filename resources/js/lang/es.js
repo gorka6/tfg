@@ -1,8 +1,8 @@
 export default {
   lang: "es",
   home: {
-    title: "Hola, bienvenido",
-    subtitle: "Estoy en el coche sudando mogollón",
+    title: "Bienvenido a Hero Forge",
+    subtitle: "La herramienta definitiva para crear, personalizar y gestionar tus fichas de Dungeons & Dragons con facilidad y estilo",
     register: "Registrarse",
     login: "Entrar",
     logout: "Cerrar sesión",

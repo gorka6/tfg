@@ -8,7 +8,7 @@ import { createRoot } from 'react-dom/client';
 import { ContextoIdiomaProvider } from './Contexts/ContextoIdioma';
 import { ContextoTemaProvider } from './Contexts/ContextoTema';
 
-const appName = import.meta.env.VITE_APP_NAME || 'DND';
+const appName = import.meta.env.VITE_APP_NAME || 'Hero Forge';
 
 createInertiaApp({
     title: (title) => `${title} - ${appName}`,

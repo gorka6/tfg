@@ -1,0 +1,11 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-image: url('/images/web/fondo.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  background-color: rgba(82, 38, 38, 0.829);
+  background-blend-mode: multiply;
+}
