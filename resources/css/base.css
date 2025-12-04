@@ -1,6 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:wght@400;500;600;700&display=swap');
-
-body {
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=IM+Fell+English+SC:ital,wght@0,400;0,700;1,400;1,700&display=swap');body {
   margin: 0;
   padding: 0;
   background-image: url('/images/web/fondo.png');
@@ -10,11 +8,11 @@ body {
   background-attachment: fixed;
   background-color: rgba(82, 38, 38, 0.829);
   background-blend-mode: multiply;
-  font-family: 'Spectral', serif;
-  font-size: large;
+  font-family: 'IM Fell English SC';
+  font-size:large;
 }
 
 h1, h2, h3, nav, .title {
-  font-family: 'Cinzel', serif;
+  font-family: 'Cinzel decorative', serif;
 }
 

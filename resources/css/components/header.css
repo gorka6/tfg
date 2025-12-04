@@ -18,7 +18,7 @@
   background-size: cover;
   background-position: center top;
   background-repeat: no-repeat;
-  font-family: 'Cinzel', serif;
+  font-family: 'IM Fell English SC', serif;
   color: white;
   z-index: 0;
 }
@@ -36,25 +36,19 @@
   gap: 0.5rem;
 }
 
-.cambio-tema {
-  width: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 7px;
-}
-
-.cambio-tema img {
-  height: auto;
-}
-
 .cambio-idioma img {
   width: 37px;
   height: 37px;
   border-radius: 50%;
   object-fit: cover;
+  box-shadow: 0 12px 30px 4px rgba(0, 0, 0, 0.774);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+.cambio-idioma img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 16px 40px 6px rgba(0, 0, 0, 0.8);
+}
 
 
 /* ===== BLOQUE CENTRO (absolutely centered) =====*/
@@ -83,6 +77,11 @@
   height: auto;
   display: block;
   margin-top: 20px;
+  transition: transform 0.3s ease, box-shadow 0.5s ease !important;
+}
+
+.header-logo:hover{
+  transform: scale(1.05);
 }
 
 .header-link--center {
@@ -94,17 +93,17 @@
   color: #ffffff;
   text-decoration: none;
   font-weight: 600;
-  transition: background-color 0.18s ease;
+  font-size: x-large;
+  transition: transform 0.3s ease, box-shadow 0.5s ease !important;
 }
 
-
 .header-link--center:hover {
-  background-color: rgba(255, 255, 255, 0.08);
+  transform: scale(1.05);
+  box-shadow: 0 16px 40px 6px rgba(0, 0, 0, 0.8);
 }
 
 .header-link.active {
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 60%, rgba(148, 30, 0, 0.705) 100%);
-  border-radius: 2px;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 55%, rgba(0, 0, 0, 0.705) 100%);
 }
 
 
@@ -146,42 +145,9 @@
 .header-link {
   text-decoration: none;
   color: #ffffff;
-  padding: 0.35rem 0.6rem;
-  border-radius: 6px;
+  padding: 0.1rem 0.6rem;
   transition: background-color 0.18s ease;
   font-weight: 600;
-  background: transparent;
   border: none;
 }
 
-.dropdown-trigger {
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: #ffffff;
-  padding: 0.35rem 0.6rem;
-  border-radius: 6px;
-  font-weight: 600;
-}
-
-.dropdown-content {
-  background-color: #fff;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  min-width: 160px;
-  padding: 0.4rem 0;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
-  color: #222;
-}
-
-.dropdown-link {
-  display: block;
-  padding: 0.5rem 1rem;
-  color: #333;
-  text-decoration: none;
-  font-weight: 500;
-}
-
-.dropdown-link:hover {
-  background-color: #f0f0f0;
-}

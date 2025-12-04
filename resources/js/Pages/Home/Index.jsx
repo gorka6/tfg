@@ -19,11 +19,11 @@ export default function Index({ auth = {} }) {
               <h2>{t.home.subtitle_1}</h2>
               <p>{t.home.body_1}</p>
             </div>
-            <HomeFilas title={t.home.subtitle_3} body={t.home.body_3} image="/images/web/prueba.png" reverse />
-            <HomeFilas title={t.home.subtitle_4} body={t.home.body_4} image="/images/web/prueba.png" />
-            <HomeFilas title={t.home.subtitle_5} body={t.home.body_5} image="/images/web/prueba.png" reverse />
-            <HomeFilas title={t.home.subtitle_8} body={t.home.body_8} image="/images/web/prueba.png" />
-            <HomeFilas title={t.home.subtitle_7} body={t.home.body_7} image="/images/web/prueba.png" reverse />
+            <HomeFilas title={t.home.subtitle_2} body={t.home.body_2} image="/images/web/home/home-body-2.png" reverse />
+            <HomeFilas title={t.home.subtitle_3} body={t.home.body_3} image="/images/web/home/home-body-3.png" />
+            <HomeFilas title={t.home.subtitle_4} body={t.home.body_4} image="/images/web/home/home-body-4.webp" reverse />
+            <HomeFilas title={t.home.subtitle_6} body={t.home.body_6} image="/images/web/home/home-body-6.webp" />
+            <HomeFilas title={t.home.subtitle_5} body={t.home.body_5} image="/images/web/home/home-body-5.webp" reverse />
           </FondoSeamless>
         </section>
       </GuestLayout>
