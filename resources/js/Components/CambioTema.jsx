@@ -9,7 +9,7 @@ export default function CambioTema() {
 
   return (
     <button onClick={toggleTema}>
-      {tema === 'c' ? '🌙' : '🌞'}
+      {tema === 'c' ? (<img src="/images/web/moon.svg"/>) : (<img src="/images/web/sun.svg"/>)}
     </button>
   );
 }

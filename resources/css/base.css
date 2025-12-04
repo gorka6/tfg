@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:wght@400;500;600;700&display=swap');
+
 body {
   margin: 0;
   padding: 0;
@@ -8,4 +10,10 @@ body {
   background-attachment: fixed;
   background-color: rgba(82, 38, 38, 0.829);
   background-blend-mode: multiply;
+  font-family: 'Spectral', serif;
+  font-size: large;
+}
+
+h1, h2, h3, nav, .title {
+  font-family: 'Cinzel', serif;
 }

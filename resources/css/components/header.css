@@ -1,69 +1,152 @@
+* { box-sizing: border-box; }
+
+/* Contenedor principal */
 .header {
   position: relative;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
   height: 150px;
-  padding: 0 2rem;
+  padding-left: 85px;
+  padding-right: 85px;
+  padding-top: 3rem;
   background-image:
-    linear-gradient(to bottom, rgba(0,0,0,0) 60%, rgba(0, 0, 0, 0.897) 100%), 
-    url('/public/images/web/fondoHeader.png');
+    linear-gradient(to bottom, rgba(0,0,0,0) 60%, rgba(0, 0, 0, 0.897) 100%),
+    url('/images/web/fondoHeader.png');
   background-size: cover;
   background-position: center top;
   background-repeat: no-repeat;
-  font-family: sans-serif;
+  font-family: 'Cinzel', serif;
   color: white;
+  z-index: 0;
 }
 
+/* ===== ZONA IZDA (controles) ===== */
 .header-left {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 10;
-  padding-top: 1.2rem;
-}
-
-.header-right {
   display: flex;
   align-items: center;
-  gap: 2rem;
-  margin-left: auto;
-  margin-top: 90px;
-  margin-right: 35px;
-}
-
-
-.header-logo {
-  width: 160px;
-}
-
-.header-logo-link {
-  text-decoration: none;
+  gap: 0.75rem;
 }
 
 .header-controls {
   display: flex;
+  align-items: center;
   gap: 0.5rem;
-  margin-right: 1rem;
 }
 
-.header-nav {
+.cambio-tema {
+  width: 40px;
   display: flex;
   align-items: center;
-  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 7px;
 }
 
+.cambio-tema img {
+  height: auto;
+}
+
+.cambio-idioma img {
+  width: 37px;
+  height: 37px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+
+
+/* ===== BLOQUE CENTRO (absolutely centered) =====*/
+.header-center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+
+  top: 0;
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 13rem;
+
+  z-index: 10;
+}
+
+.header-center .header-logo-link {
+  display: inline-block;
+  pointer-events: auto;
+}
+
+.header-logo {
+  width: 180px;
+  height: auto;
+  display: block;
+  margin-top: 20px;
+}
+
+.header-link--center {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 30px;
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: 600;
+  transition: background-color 0.18s ease;
+}
+
+
+.header-link--center:hover {
+  background-color: rgba(255,255,255,0.08);
+}
+
+.header-icon-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  text-decoration: none;
+  gap: 0.35rem;
+  color: #fff;
+  font-weight: 600;
+  border-radius: 6px;
+  transition: background-color 0.18s ease;
+}
+
+.header-icon-link:hover {
+  background-color: rgba(255,255,255,0.08);
+}
+
+.header-icon {
+  width: 65px;
+  object-fit: contain;
+}
+
+
+/* ===== ZONA DERECHA (auth) ===== */
+.header-right {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 30px;
+}
+
+.header-auth {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
 
 .header-link {
   text-decoration: none;
   color: #ffffff;
-  padding: 0.25rem 0.5rem;
-  border-radius: 4px;
-  transition: background-color 0.2s;
-}
-
-.header-link:hover {
-  background-color: #e0e0e0;
+  padding: 0.35rem 0.6rem;
+  border-radius: 6px;
+  transition: background-color 0.18s ease;
+  font-weight: 600;
+  background: transparent;
+  border: none;
 }
 
 .dropdown-trigger {
@@ -71,21 +154,19 @@
   border: none;
   cursor: pointer;
   color: #ffffff;
-  padding: 0.25rem 0.5rem;
-  border-radius: 4px;
-}
-
-.dropdown-trigger:hover {
-  background-color: #e0e0e0;
+  padding: 0.35rem 0.6rem;
+  border-radius: 6px;
+  font-weight: 600;
 }
 
 .dropdown-content {
   background-color: #fff;
   border: 1px solid #ddd;
-  border-radius: 4px;
-  min-width: 150px;
-  padding: 0.5rem 0;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  border-radius: 6px;
+  min-width: 160px;
+  padding: 0.4rem 0;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+  color: #222;
 }
 
 .dropdown-link {
@@ -93,6 +174,7 @@
   padding: 0.5rem 1rem;
   color: #333;
   text-decoration: none;
+  font-weight: 500;
 }
 
 .dropdown-link:hover {

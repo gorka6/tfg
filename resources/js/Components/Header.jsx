@@ -11,31 +11,44 @@ export default function Header({ auth }) {
 
   return (
     <header className="header">
+      {/* ZONA IZDA: controles */}
       <div className="header-left">
+        <div className="header-controls">
+          <div className="cambio-idioma">
+            <CambioIdioma />
+          </div>
+          <div className="cambio-tema">
+            <CambioTema />
+          </div>
+        </div>
+
+      </div>
+
+      {/* ZONA CENTRO: fichas - logo - tiradas */}
+      <div className="header-center">
+        <Link href={route("fichas.index")} className="header-link header-link--center">
+          <img src="/images/web/fichas.svg" className="header-icon" alt="icono" />
+          {t.home.sheet}
+        </Link>
+
         <Link href={route("home")} className="header-logo-link">
-          <img
-            src="/images/web/logo.svg"
-            alt="Hero Forge Logo"
-            className="header-logo"
-          />
+          <img src="/images/web/logo.svg" alt="Logo" className="header-logo" />
+        </Link>
+
+        <Link href={route("fichas.tiradas")} className="header-link header-link--center">
+          <img src="/images/web/tiradas.svg" className="header-icon" alt="icono" />
+          {t.home.throws}
         </Link>
       </div>
 
+      {/* ZONA DERECHA: auth */}
       <div className="header-right">
-        <div className="header-controls">
-          <CambioIdioma />
-          <CambioTema />
-        </div>
-
-        <nav className="header-nav">
+        <div className="header-auth">
           {user ? (
             <Dropdown>
               <Dropdown.Trigger>
-                <button className="dropdown-trigger">
-                  {user.name}
-                </button>
+                <button className="dropdown-trigger">{user.name}</button>
               </Dropdown.Trigger>
-
               <Dropdown.Content className="dropdown-content">
                 <Dropdown.Link href={route("profile.edit")} className="dropdown-link">
                   {t.home.edit}
@@ -60,13 +73,7 @@ export default function Header({ auth }) {
               </Link>
             </>
           )}
-          <Link href={route("fichas.index")} className="header-link">
-            {t.home.sheet}
-          </Link>
-          <Link href={route("fichas.tiradas")} className="header-link">
-            {t.home.throws}
-          </Link>
-        </nav>
+        </div>
       </div>
     </header>
   );
