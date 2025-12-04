@@ -6,6 +6,7 @@ export default {
     register: "Registrarse",
     login: "Entrar",
     logout: "Cerrar sesión",
+    welcome: "Bienvenid@,",
     profile: "Perfil",
     edit: "Editar perfil",
     sheet: "Fichas",

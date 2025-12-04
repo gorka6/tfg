@@ -47,42 +47,41 @@ export default function Header({ auth }) {
       </div>
 
       {/* ZONA DERECHA: auth */}
-<div>
-  <div>
-    {user ? (
-      <>
-        <p>Welcome,</p>
-        <Dropdown>
-          <Dropdown.Trigger>
-            <button className="dropdown-trigger">{user.name}</button>
-          </Dropdown.Trigger>
-          <Dropdown.Content className="dropdown-content">
-            <Dropdown.Link href={route("profile.edit")} className="dropdown-link">
-              {t.home.edit}
-            </Dropdown.Link>
-            <Dropdown.Link
-              href={route("logout")}
-              method="post"
-              as="button"
-              className="dropdown-link"
-            >
-              {t.home.logout}
-            </Dropdown.Link>
-          </Dropdown.Content>
-        </Dropdown>
-      </>
-    ) : (
-      <>
-        <Link href={route("register")}>
-          {t.home.register}
-        </Link>
-        <Link href={route("login")}>
-          {t.home.login}
-        </Link>
-      </>
-    )}
-  </div>
-</div>
+      <div>
+        <div>
+          {user ? (
+            <>
+              <p className="auth-welcome">{t.home.welcome}</p>
+
+              <Dropdown>
+                <Dropdown.Trigger>
+                  <button className="dropdown-trigger">{user.name}</button>
+                </Dropdown.Trigger>
+
+                <Dropdown.Content className="dropdown-content">
+                  <Dropdown.Link href={route("profile.edit")} className="dropdown-link">
+                    {t.home.edit}
+                  </Dropdown.Link>
+                  <Dropdown.Link
+                    href={route("logout")}
+                    method="post"
+                    as="button"
+                    className="dropdown-link"
+                  >
+                    {t.home.logout}
+                  </Dropdown.Link>
+                </Dropdown.Content>
+              </Dropdown>
+            </>
+          ) : (
+            <div className="header-auth-links">
+              <Link href={route("register")}>{t.home.register}</Link>
+              <Link href={route("login")}>{t.home.login}</Link>
+            </div>
+          )}
+        </div>
+
+      </div>
 
     </header>
   );

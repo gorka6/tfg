@@ -20,7 +20,7 @@
   background-repeat: no-repeat;
   font-family: 'IM Fell English SC', serif;
   color: white;
-  z-index: 0;
+  z-index: 9999 !important;
 }
 
 /* ===== ZONA IZDA (controles) ===== */
@@ -64,8 +64,6 @@
   align-items: center;
   justify-content: center;
   gap: 10rem;
-
-  z-index: 10;
 }
 
 .header-center .header-logo-link {
@@ -80,7 +78,7 @@
   transition: transform 0.3s ease, box-shadow 0.5s ease !important;
 }
 
-.header-logo:hover{
+.header-logo:hover {
   transform: scale(1.05);
 }
 
@@ -151,3 +149,18 @@
   border: none;
 }
 
+/* separación mínima entre links de login/register */
+.header-auth-links a {
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
+
+/* tamaño un poco mayor para el nombre del usuario */
+.dropdown-trigger {
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+
+.auth-welcome{
+  font-size: 1.3rem;
+}
