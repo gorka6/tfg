@@ -1,0 +1,36 @@
+.home-row {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 2rem;
+    align-items: center;
+}
+
+.home-row.reverse {
+    grid-template-columns: 300px 1fr;
+}
+
+.home-block {
+    display: flex;
+    flex-direction: column;
+}
+
+.home-block h2 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.home-block p {
+    font-size: 1.1rem;
+    line-height: 1.5;
+}
+
+.home-image {
+    width: 100%;
+    height: 300px;
+    background-color: #e5dcc3;
+    border: 2px solid #c4b28c;
+    border-radius: 8px;
+    background-size: cover;
+    background-position: center;
+}
+

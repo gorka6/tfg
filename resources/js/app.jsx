@@ -6,7 +6,6 @@ import { createInertiaApp } from '@inertiajs/react';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import { createRoot } from 'react-dom/client';
 import { ContextoIdiomaProvider } from './Contexts/ContextoIdioma';
-import { ContextoTemaProvider } from './Contexts/ContextoTema';
 
 const appName = import.meta.env.VITE_APP_NAME || 'Hero Forge';
 
@@ -21,11 +20,9 @@ createInertiaApp({
         const root = createRoot(el);
 
         root.render(
-            <ContextoTemaProvider>
-                <ContextoIdiomaProvider>
-                    <App {...props} />
-                </ContextoIdiomaProvider>
-            </ContextoTemaProvider>
+            <ContextoIdiomaProvider>
+                <App {...props} />
+            </ContextoIdiomaProvider>
         );
     },
     progress: {

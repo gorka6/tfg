@@ -7,7 +7,7 @@ use Inertia\Inertia;
 use App\Http\Controllers\FichaController;
 
 Route::get('/', function () {
-    return Inertia::render('Home', [
+    return Inertia::render('Home/Index', [
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
         'laravelVersion' => Application::VERSION,

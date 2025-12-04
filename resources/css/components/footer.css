@@ -1,0 +1,9 @@
+.footer-bg {
+  display: block;
+  height: 150px;
+  background-image:
+    linear-gradient(to top, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 0.904) 100%),
+    url('/images/web/fondoHeader.png');  background-size: cover;
+  background-position: bottom;
+  background-repeat: no-repeat;
+}

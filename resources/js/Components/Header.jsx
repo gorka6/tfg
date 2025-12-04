@@ -2,7 +2,6 @@ import { Link, usePage } from "@inertiajs/react";
 import Dropdown from "@/Components/Framework/Dropdown";
 import { useContextoIdioma } from "@/Contexts/ContextoIdioma";
 import CambioIdioma from "@/Components/CambioIdioma";
-import CambioTema from "@/Components/CambioTema";
 import "../../css/components/header.css";
 
 export default function Header({ auth }) {
@@ -17,9 +16,6 @@ export default function Header({ auth }) {
         <div className="header-controls">
           <div className="cambio-idioma">
             <CambioIdioma />
-          </div>
-          <div className="cambio-tema">
-            <CambioTema />
           </div>
         </div>
 
