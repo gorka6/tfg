@@ -3,6 +3,7 @@
     grid-template-columns: 1fr 300px;
     gap: 2rem;
     align-items: center;
+    padding: 1rem;
 }
 
 .home-row.reverse {
@@ -33,6 +34,6 @@
     border-radius: 6px;
     background-size: cover;
     background-position: center;
-    box-shadow: 0 20px 16px rgba(0, 0, 0, 0.486),
+    box-shadow: 15px 20px 16px rgba(0, 0, 0, 0.486),
         0 4px 8px rgba(0, 0, 0, 0.63) inset;
 }

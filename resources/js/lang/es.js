@@ -34,6 +34,25 @@ export default {
     edit: "Editar",
     delete: "Eliminar"
   },
+  login: {
+    password: "Contraseña",
+    remember: "Recuérdame",
+    forgot: "¿Olvidaste tu contraseña?",
+    log: "Iniciar sesión",
+    register: "¿No tienes una cuenta? Regístrate aquí.",
+    welcome: "¡Bienvenido de nuevo! Accede para continuar tu aventura."
+  },
+  edit: {
+    title: "EDITA TU PERFIL",
+    modify: "MODIFICA TUS DATOS",
+    name: "Nombre",
+    email: "Correo electrónico",
+    save: "Guardar",
+    password_change: "CAMBIA TU CONTRASEÑA",
+    current: "Contraseña actual",
+    new: "Nueva contraseña",
+    delete: "ELIMINAR CUENTA"
+  },
   create: {
     title: "Crear nueva ficha",
     name: "Nombre",

@@ -2,6 +2,7 @@ import InputError from '@/Components/Framework/InputError';
 import InputLabel from '@/Components/Framework/InputLabel';
 import PrimaryButton from '@/Components/Framework/PrimaryButton';
 import TextInput from '@/Components/Framework/TextInput';
+import { useContextoIdioma } from '@/Contexts/ContextoIdioma';
 import { Transition } from '@headlessui/react';
 import { Link, useForm, usePage } from '@inertiajs/react';
 
@@ -23,26 +24,20 @@ export default function UpdateProfileInformation({
 
         patch(route('profile.update'));
     };
+        const { t } = useContextoIdioma();
+    
 
     return (
         <section className={className}>
-            <header>
-                <h2 className="text-lg font-medium text-gray-900">
-                    Profile Information
-                </h2>
 
-                <p className="mt-1 text-sm text-gray-600">
-                    Update your account's profile information and email address.
-                </p>
-            </header>
 
-            <form onSubmit={submit} className="mt-6 space-y-6">
+            <form onSubmit={submit}  >
                 <div>
-                    <InputLabel htmlFor="name" value="Name" />
+                    <InputLabel htmlFor="name" value={t.edit.name} />
 
                     <TextInput
                         id="name"
-                        className="mt-1 block w-full"
+                         
                         value={data.name}
                         onChange={(e) => setData('name', e.target.value)}
                         required
@@ -50,7 +45,7 @@ export default function UpdateProfileInformation({
                         autoComplete="name"
                     />
 
-                    <InputError className="mt-2" message={errors.name} />
+                    <InputError   message={errors.name} />
                 </div>
 
                 <div>
@@ -59,32 +54,32 @@ export default function UpdateProfileInformation({
                     <TextInput
                         id="email"
                         type="email"
-                        className="mt-1 block w-full"
+                         
                         value={data.email}
                         onChange={(e) => setData('email', e.target.value)}
                         required
                         autoComplete="username"
                     />
 
-                    <InputError className="mt-2" message={errors.email} />
+                    <InputError   message={errors.email} />
                 </div>
 
                 {mustVerifyEmail && user.email_verified_at === null && (
                     <div>
-                        <p className="mt-2 text-sm text-gray-800">
+                        <p  >
                             Your email address is unverified.
                             <Link
                                 href={route('verification.send')}
                                 method="post"
                                 as="button"
-                                className="rounded-md text-sm text-gray-600 underline hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                                 
                             >
                                 Click here to re-send the verification email.
                             </Link>
                         </p>
 
                         {status === 'verification-link-sent' && (
-                            <div className="mt-2 text-sm font-medium text-green-600">
+                            <div  >
                                 A new verification link has been sent to your
                                 email address.
                             </div>
@@ -92,8 +87,8 @@ export default function UpdateProfileInformation({
                     </div>
                 )}
 
-                <div className="flex items-center gap-4">
-                    <PrimaryButton disabled={processing}>Save</PrimaryButton>
+                <div  >
+                    <PrimaryButton disabled={processing}>{t.edit.save}</PrimaryButton>
 
                     <Transition
                         show={recentlySuccessful}
@@ -102,7 +97,7 @@ export default function UpdateProfileInformation({
                         leave="transition ease-in-out"
                         leaveTo="opacity-0"
                     >
-                        <p className="text-sm text-gray-600">
+                        <p  >
                             Saved.
                         </p>
                     </Transition>

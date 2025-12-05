@@ -33,6 +33,24 @@ export default {
     edit: "Edit",
     delete: "Delete"
   },
+  login: {
+    password: "Password",
+    remember: "Remember me",
+    forgot: "Forgot your password?",
+    log: "Log in",
+    register: "Don't have an account? Register here.",
+    welcome: "Welcome back! Log in to continue your journey."
+  },
+  edit:{
+    title: "EDIT YOUR PROFILE",
+    modify: "MODIFY YOUR DATA",
+    name: "Name",
+    save: "save",
+    password: "CHANGE YOUR PASSWORD",
+    current: "Current password",
+    new: "New password",
+    delete: "DELETE ACCOUNT"
+  }, 
   create: {
     title: "Create new sheet",
     name: "Name",
