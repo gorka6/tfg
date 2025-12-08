@@ -1,0 +1,47 @@
+.ficha-form-wrapper {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+.ficha-form {
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.error-msg {
+    color: red;
+    font-size: 0.85rem;
+}
+
+.section-title {
+    font-weight: bold;
+}
+
+.empty-msg {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.list-languages {
+    padding-left: 20px;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.submit-btn {
+    margin-top: 10px;
+}

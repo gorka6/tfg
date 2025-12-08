@@ -1,6 +1,8 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head, useForm } from "@inertiajs/react";
 import FichaForm from "@/Components/FichaForm";
+import FondoSeamless from "@/Components/FondoSeamless";
+import "../../../css/pages/ficha-create.css"
 
 export default function Create(props) {
   const form = useForm({
@@ -30,12 +32,16 @@ export default function Create(props) {
   return (
     <AuthenticatedLayout>
       <Head title="Crear Ficha" />
-      <FichaForm
-        mode="create"
-        form={form}
-        {...props}
-        onSubmit={handleSubmit}
-      />
+      <div className="form-container">
+        <FondoSeamless>
+          <FichaForm
+            mode="create"
+            form={form}
+            {...props}
+            onSubmit={handleSubmit}
+          />
+        </FondoSeamless>
+      </div>
     </AuthenticatedLayout>
   );
 }

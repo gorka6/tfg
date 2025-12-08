@@ -1,0 +1,70 @@
+/* Contenedor principal de registro */
+.reg-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+/* Estilo del formulario */
+.reg-container form {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+  width: 100%;
+  max-width: 400px;
+}
+
+.reg-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+/* Etiquetas y campos de texto */
+.reg-container label {
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+/* Botón principal */
+.reg-container button {
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+/* Enlace de login */
+.reg-container a {
+  text-decoration: underline;
+  color: #333;
+  font-size: 17px;
+  margin-bottom: 10px;
+}
+
+.reg-campo{
+    display:flex;
+    flex-direction: column;
+    gap: 1em;
+    text-align: center;
+}
+
+.title-label{
+    font-size: 25px;
+}
+
+.reg-button {
+    background-color: black;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+}
+
+.reg-button:hover{
+    background-color: rgb(90, 0, 0);
+}

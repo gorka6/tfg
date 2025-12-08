@@ -4,7 +4,7 @@ import DeleteUserForm from './Partials/DeleteUserForm';
 import UpdatePasswordForm from './Partials/UpdatePasswordForm';
 import UpdateProfileInformationForm from './Partials/UpdateProfileInformationForm';
 import FondoSeamless from '@/Components/FondoSeamless';
-import "../../../css/pages/edit.css"
+import "../../../css/pages/edit-profile.css"
 import { useContextoIdioma } from '@/Contexts/ContextoIdioma';
 
 export default function Edit({ mustVerifyEmail, status }) {

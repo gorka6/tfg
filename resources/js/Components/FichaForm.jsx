@@ -4,6 +4,8 @@ import D6Button from "@/Components/Dados/D6Atributos";
 import PrimaryButton from "@/Components/Framework/PrimaryButton";
 import { opcionesBuild } from "@/utils/opcionesBuild";
 import { filtraOpciones } from "@/utils/filtraOpciones";
+import "../../css/components/ficha-form.css"
+import GridSelect from "./GridSelect";
 
 export default function FichaForm({
     mode = "create",
@@ -77,7 +79,7 @@ export default function FichaForm({
             ...filtraOpciones(traits, "race_id", selectedRaceId),
             ...filtraOpciones(traits, "subrace_id", selectedSubraceId),
             ...filtraOpciones(traits, "class_id", selectedClassId)
-        ],t.traits);
+        ], t.traits);
 
     /* -------------------------
        Handlers
@@ -93,31 +95,32 @@ export default function FichaForm({
         }
     };
 
-    const onRaceChange = (e) => {
-        const id = e.target.value === "" ? null : Number(e.target.value);
+    const onRaceChange = (value) => {
+        const id = value === "" ? null : Number(value);
         setData("race_id", id);
         setData("subrace_id", null);
         setData("traits", []);
     };
 
-    const onSubraceChange = (e) => {
-        const id = e.target.value === "" ? null : Number(e.target.value);
+    const onSubraceChange = (value) => {
+        const id = value === "" ? null : Number(value);
         setData("subrace_id", id);
         setData("traits", []);
     };
 
-    const onClassChange = (e) => {
-        const id = e.target.value === "" ? null : Number(e.target.value);
+    const onClassChange = (value) => {
+        const id = value === "" ? null : Number(value);
         setData("class_id", id);
         setData("skills", []);
         setData("traits", []);
     };
-
+    console.log(racesOptions)
     return (
-        <div >
-            <form onSubmit={handleSubmit} >
+        <div className="ficha-form-wrapper">
+            <form onSubmit={handleSubmit} className="ficha-form">
+
                 {/* Nombre */}
-                <div >
+                <div className="form-group">
                     <label htmlFor="name">{t.create.name}</label>
                     <input
                         id="name"
@@ -126,137 +129,170 @@ export default function FichaForm({
                         placeholder={t.create.enter_name}
                         onChange={(e) => setData("name", e.target.value)}
                     />
-                    {errors.name && <p >{errors.name}</p>}
+                    {errors.name && <p className="error-msg">{errors.name}</p>}
                 </div>
 
                 {/* Raza */}
-                <div >
-                    <label htmlFor="race">{t.create.race}</label>
-                    <select id="race"
-                        value={data.race_id ?? ""}
-                        onChange={onRaceChange}>
-                        <option value="">{t.create.select_race}</option>
-                        {racesOptions.map(r => <option key={r.value} value={r.value}>{r.label}</option>)}
-                    </select>
-                    {errors.race_id && <p >{errors.race_id}</p>}
+                <div className="form-group">
+                    <GridSelect
+                        label={t.create.race}
+                        options={racesOptions}
+                        value={data.race_id}
+                        onChange={onRaceChange}
+                        mode="races"
+                        placeholder={t.create.select_race}
+                    />
+                    {errors.race_id && <p className="error-msg">{errors.race_id}</p>}
                 </div>
-                {/* Idiomas que habla lña raza */}
+
+
+                {/* Idiomas */}
                 {languagesFiltered.length > 0 && (
-                    <div >
+                    <div className="form-group">
                         <p><strong>{t.create.languages}:</strong></p>
-                        <ul>
+                        <ul className="list-languages">
                             {languagesFiltered.map(lang => (
                                 <li key={lang.value}>{lang.label}</li>
                             ))}
                         </ul>
                     </div>
                 )}
+
                 {/* Subraza */}
-                <div >
-                    <label htmlFor="subrace">{t.create.subrace}</label>
-                    <select id="subrace"
-                        value={data.subrace_id ?? ""}
+                <div className="form-group">
+                    <GridSelect
+                        label={t.create.subrace}
+                        options={subracesOptions}
+                        value={data.subrace_id}
                         onChange={onSubraceChange}
-                        disabled={subracesOptions.length === 0}>
-                        {subracesOptions.length === 0 ? (
-                            <option value="">{selectedRaceId ? t.create.no_subrace : t.create.select_race}</option>
-                        ) : (
-                            <>
-                                <option value="">{t.create.no_subrace}</option>
-                                {subracesOptions.map(sr => <option key={sr.value} value={sr.value}>{sr.label}</option>)}
-                            </>
-                        )}
-                    </select>
-                    {errors.subrace_id && <p >{errors.subrace_id}</p>}
+                        disabled={subracesOptions.length === 0}
+                        placeholder={
+                            subracesOptions.length === 0
+                                ? (selectedRaceId ? t.create.no_subrace : t.create.select_race)
+                                : t.create.select_subrace
+                        }
+                        mode="subraces"
+                    />
+
+                    {errors.subrace_id && <p className="error-msg">{errors.subrace_id}</p>}
                 </div>
 
                 {/* Clase */}
-                <div >
-                    <label htmlFor="class">{t.create.class}</label>
-                    <select id="class"
-                        value={data.class_id ?? ""}
-                        onChange={onClassChange}>
-                        <option value="">{t.create.select_class}</option>
-                        {classesOptions.map(c => <option key={c.value} value={c.value}>{c.label}</option>)}
-                    </select>
-                    {errors.class_id && <p >{errors.class_id}</p>}
+                <div className="form-group">
+                    <GridSelect
+                        label={t.create.class}
+                        options={classesOptions}
+                        value={data.class_id}
+                        onChange={onClassChange}
+                        placeholder={t.create.select_class}
+                        mode="classes"
+                    />
+
+                    {errors.class_id && <p className="error-msg">{errors.class_id}</p>}
                 </div>
 
                 {/* Habilidades */}
-                <p>Habilidades</p>
-                {skillsOptions.length === 0 ? (
-                    <p  >{selectedClassId ? "No hay rasgos disponibles para la selección actual." : "Selecciona raza, subraza o clase para ver rasgos."}</p>
-                ) : (
-                    <Selector options={skillsOptions} selected={data.skills} onChange={(newSkills) => setData("skills", newSkills)} />
-                )}
-                {errors.skills && <p  >{errors.skills}</p>}
+                <div className="form-group">
+                    <p className="section-title">Habilidades</p>
+                    {skillsOptions.length === 0 ? (
+                        <p className="empty-msg">
+                            {selectedClassId
+                                ? "No hay habilidades disponibles."
+                                : "Selecciona una clase para ver habilidades."}
+                        </p>
+                    ) : (
+                        <Selector
+                            options={skillsOptions}
+                            selected={data.skills}
+                            onChange={(newSkills) => setData("skills", newSkills)}
+                        />
+                    )}
+                    {errors.skills && <p className="error-msg">{errors.skills}</p>}
+                </div>
 
                 {/* Rasgos */}
-                <p>Rasgos</p>
-                {traitsOptions.length === 0 ? (
-                    <p  >{(selectedRaceId || selectedClassId) ? "No hay rasgos disponibles para la selección actual." : "Selecciona raza, subraza o clase para ver rasgos."}</p>
-                ) : (
-                    <Selector options={traitsOptions} selected={data.traits} onChange={(newTraits) => setData("traits", newTraits)} max={6} />
-                )}
-                {errors.traits && <p  >{errors.traits}</p>}
+                <div className="form-group">
+                    <p className="section-title">Rasgos</p>
+                    {traitsOptions.length === 0 ? (
+                        <p className="empty-msg">
+                            {(selectedRaceId || selectedClassId)
+                                ? "No hay rasgos disponibles."
+                                : "Selecciona raza, subraza o clase para ver rasgos."}
+                        </p>
+                    ) : (
+                        <Selector
+                            options={traitsOptions}
+                            selected={data.traits}
+                            onChange={(newTraits) => setData("traits", newTraits)}
+                            max={6}
+                        />
+                    )}
+                    {errors.traits && <p className="error-msg">{errors.traits}</p>}
+                </div>
 
                 {/* Stats */}
-                <div>
-                    <label>{t.create.str}</label>
-                    <D6Button value={data.str} setValue={(val) => setData("str", val)} />
-                    {errors.str && <p  >{errors.str}</p>}
-                </div>
-                <div>
-                    <label>{t.create.dex}</label>
-                    <D6Button value={data.dex} setValue={(val) => setData("dex", val)} />
-                    {errors.dex && <p  >{errors.dex}</p>}
-                </div>
-                <div>
-                    <label>{t.create.con}</label>
-                    <D6Button value={data.con} setValue={(val) => setData("con", val)} />
-                    {errors.con && <p  >{errors.con}</p>}
-                </div>
-                <div>
-                    <label>{t.create.int}</label>
-                    <D6Button value={data.int} setValue={(val) => setData("int", val)} />
-                    {errors.int && <p  >{errors.int}</p>}
-                </div>
-                <div>
-                    <label>{t.create.wis}</label>
-                    <D6Button value={data.wis} setValue={(val) => setData("wis", val)} />
-                    {errors.wis && <p  >{errors.wis}</p>}
-                </div>
-                <div>
-                    <label>{t.create.cha}</label>
-                    <D6Button value={data.cha} setValue={(val) => setData("cha", val)} />
-                    {errors.cha && <p  >{errors.cha}</p>}
+                <div className="stats-grid">
+                    <div className="form-group">
+                        <label>{t.create.str}</label>
+                        <D6Button value={data.str} setValue={(val) => setData("str", val)} />
+                    </div>
+                    <div className="form-group">
+                        <label>{t.create.dex}</label>
+                        <D6Button value={data.dex} setValue={(val) => setData("dex", val)} />
+                    </div>
+                    <div className="form-group">
+                        <label>{t.create.con}</label>
+                        <D6Button value={data.con} setValue={(val) => setData("con", val)} />
+                    </div>
+                    <div className="form-group">
+                        <label>{t.create.int}</label>
+                        <D6Button value={data.int} setValue={(val) => setData("int", val)} />
+                    </div>
+                    <div className="form-group">
+                        <label>{t.create.wis}</label>
+                        <D6Button value={data.wis} setValue={(val) => setData("wis", val)} />
+                    </div>
+                    <div className="form-group">
+                        <label>{t.create.cha}</label>
+                        <D6Button value={data.cha} setValue={(val) => setData("cha", val)} />
+                    </div>
                 </div>
 
                 {/* Alineamiento */}
-                <div  >
+                <div className="form-group">
                     <label htmlFor="alignment">{t.create.align}</label>
-                    <select id="alignment"
+                    <select
+                        id="alignment"
                         value={data.alignment}
-                        onChange={(e) => setData("alignment", e.target.value)}>
-                        {alignmentsList.map((align) => <option key={align.value} value={align.value}>{align.label}</option>)}
+                        onChange={(e) => setData("alignment", e.target.value)}
+                    >
+                        {alignmentsList.map(a => (
+                            <option key={a.value} value={a.value}>{a.label}</option>
+                        ))}
                     </select>
-                    {errors.alignment && <p  >{errors.alignment}</p>}
+                    {errors.alignment && <p className="error-msg">{errors.alignment}</p>}
                 </div>
 
                 {/* Background */}
-                <div  >
+                <div className="form-group">
                     <label htmlFor="background">{t.create.background}</label>
-                    <select id="background"
+                    <select
+                        id="background"
                         value={data.background_id ?? ""}
-                        onChange={(e) => setData("background_id", Number(e.target.value))}>
+                        onChange={(e) => setData("background_id", Number(e.target.value))}
+                    >
                         <option value="">{t.create.background}</option>
-                        {backgroundsOptions.map(b => <option key={b.value} value={b.value}>{b.label}</option>)}
+                        {backgroundsOptions.map(b => (
+                            <option key={b.value} value={b.value}>{b.label}</option>
+                        ))}
                     </select>
-                    {errors.background_id && <p  >{errors.background_id}</p>}
+                    {errors.background_id && <p className="error-msg">{errors.background_id}</p>}
                 </div>
 
-                <PrimaryButton disabled={processing} type="submit"  >
-                    {processing ? t.create.saving : (mode === "edit" ? t.create.update ?? t.create.save : t.create.save)}
+                <PrimaryButton disabled={processing} type="submit" className="submit-btn">
+                    {processing
+                        ? t.create.saving
+                        : (mode === "edit" ? t.create.update ?? t.create.save : t.create.save)}
                 </PrimaryButton>
             </form>
         </div>

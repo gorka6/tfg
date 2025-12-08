@@ -16,3 +16,6 @@ h1, h2, h3, nav, .title {
   font-family: 'Cinzel decorative', serif;
 }
 
+input, textarea, select {
+  font-family: Arial, Helvetica, sans-serif; /* Aquí la fuente que quieras */
+}

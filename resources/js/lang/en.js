@@ -50,7 +50,12 @@ export default {
     current: "Current password",
     new: "New password",
     delete: "DELETE ACCOUNT"
-  }, 
+  },
+  register: {
+    passwd_confirm: "Confirm Password",
+    register: "Register",
+    already: "Already registered?"
+  } ,
   create: {
     title: "Create new sheet",
     name: "Name",

@@ -52,6 +52,11 @@ export default {
     current: "Contraseña actual",
     new: "Nueva contraseña",
     delete: "ELIMINAR CUENTA"
+  }, 
+  register: {
+    passwd_confirm: "Confirmar contraseña",
+    register: "Registrarse",
+    already: "¿Estás ya registardo?"
   },
   create: {
     title: "Crear nueva ficha",
