@@ -51,11 +51,8 @@ export default function Tiradas({ fichas, bonus, characterClasses }) {
                             </div>
                         ) : (
                             <div className="tiradas-content">
-
-                                <p className="tiradas-select-text">{t.throws.select}</p>
-
                                 <div className="tiradas-select-group">
-                                    <label htmlFor="fichas">{t.index.mysheets}</label>
+                                    <label className="tiradas-select-text" htmlFor="fichas">{t.throws.select}</label>
                                     <select
                                         id="fichas"
                                         value={selectedFichaId}

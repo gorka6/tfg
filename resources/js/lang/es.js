@@ -70,7 +70,6 @@ export default {
     select_traits: "Elige una raza, subraza o clase para ver los rasgos",
     no_skills: "No hay habilidades disponibles",
     select_skills: "Elige una clase para ver las habilidades",
-    str: "Fuerza",
     align: "Alineamiento",
     saving: "Guardando...",
     save: "Guardar ficha",
@@ -281,6 +280,7 @@ export default {
   throws: {
     throws: "TIRADAS",
     throw: "Tirar",
+    result: "RESULTADOS:",
     select: "Selecciona la ficha",
     choose_one: "Elige una ficha",
     difficult_att: "Selecciona una dificultad y el atributo a chequear",
@@ -292,6 +292,7 @@ export default {
     total_mod: "Modificador total",
     mod: "Modificador",
     pass: "✅¡Éxito!",
-    fail: "❌Fallo..."
+    fail: "❌Fallo...",
+    placeholder: "Aquí aparecerán los resultados tras tirar"
   }
 };

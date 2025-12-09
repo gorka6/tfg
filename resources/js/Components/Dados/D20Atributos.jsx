@@ -28,6 +28,8 @@ export default function D20Atributos({ ficha, bonus, savThrow1, savThrow2 }) {
         setResultado({ d20, baseMod, bonusAtributo, classSavThrow1, classSavThrow2, mod, total, exito });
         setRefreshKey(Date.now());
     };
+    console.log(atributos.map(a => t.create.a))
+    console.log(t.create.str)
 
     useEffect(() => { setResultado(null); }, [dc, atributo]);
 
@@ -52,7 +54,7 @@ export default function D20Atributos({ ficha, bonus, savThrow1, savThrow2 }) {
                     onChange={(e) => setAtributo(e.target.value)}
                     aria-label="Atributo"
                 >
-                    {atributos.map(a => <option key={a} value={a}>{a.toUpperCase()}</option>)}
+                    {atributos.map(a => <option key={a} value={a}>{t.create[a]}</option>)}
                 </select>
 
                 <button className="d20-button" type="button" onClick={tirar}>
@@ -77,20 +79,38 @@ export default function D20Atributos({ ficha, bonus, savThrow1, savThrow2 }) {
                 <div className="d20-results">
                     {resultado ? (
                         <>
-                            <p className="d20-result-line result-title">RESULTADOS:</p>
+                            <p className="d20-result-line result-title">{t.throws.results}</p>
                             <p className="d20-result-line">d20: <strong>{resultado.d20}</strong></p>
-                            <p className="d20-result-line">{t.throws.base_mod} ({atributo.toUpperCase()}): <strong>{resultado.baseMod > 0 ? `+${resultado.baseMod}` : resultado.baseMod}</strong></p>
-                            <p className="d20-result-line">{t.throws.race_bonus}: <strong>+{resultado.bonusAtributo}</strong></p>
-                            <p className="d20-result-line">{t.throws.sav_throw1} ({savThrow1}): <strong>+{resultado.classSavThrow1}</strong></p>
-                            <p className="d20-result-line">{t.throws.sav_throw2} ({savThrow2}): <strong>+{resultado.classSavThrow2}</strong></p>
-                            <p className="d20-result-line">{t.throws.total_mod}: <strong>{resultado.mod}</strong></p>
-                            <p className="d20-result-line">Total (d20 + {t.throws.mod}): <strong>{resultado.total}</strong></p>
+                            <p className="d20-result-line">
+                                {t.throws.base_mod} ({t.create[atributo]}):
+                                <strong>{resultado.baseMod > 0 ? `+${resultado.baseMod}` : resultado.baseMod}</strong>
+                            </p>
+                            <p className="d20-result-line">
+                                {t.throws.race_bonus}:
+                                <strong>{resultado.bonusAtributo > 0 ? `+${resultado.bonusAtributo}` : resultado.bonusAtributo}</strong>
+                            </p>
+                            <p className="d20-result-line">
+                                {t.throws.sav_throw1} ({t.create[savThrow1]}):
+                                <strong>+{resultado.classSavThrow1}</strong>
+                            </p>
+                            <p className="d20-result-line">
+                                {t.throws.sav_throw2} ({t.create[savThrow2]}):
+                                <strong>+{resultado.classSavThrow2}</strong>
+                            </p>
+                            <p className="d20-result-line">
+                                {t.throws.total_mod}:
+                                <strong>{resultado.mod > 0 ? `+${resultado.mod}` : resultado.mod}</strong>
+                            </p>
+                            <p className="d20-result-line">
+                                {t.throws.total} (d20 + {t.throws.mod}):
+                                <strong>{resultado.total}</strong>
+                            </p>
                             <p className={`d20-result-pass ${resultado.exito ? "pass" : "fail"}`}>
                                 {resultado.exito ? t.throws.pass : t.throws.fail}
                             </p>
                         </>
                     ) : (
-                        <p className="d20-result-placeholder">Aquí aparecerán los resultados tras tirar</p>
+                        <p className="d20-result-placeholder">{t.throws.placeholder}</p>
                     )}
                 </div>
 

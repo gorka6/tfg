@@ -279,6 +279,7 @@ export default {
   throws: {
     throws: "THROWS",
     throw: "Throw",
+    result: "RESULTS:",
     select: "Select a character",
     choose_one: "Choose one",
     difficult_att: "Choose a difficulty and the attribute to check",
@@ -290,6 +291,7 @@ export default {
     total_mod: "Total modifier",
     mod: "Modifier",
     pass: "✅Success!",
-    fail: "❌Failure..."
+    fail: "❌Failure...",
+    placeholder: "The results will appear here after rolling."
   }
 };
