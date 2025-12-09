@@ -1,7 +1,8 @@
 import { Link, useForm } from "@inertiajs/react";
 import { normTexto } from "@/utils/normTexto";
+import "../../css/components/ficha-card.css";
 
-export default function FichaCard({ ficha, t}) {
+export default function FichaCard({ ficha, t }) {
     const { delete: destroy } = useForm();
     const razaNorm = normTexto(ficha.race.name);
     const subrazaNorm = ficha.subrace ? normTexto(ficha.subrace.name) : null;
@@ -9,55 +10,42 @@ export default function FichaCard({ ficha, t}) {
     const claseNorm = normTexto(ficha.character_class.name);
 
     return (
-        <div>
+        <div className="ficha-card">
             <h2>{ficha.name}</h2>
+
+            <p><strong>{t.create.race}:</strong> {t.races[razaNorm]}</p>
+
             <p>
-                <strong>{t.create.race}: {t.races[razaNorm]}</strong>
-            </p>
-            <p>
-                <strong>
-                    {t.create.subrace}: {subrazaNorm ? t.subraces[subrazaNorm] : t.subraces.no_subrace}
-                </strong>
-            </p>
-            <p>
-                <strong>{t.create.background}: {t.backgrounds[origenNorm]}</strong>
-            </p>
-            <p>
-                <strong>{t.create.class}: {t.classes[claseNorm]}</strong>
-            </p>
-            <p>
-                <strong>{t.create.str}:</strong> {ficha.str}
-            </p>
-            <p>
-                <strong>{t.create.dex}:</strong> {ficha.dex}
-            </p>
-            <p>
-                <strong>{t.create.con}:</strong> {ficha.con}
-            </p>
-            <p>
-                <strong>{t.create.int}:</strong> {ficha.int}
-            </p>
-            <p>
-                <strong>{t.create.wis}:</strong> {ficha.wis}
-            </p>
-            <p>
-                <strong>{t.create.cha}:</strong> {ficha.cha}
-            </p>
-            <p>
-                <strong>{t.create.align}:</strong> {t.alignments[ficha.alignment]}
+                <strong>{t.create.subrace}:</strong>{" "}
+                {subrazaNorm ? t.subraces[subrazaNorm] : t.subraces.no_subrace}
             </p>
 
-            <div>
-                <a href={`/fichas/${ficha.id}/pdf-${t.lang}`} target="_blank" rel="noopener noreferrer">Ver PDF</a>
-                <Link
-                    href={route("fichas.edit", ficha.id)}
-                    
+            <p><strong>{t.create.background}:</strong> {t.backgrounds[origenNorm]}</p>
+            <p><strong>{t.create.class}:</strong> {t.classes[claseNorm]}</p>
+
+            <p><strong>{t.create.str}:</strong> {ficha.str}</p>
+            <p><strong>{t.create.dex}:</strong> {ficha.dex}</p>
+            <p><strong>{t.create.con}:</strong> {ficha.con}</p>
+            <p><strong>{t.create.int}:</strong> {ficha.int}</p>
+            <p><strong>{t.create.wis}:</strong> {ficha.wis}</p>
+            <p><strong>{t.create.cha}:</strong> {ficha.cha}</p>
+
+            <p><strong>{t.create.align}:</strong> {t.alignments[ficha.alignment]}</p>
+
+            <div className="ficha-card-actions">
+                <a
+                    href={`/fichas/${ficha.id}/pdf-${t.lang}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
                 >
+                    Ver PDF
+                </a>
+
+                <Link href={route("fichas.edit", ficha.id)}>
                     {t.index.edit}
                 </Link>
-                <button
-                    onClick={() => destroy(route("fichas.destroy", ficha.id))}
-                >
+
+                <button onClick={() => destroy(route("fichas.destroy", ficha.id))}>
                     {t.index.delete}
                 </button>
             </div>

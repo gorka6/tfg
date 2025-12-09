@@ -25,11 +25,11 @@
 
 /* Aplica directamente al div de DadosRoller */
 .dados-roller {
-    display: flex;           /* pone los elementos en fila */
-    flex-direction: row;     /* fila horizontal */
-    gap: 0.3rem;             /* espacio entre dados */
-    justify-content: center; /* centra horizontalmente */
-    align-items: center;     /* centra verticalmente */
+    display: flex !important; 
+    flex-direction: row !important;
+    gap: 0.3rem !important;
+    justify-content: center !important;
+    align-items: center !important;
 }
 
 .dados-roller img {

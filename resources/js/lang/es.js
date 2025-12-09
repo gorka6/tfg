@@ -26,7 +26,7 @@ export default {
 
   },
   index: {
-    mysheets: "Mis fichas",
+    mysheets: "MIS FICHAS",
     newsheet: "Nueva ficha",
     nosheets: "Aún no tienes ninguna ficha creada.",
     firstsheet: "Crea tu primera ficha",
@@ -69,7 +69,7 @@ export default {
     no_traits: "No hay rasgos disponibles",
     select_traits: "Elige una raza, subraza o clase para ver los rasgos",
     no_skills: "No hay habilidades disponibles",
-    select_skills: "Elige una class para ver las habilidades",
+    select_skills: "Elige una clase para ver las habilidades",
     str: "Fuerza",
     align: "Alineamiento",
     saving: "Guardando...",
@@ -89,8 +89,8 @@ export default {
     select_class: "Selecciona una clase",
     background: "Origen",
     languages: "Idiomas",
-    rolling: "Rolling",
-    roll: "Roll 3D6",
+    rolling: "Girando...",
+    roll: "Girar 3D6",
     selector: "Selecciona hasta "
   },
   alignments: {
@@ -279,8 +279,12 @@ export default {
     undercommon: "Infracomún"
   },
   throws: {
+    throws: "TIRADAS",
+    throw: "Tirar",
     select: "Selecciona la ficha",
     choose_one: "Elige una ficha",
+    difficult_att: "Selecciona una dificultad y el atributo a chequear",
+    select_dc: "Selecciona ficha y pon un DC",
     base_mod: "Modificador base",
     race_bonus: "Bonus de raza/subraza",
     sav_throw1: "Bonus por clase 1",

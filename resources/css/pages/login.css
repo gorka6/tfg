@@ -103,7 +103,6 @@
 /* Botón principal */
 .login-button {
     background-color: #222;
-    /* negro/grisaceo */
     font-size: medium;
     transition: transform 0.2s ease, color 0.2s ease;
 
@@ -111,7 +110,6 @@
 
 .login-button:hover {
     background-color: rgb(90, 0, 0);
-    /* negro/grisaceo */
     font-size: medium;
     transform: scale(1.1);
 

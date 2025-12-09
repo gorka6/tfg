@@ -1,6 +1,8 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head, useForm } from "@inertiajs/react";
 import FichaForm from "@/Components/FichaForm";
+import FondoSeamless from "@/Components/FondoSeamless";
+import "../../../css/pages/fichas-edit.css"
 
 export default function Edit({ ficha, races, subraces, classes, backgrounds, classesSkills, traits }) {
   const form = useForm({
@@ -31,19 +33,23 @@ export default function Edit({ ficha, races, subraces, classes, backgrounds, cla
   return (
     <AuthenticatedLayout>
       <Head title={`Editar ficha: ${ficha.name}`} />
-      <FichaForm
-        mode="edit"
-        form={form}
-        races={races}
-        subraces={subraces}
-        classes={classes}
-        backgrounds={backgrounds}
-        classesSkills={classesSkills}
-        traits={traits}
-        onSubmit={handleSubmit}
-        processing={form.processing}
-        errors={form.errors}
-      />
+      <div className="form-container">
+        <FondoSeamless>
+          <FichaForm
+            mode="edit"
+            form={form}
+            races={races}
+            subraces={subraces}
+            classes={classes}
+            backgrounds={backgrounds}
+            classesSkills={classesSkills}
+            traits={traits}
+            onSubmit={handleSubmit}
+            processing={form.processing}
+            errors={form.errors}
+          />
+        </FondoSeamless>
+      </div>
     </AuthenticatedLayout>
   );
 }

@@ -1,9 +1,9 @@
 import { useContextoIdioma } from "@/Contexts/ContextoIdioma";
 import { useEffect, useState } from "react";
 import DadosRoller from "./DadosRoller";
+import "../../../css/components/d20-atributos.css"
 
 export default function D20Atributos({ ficha, bonus, savThrow1, savThrow2 }) {
-
     const { t } = useContextoIdioma();
     const [resultado, setResultado] = useState(null);
     const [atributo, setAtributo] = useState("str");
@@ -12,23 +12,16 @@ export default function D20Atributos({ ficha, bonus, savThrow1, savThrow2 }) {
     const [refreshKey, setRefreshKey] = useState(0);
 
     const tirar = () => {
-        if (!ficha || !dc) return alert("Selecciona ficha y pon un DC");
+        if (!ficha || !dc) return alert(t.throws.select_dc);
 
         const d20 = Math.floor(Math.random() * 20) + 1;
-
         const baseMod = Math.floor((ficha[atributo] - 10) / 2);
-
         const classSavThrow1 = savThrow1 === atributo ? 1 : 0;
-
         const classSavThrow2 = savThrow2 === atributo ? 1 : 0;
-
-
         const bonusAtributo = bonus
             ? bonus.find(b => b.attribute.abbrev === atributo)?.bonus || 0
             : 0;
-
         const mod = baseMod + bonusAtributo + classSavThrow1 + classSavThrow2;
-
         const total = d20 + mod;
         const exito = total >= Number(dc);
 
@@ -36,38 +29,72 @@ export default function D20Atributos({ ficha, bonus, savThrow1, savThrow2 }) {
         setRefreshKey(Date.now());
     };
 
-    useEffect(() => {
-        setResultado(null);
-    }, [dc, atributo]);
+    useEffect(() => { setResultado(null); }, [dc, atributo]);
 
     return (
-        <>
-            <input
-                type="number"
-                value={dc}
-                onChange={(e) => setDc(e.target.value)}
-                placeholder="DC"
-            />
-            <select value={atributo} onChange={(e) => setAtributo(e.target.value)}>
-                {atributos.map(a => <option key={a} value={a}>{a.toUpperCase()}</option>)}
-            </select>
-            <div>
-                <button onClick={tirar}>Tirar</button>
-                {resultado && (
-                    <div style={{ marginTop: "10px" }}>
-                        <DadosRoller dieType="d20" rolls={[resultado.d20]} refreshKey={refreshKey} />
-                        <p>d20: {resultado.d20}</p>
-                        <p>{t.throws.base_mod} ({atributo.toUpperCase()}): {resultado.baseMod > 0 ? `+${resultado.baseMod}` : resultado.baseMod}</p>
-                        <p>{t.throws.race_bonus}: +{resultado.bonusAtributo}</p>
-                        <p>{t.throws.sav_throw1}({savThrow1}): +{resultado.classSavThrow1}</p>
-                        <p>{t.throws.sav_throw2}({savThrow2}): +{resultado.classSavThrow2}</p>
-                        <p>{t.throws.total_mod}: {resultado.mod}</p>
-                        <p>Total (d20 + {t.throws.mod}): {resultado.total}</p>
-                        <p>{resultado.exito ? t.throws.pass : t.throws.fail}</p>
-                    </div>
-                )}
-            </div>
-        </>
+        <div className="d20-wrapper">
 
+            <p className="d20-instruction">{t.throws.difficult_att}</p>
+
+            <div className="d20-form-row">
+                <input
+                    className="d20-input"
+                    type="number"
+                    value={dc}
+                    onChange={(e) => setDc(e.target.value)}
+                    placeholder="DC"
+                    aria-label="DC"
+                />
+
+                <select
+                    className="d20-select"
+                    value={atributo}
+                    onChange={(e) => setAtributo(e.target.value)}
+                    aria-label="Atributo"
+                >
+                    {atributos.map(a => <option key={a} value={a}>{a.toUpperCase()}</option>)}
+                </select>
+
+                <button className="d20-button" type="button" onClick={tirar}>
+                    {t.throws.throw}
+                </button>
+            </div>
+
+            <div className="d20-media-results">
+
+                <div className="d20-media">
+                    {resultado ? (
+                        <DadosRoller dieType="d20" rolls={[resultado.d20]} refreshKey={refreshKey} />
+                    ) : (
+                        <img
+                            className="d20-image"
+                            src="/images/dice/d20_box.png"
+                            alt="Dado sin tirar"
+                        />
+                    )}
+                </div>
+
+                <div className="d20-results">
+                    {resultado ? (
+                        <>
+                            <p className="d20-result-line result-title">RESULTADOS:</p>
+                            <p className="d20-result-line">d20: <strong>{resultado.d20}</strong></p>
+                            <p className="d20-result-line">{t.throws.base_mod} ({atributo.toUpperCase()}): <strong>{resultado.baseMod > 0 ? `+${resultado.baseMod}` : resultado.baseMod}</strong></p>
+                            <p className="d20-result-line">{t.throws.race_bonus}: <strong>+{resultado.bonusAtributo}</strong></p>
+                            <p className="d20-result-line">{t.throws.sav_throw1} ({savThrow1}): <strong>+{resultado.classSavThrow1}</strong></p>
+                            <p className="d20-result-line">{t.throws.sav_throw2} ({savThrow2}): <strong>+{resultado.classSavThrow2}</strong></p>
+                            <p className="d20-result-line">{t.throws.total_mod}: <strong>{resultado.mod}</strong></p>
+                            <p className="d20-result-line">Total (d20 + {t.throws.mod}): <strong>{resultado.total}</strong></p>
+                            <p className={`d20-result-pass ${resultado.exito ? "pass" : "fail"}`}>
+                                {resultado.exito ? t.throws.pass : t.throws.fail}
+                            </p>
+                        </>
+                    ) : (
+                        <p className="d20-result-placeholder">Aquí aparecerán los resultados tras tirar</p>
+                    )}
+                </div>
+
+            </div>
+        </div>
     );
 }

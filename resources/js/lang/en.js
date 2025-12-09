@@ -25,7 +25,7 @@ export default {
     body_6: "After creating your character, you can use the sheet to perform stat checks with a single click. No consulting tables or flipping through books: your hero’s power is always at hand."
   },
   index: {
-    mysheets: "My sheets",
+    mysheets: "MY SHEETS",
     newsheet: "New sheet",
     nosheets: "You don't have any sheets yet.",
     firstsheet: "Create your first sheet",
@@ -87,7 +87,7 @@ export default {
     select_class: "Select a class",
     background: "Background",
     languages: "Languages",
-    rolling: "Rolling",
+    rolling: "Rolling...",
     roll: "Roll 3D6",
     selector: "Select up to "
   },
@@ -277,8 +277,12 @@ export default {
     undercommon: "Undercommon",
   },
   throws: {
+    throws: "THROWS",
+    throw: "Throw",
     select: "Select a character",
     choose_one: "Choose one",
+    difficult_att: "Choose a difficulty and the attribute to check",
+    select_dc: "Select a character and set a DC",
     base_mod: "Base modifier",
     race_bonus: "Race/subrace bonus",
     sav_throw1: "Class bonus 1",
@@ -288,5 +292,4 @@ export default {
     pass: "✅Success!",
     fail: "❌Failure..."
   }
-
 };
