@@ -14,8 +14,7 @@
     padding: 10px;
     background: rgba(255, 255, 255, 0.15);
     backdrop-filter: blur(8px);   
-    border: 1px solid rgb(90, 0, 0);
-    border-radius: 6px;
+    border: 1px solid rgb(7, 7, 7);
     cursor: pointer;
     text-align: left;
     font-size: 1.4rem;
@@ -32,17 +31,15 @@
     gap: 10px;
     background: rgba(255, 255, 255, 0.15);
     backdrop-filter: blur(8px);   
-    border: 1px solid rgb(90, 0, 0);
-    border-radius: 8px;
+    border: 1px solid rgb(0, 0, 0);
     padding: 10px;
     z-index: 20;
 }
 
 .grid-select-item {
     width: 180px;
-    border: 1px solid rgb(90, 0, 0);
+    border: 1px solid rgb(0, 0, 0);
     padding: 10px;
-    border-radius: 4px;
     text-align: center;
     cursor: pointer;    
     background: rgba(155, 49, 7, 0.15);

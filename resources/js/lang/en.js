@@ -88,7 +88,8 @@ export default {
     background: "Background",
     languages: "Languages",
     rolling: "Rolling",
-    roll: "Roll 3D6"
+    roll: "Roll 3D6",
+    selector: "Select up to "
   },
   alignments: {
     lg: "Lawful Good",

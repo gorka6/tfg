@@ -199,11 +199,14 @@ export default function FichaForm({
                             {selectedClassId ? t.create.no_skills : t.create.select_skills}
                         </p>
                     ) : (
-                        <Selector
-                            options={skillsOptions}
-                            selected={data.skills}
-                            onChange={(newSkills) => setData("skills", newSkills)}
-                        />
+                        <div>
+                            <p className="selector-msg">{t.create.selector} 4 - [{data.skills.length}]</p>
+                            <Selector
+                                options={skillsOptions}
+                                selected={data.skills}
+                                onChange={(newSkills) => setData("skills", newSkills)}
+                            />
+                        </div>
                     )}
                     {errors.skills && <p className="error-msg">{errors.skills}</p>}
                 </div>
@@ -224,12 +227,16 @@ export default function FichaForm({
                                 : t.create.select_traits}
                         </p>
                     ) : (
-                        <Selector
-                            options={traitsOptions}
-                            selected={data.traits}
-                            onChange={(newTraits) => setData("traits", newTraits)}
-                            max={6}
-                        />
+                        <div>
+                            <p className="selector-msg">{t.create.selector} 5 - [{data.traits.length}]</p>
+
+                            <Selector
+                                options={traitsOptions}
+                                selected={data.traits}
+                                onChange={(newTraits) => setData("traits", newTraits)}
+                                max={5}
+                            />
+                        </div>
                     )}
                     {errors.traits && <p className="error-msg">{errors.traits}</p>}
                 </div>

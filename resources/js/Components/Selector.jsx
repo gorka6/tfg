@@ -1,3 +1,6 @@
+import { useContextoIdioma } from "@/Contexts/ContextoIdioma";
+import "../../css/components/selector.css"
+
 export default function Selector({ options, selected, onChange, max = 4 }) {
   const toggle = (value) => {
     const newSelected = selected.includes(value)
@@ -8,10 +11,12 @@ export default function Selector({ options, selected, onChange, max = 4 }) {
     onChange(newSelected);
   };
 
+  const { t } = useContextoIdioma();
+
   return (
-    <div>
+    <div className="selector">
       {options.map(({ value, label }) => (
-        <label key={value} style={{ display: "block" }}>
+        <label key={value}>
           <input
             type="checkbox"
             value={value}
@@ -24,3 +29,4 @@ export default function Selector({ options, selected, onChange, max = 4 }) {
     </div>
   );
 }
+

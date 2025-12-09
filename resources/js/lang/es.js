@@ -90,7 +90,8 @@ export default {
     background: "Origen",
     languages: "Idiomas",
     rolling: "Rolling",
-    roll: "Roll 3D6"
+    roll: "Roll 3D6",
+    selector: "Selecciona hasta "
   },
   alignments: {
     lg: "Legal Bueno",
