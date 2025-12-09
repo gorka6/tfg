@@ -4,3 +4,9 @@
     padding: 0rem 1rem;
     position: relative;
 }
+
+.form-container h2 {
+    text-align: center;
+    font-size: 3.5rem;
+    text-decoration: underline;
+}

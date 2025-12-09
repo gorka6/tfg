@@ -41,7 +41,7 @@ export default {
     register: "Don't have an account? Register here.",
     welcome: "Welcome back! Log in to continue your journey."
   },
-  edit:{
+  edit: {
     title: "EDIT YOUR PROFILE",
     modify: "MODIFY YOUR DATA",
     name: "Name",
@@ -55,13 +55,19 @@ export default {
     passwd_confirm: "Confirm Password",
     register: "Register",
     already: "Already registered?"
-  } ,
+  },
   create: {
-    title: "Create new sheet",
+    title: "CREATE YOUR CHARACTER",
     name: "Name",
     race: "Race",
     class: "Class",
     subrace: "Subrace",
+    traits: "Traits",
+    skills: "Skills",
+    no_traits: "No traits available",
+    select_traits: "Choose a race, subrace, or class to view the traits",
+    no_skills: "No skills available",
+    select_skills: "Choose a class to view the skills",
     str: "Strength",
     align: "Alignment",
     saving: "Saving...",

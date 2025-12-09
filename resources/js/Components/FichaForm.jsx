@@ -21,21 +21,12 @@ export default function FichaForm({
 }) {
     const { t } = useContextoIdioma();
 
-    /* -------------------------
-       Métodos del useForm
-       -------------------------*/
     const { data, setData, reset, post, processing, errors } = form;
 
-    /* -------------------------
-       Selecciones actuales
-       -------------------------*/
     const selectedRaceId = data.race_id;
     const selectedSubraceId = data.subrace_id;
     const selectedClassId = data.class_id;
 
-    /* -------------------------
-       Lista de alineamientos
-       -------------------------*/
     const alignmentsList = [
         { value: "lg", label: t.alignments.lg },
         { value: "ng", label: t.alignments.ng },
@@ -48,9 +39,6 @@ export default function FichaForm({
         { value: "ce", label: t.alignments.ce },
     ];
 
-    /* -------------------------
-       Options builders
-       -------------------------*/
     const racesOptions = opcionesBuild(races, t.races);
     const classesOptions = opcionesBuild(classes, t.classes);
     const backgroundsOptions = opcionesBuild(backgrounds, t.backgrounds);
@@ -61,19 +49,12 @@ export default function FichaForm({
         t.languages
     );
 
-
-    /* -------------------------
-       Habilidades por clase
-       -------------------------*/
     const classSkillsFiltered = filtraOpciones(classesSkills, "class_id", selectedClassId);
     const skillsOptions = opcionesBuild(
         classSkillsFiltered.map(cs => ({ id: cs.skill_id, name: cs.skill.name })),
         t.skills
     );
 
-    /* -------------------------
-       Rasgos disponibles (race/subrace/class)
-       -------------------------*/
     const traitsOptions = opcionesBuild(
         [
             ...filtraOpciones(traits, "race_id", selectedRaceId),
@@ -81,9 +62,7 @@ export default function FichaForm({
             ...filtraOpciones(traits, "class_id", selectedClassId)
         ], t.traits);
 
-    /* -------------------------
-       Handlers
-       -------------------------*/
+    /* Handlers */
     const handleSubmit = (e) => {
         e.preventDefault();
         if (onSubmit) {
@@ -114,14 +93,14 @@ export default function FichaForm({
         setData("skills", []);
         setData("traits", []);
     };
-    console.log(racesOptions)
+
     return (
         <div className="ficha-form-wrapper">
             <form onSubmit={handleSubmit} className="ficha-form">
 
                 {/* Nombre */}
                 <div className="form-group">
-                    <label htmlFor="name">{t.create.name}</label>
+                    <label htmlFor="name" className="form-label">{t.create.name}</label>
                     <input
                         id="name"
                         type="text"
@@ -131,11 +110,17 @@ export default function FichaForm({
                     />
                     {errors.name && <p className="error-msg">{errors.name}</p>}
                 </div>
-
+                <div className="sword-container">
+                    <img
+                        className="sword"
+                        src="/images/web/form/sword.png"
+                        alt="Espada decorativa"
+                    />
+                </div>
                 {/* Raza */}
                 <div className="form-group">
+                    <label htmlFor="race" className="form-label">{t.create.race}</label>
                     <GridSelect
-                        label={t.create.race}
                         options={racesOptions}
                         value={data.race_id}
                         onChange={onRaceChange}
@@ -143,25 +128,30 @@ export default function FichaForm({
                         placeholder={t.create.select_race}
                     />
                     {errors.race_id && <p className="error-msg">{errors.race_id}</p>}
+
+                    {/* Idiomas */}
+                    {languagesFiltered.length > 0 && (
+                        <div className="form-group">
+                            <p className="form-label"><strong>{t.create.languages}</strong></p>
+                            <ul className="list-languages">
+                                {languagesFiltered.map(lang => (
+                                    <li key={lang.value}>{lang.label}</li>
+                                ))}
+                            </ul>
+                        </div>
+                    )}
                 </div>
-
-
-                {/* Idiomas */}
-                {languagesFiltered.length > 0 && (
-                    <div className="form-group">
-                        <p><strong>{t.create.languages}:</strong></p>
-                        <ul className="list-languages">
-                            {languagesFiltered.map(lang => (
-                                <li key={lang.value}>{lang.label}</li>
-                            ))}
-                        </ul>
-                    </div>
-                )}
-
+                <div className="sword-container">
+                    <img
+                        className="sword"
+                        src="/images/web/form/sword.png"
+                        alt="Espada decorativa"
+                    />
+                </div>
                 {/* Subraza */}
                 <div className="form-group">
+                    <label htmlFor="subrace" className="form-label">{t.create.subrace}</label>
                     <GridSelect
-                        label={t.create.subrace}
                         options={subracesOptions}
                         value={data.subrace_id}
                         onChange={onSubraceChange}
@@ -173,32 +163,40 @@ export default function FichaForm({
                         }
                         mode="subraces"
                     />
-
                     {errors.subrace_id && <p className="error-msg">{errors.subrace_id}</p>}
                 </div>
-
+                <div className="sword-container">
+                    <img
+                        className="sword"
+                        src="/images/web/form/sword.png"
+                        alt="Espada decorativa"
+                    />
+                </div>
                 {/* Clase */}
                 <div className="form-group">
+                    <label htmlFor="class" className="form-label">{t.create.class}</label>
                     <GridSelect
-                        label={t.create.class}
                         options={classesOptions}
                         value={data.class_id}
                         onChange={onClassChange}
                         placeholder={t.create.select_class}
                         mode="classes"
                     />
-
                     {errors.class_id && <p className="error-msg">{errors.class_id}</p>}
                 </div>
-
+                <div className="sword-container">
+                    <img
+                        className="sword"
+                        src="/images/web/form/sword.png"
+                        alt="Espada decorativa"
+                    />
+                </div>
                 {/* Habilidades */}
                 <div className="form-group">
-                    <p className="section-title">Habilidades</p>
+                    <p className="form-label section-title">{t.create.skills}</p>
                     {skillsOptions.length === 0 ? (
                         <p className="empty-msg">
-                            {selectedClassId
-                                ? "No hay habilidades disponibles."
-                                : "Selecciona una clase para ver habilidades."}
+                            {selectedClassId ? t.create.no_skills : t.create.select_skills}
                         </p>
                     ) : (
                         <Selector
@@ -209,15 +207,21 @@ export default function FichaForm({
                     )}
                     {errors.skills && <p className="error-msg">{errors.skills}</p>}
                 </div>
-
+                <div className="sword-container">
+                    <img
+                        className="sword"
+                        src="/images/web/form/sword.png"
+                        alt="Espada decorativa"
+                    />
+                </div>
                 {/* Rasgos */}
                 <div className="form-group">
-                    <p className="section-title">Rasgos</p>
+                    <p className="form-label section-title">{t.create.traits}</p>
                     {traitsOptions.length === 0 ? (
                         <p className="empty-msg">
                             {(selectedRaceId || selectedClassId)
-                                ? "No hay rasgos disponibles."
-                                : "Selecciona raza, subraza o clase para ver rasgos."}
+                                ? t.create.no_traits
+                                : t.create.select_traits}
                         </p>
                     ) : (
                         <Selector
@@ -229,38 +233,50 @@ export default function FichaForm({
                     )}
                     {errors.traits && <p className="error-msg">{errors.traits}</p>}
                 </div>
-
+                <div className="sword-container">
+                    <img
+                        className="sword"
+                        src="/images/web/form/sword.png"
+                        alt="Espada decorativa"
+                    />
+                </div>
                 {/* Stats */}
                 <div className="stats-grid">
                     <div className="form-group">
-                        <label>{t.create.str}</label>
+                        <label className="form-label">{t.create.str}</label>
                         <D6Button value={data.str} setValue={(val) => setData("str", val)} />
                     </div>
                     <div className="form-group">
-                        <label>{t.create.dex}</label>
+                        <label className="form-label">{t.create.dex}</label>
                         <D6Button value={data.dex} setValue={(val) => setData("dex", val)} />
                     </div>
                     <div className="form-group">
-                        <label>{t.create.con}</label>
+                        <label className="form-label">{t.create.con}</label>
                         <D6Button value={data.con} setValue={(val) => setData("con", val)} />
                     </div>
                     <div className="form-group">
-                        <label>{t.create.int}</label>
+                        <label className="form-label">{t.create.int}</label>
                         <D6Button value={data.int} setValue={(val) => setData("int", val)} />
                     </div>
                     <div className="form-group">
-                        <label>{t.create.wis}</label>
+                        <label className="form-label">{t.create.wis}</label>
                         <D6Button value={data.wis} setValue={(val) => setData("wis", val)} />
                     </div>
                     <div className="form-group">
-                        <label>{t.create.cha}</label>
+                        <label className="form-label">{t.create.cha}</label>
                         <D6Button value={data.cha} setValue={(val) => setData("cha", val)} />
                     </div>
                 </div>
-
+                <div className="sword-container">
+                    <img
+                        className="sword"
+                        src="/images/web/form/sword.png"
+                        alt="Espada decorativa"
+                    />
+                </div>
                 {/* Alineamiento */}
                 <div className="form-group">
-                    <label htmlFor="alignment">{t.create.align}</label>
+                    <label htmlFor="alignment" className="form-label">{t.create.align}</label>
                     <select
                         id="alignment"
                         value={data.alignment}
@@ -272,23 +288,32 @@ export default function FichaForm({
                     </select>
                     {errors.alignment && <p className="error-msg">{errors.alignment}</p>}
                 </div>
-
+                <div className="sword-container">
+                    <img
+                        className="sword"
+                        src="/images/web/form/sword.png"
+                        alt="Espada decorativa"
+                    />
+                </div>
                 {/* Background */}
                 <div className="form-group">
-                    <label htmlFor="background">{t.create.background}</label>
-                    <select
-                        id="background"
-                        value={data.background_id ?? ""}
-                        onChange={(e) => setData("background_id", Number(e.target.value))}
-                    >
-                        <option value="">{t.create.background}</option>
-                        {backgroundsOptions.map(b => (
-                            <option key={b.value} value={b.value}>{b.label}</option>
-                        ))}
-                    </select>
+                    <label htmlFor="background" className="form-label">{t.create.background}</label>
+                    <GridSelect
+                        options={backgroundsOptions}
+                        value={data.background_id}
+                        onChange={(value) => setData("background_id", Number(value))}
+                        placeholder={t.create.background}
+                        mode="backgrounds"
+                    />
                     {errors.background_id && <p className="error-msg">{errors.background_id}</p>}
                 </div>
-
+                <div className="sword-container">
+                    <img
+                        className="sword"
+                        src="/images/web/form/sword.png"
+                        alt="Espada decorativa"
+                    />
+                </div>
                 <PrimaryButton disabled={processing} type="submit" className="submit-btn">
                     {processing
                         ? t.create.saving

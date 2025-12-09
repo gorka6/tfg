@@ -6,7 +6,7 @@
 
 .ficha-form {
     width: 100%;
-    max-width: 500px;
+    max-width: 800px;
     display: flex;
     flex-direction: column;
     gap: 18px;
@@ -16,6 +16,13 @@
     display: flex;
     flex-direction: column;
     gap: 6px;
+    padding-top: 2rem;
+}
+
+.form-label{
+    font-size: 1.8rem;
+        font-weight: bold;
+
 }
 
 .error-msg {
@@ -23,13 +30,9 @@
     font-size: 0.85rem;
 }
 
-.section-title {
-    font-weight: bold;
-}
-
 .empty-msg {
-    font-size: 0.9rem;
-    color: #666;
+    font-size: 1.4rem;
+    color: #353535;
 }
 
 .list-languages {
@@ -38,10 +41,41 @@
 
 .stats-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 15px;
 }
 
 .submit-btn {
-    margin-top: 10px;
+    margin-top: 80px;
+    background-color: black;
+    font-size: 1rem;
+    justify-content: center;
+    padding: 1.4rem;
+    transition: 0.5s;
 }
+
+.submit-btn:hover {
+    background-color: rgb(90, 0, 0);
+}
+
+.form-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* centra el input y la espada */
+    justify-content: center;
+}
+
+.sword-container {
+    display: flex;
+    justify-content: center; /* centra el contenido horizontalmente */
+    width: 100%; /* ocupa todo el ancho del contenedor de la sección */
+    margin-top: 2rem;
+}
+
+.sword {
+    width: auto;
+    height: 40px;
+    object-fit: contain;
+    margin-top: 1rem;
+}
+

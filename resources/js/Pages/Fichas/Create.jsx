@@ -3,6 +3,7 @@ import { Head, useForm } from "@inertiajs/react";
 import FichaForm from "@/Components/FichaForm";
 import FondoSeamless from "@/Components/FondoSeamless";
 import "../../../css/pages/ficha-create.css"
+import { useContextoIdioma } from "@/Contexts/ContextoIdioma";
 
 export default function Create(props) {
   const form = useForm({
@@ -28,12 +29,13 @@ export default function Create(props) {
       onSuccess: () => form.reset(),
     });
   };
-
+  const { t } = useContextoIdioma();
   return (
     <AuthenticatedLayout>
       <Head title="Crear Ficha" />
       <div className="form-container">
         <FondoSeamless>
+          <h2>{t.create.title}</h2>
           <FichaForm
             mode="create"
             form={form}

@@ -52,18 +52,24 @@ export default {
     current: "Contraseña actual",
     new: "Nueva contraseña",
     delete: "ELIMINAR CUENTA"
-  }, 
+  },
   register: {
     passwd_confirm: "Confirmar contraseña",
     register: "Registrarse",
     already: "¿Estás ya registardo?"
   },
   create: {
-    title: "Crear nueva ficha",
+    title: "CREA TU PERSONAJE",
     name: "Nombre",
     race: "Raza",
     class: "Clase",
     subrace: "Subraza",
+    traits: "Rasgos",
+    skills: "Habilidades",
+    no_traits: "No hay rasgos disponibles",
+    select_traits: "Elige una raza, subraza o clase para ver los rasgos",
+    no_skills: "No hay habilidades disponibles",
+    select_skills: "Elige una class para ver las habilidades",
     str: "Fuerza",
     align: "Alineamiento",
     saving: "Guardando...",
