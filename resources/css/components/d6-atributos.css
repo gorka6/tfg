@@ -1,0 +1,47 @@
+/* Contenedor del D6Button */
+.d6-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Botón de tirar dados */
+.d6-button button {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.9rem;
+    cursor: pointer;
+    background-color: #000000;
+    transition: 0.2s;
+    border-radius: 3px;
+    color: aliceblue;
+    font-size: 1.3rem;
+}
+
+.d6-button button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Aplica directamente al div de DadosRoller */
+.dados-roller {
+    display: flex;           /* pone los elementos en fila */
+    flex-direction: row;     /* fila horizontal */
+    gap: 0.3rem;             /* espacio entre dados */
+    justify-content: center; /* centra horizontalmente */
+    align-items: center;     /* centra verticalmente */
+}
+
+.dados-roller img {
+    width: 80px;
+}
+
+.d6-total{
+    font-weight: bold;
+    font-size: 1.4rem;
+}
+
+.d6-label{
+    font-weight: bolder;
+    font-size: 2rem;
+}

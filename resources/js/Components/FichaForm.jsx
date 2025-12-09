@@ -28,15 +28,15 @@ export default function FichaForm({
     const selectedClassId = data.class_id;
 
     const alignmentsList = [
-        { value: "lg", label: t.alignments.lg },
-        { value: "ng", label: t.alignments.ng },
-        { value: "cg", label: t.alignments.cg },
-        { value: "ln", label: t.alignments.ln },
-        { value: "tn", label: t.alignments.tn },
-        { value: "cn", label: t.alignments.cn },
-        { value: "le", label: t.alignments.le },
-        { value: "ne", label: t.alignments.ne },
-        { value: "ce", label: t.alignments.ce },
+        { value: "lg", label: t.alignments.lg, color: "#4CAF50" },
+        { value: "ng", label: t.alignments.ng, color: "#8BC34A" },
+        { value: "cg", label: t.alignments.cg, color: "#CDDC39" },
+        { value: "ln", label: t.alignments.ln, color: "#03A9F4" },
+        { value: "tn", label: t.alignments.tn, color: "#9E9E9E" },
+        { value: "cn", label: t.alignments.cn, color: "#FFC107" },
+        { value: "le", label: t.alignments.le, color: "#F44336" },
+        { value: "ne", label: t.alignments.ne, color: "#E91E63" },
+        { value: "ce", label: t.alignments.ce, color: "#9C27B0" },
     ];
 
     const racesOptions = opcionesBuild(races, t.races);
@@ -250,28 +250,22 @@ export default function FichaForm({
                 {/* Stats */}
                 <div className="stats-grid">
                     <div className="form-group">
-                        <label className="form-label">{t.create.str}</label>
-                        <D6Button value={data.str} setValue={(val) => setData("str", val)} />
+                        <D6Button label={t.create.str} value={data.str} setValue={(val) => setData("str", val)} />
                     </div>
                     <div className="form-group">
-                        <label className="form-label">{t.create.dex}</label>
-                        <D6Button value={data.dex} setValue={(val) => setData("dex", val)} />
+                        <D6Button label={t.create.dex} value={data.dex} setValue={(val) => setData("dex", val)} />
                     </div>
                     <div className="form-group">
-                        <label className="form-label">{t.create.con}</label>
-                        <D6Button value={data.con} setValue={(val) => setData("con", val)} />
+                        <D6Button label={t.create.con} value={data.con} setValue={(val) => setData("con", val)} />
                     </div>
                     <div className="form-group">
-                        <label className="form-label">{t.create.int}</label>
-                        <D6Button value={data.int} setValue={(val) => setData("int", val)} />
+                        <D6Button label={t.create.int} value={data.int} setValue={(val) => setData("int", val)} />
                     </div>
                     <div className="form-group">
-                        <label className="form-label">{t.create.wis}</label>
-                        <D6Button value={data.wis} setValue={(val) => setData("wis", val)} />
+                        <D6Button label={t.create.wis} value={data.wis} setValue={(val) => setData("wis", val)} />
                     </div>
                     <div className="form-group">
-                        <label className="form-label">{t.create.cha}</label>
-                        <D6Button value={data.cha} setValue={(val) => setData("cha", val)} />
+                        <D6Button label={t.create.cha} value={data.cha} setValue={(val) => setData("cha", val)} />
                     </div>
                 </div>
                 <div className="sword-container">
@@ -281,18 +275,25 @@ export default function FichaForm({
                         alt="Espada decorativa"
                     />
                 </div>
-                {/* Alineamiento */}
+                {/* Alineamiento en grid 3x3 */}
                 <div className="form-group">
-                    <label htmlFor="alignment" className="form-label">{t.create.align}</label>
-                    <select
-                        id="alignment"
-                        value={data.alignment}
-                        onChange={(e) => setData("alignment", e.target.value)}
-                    >
+                    <label className="form-label">{t.create.align}</label>
+                    <div className="alignment-grid">
                         {alignmentsList.map(a => (
-                            <option key={a.value} value={a.value}>{a.label}</option>
+                            <button
+                                key={a.value}
+                                type="button"
+                                className={`alignment-item ${data.alignment === a.value ? "selected" : ""}`}
+                                style={{
+                                    backgroundColor: data.alignment === a.value ? a.color : "#000000ff",
+                                    color: data.alignment === a.value ? "#000000ff" : "#ffffffff"
+                                }}
+                                onClick={() => setData("alignment", a.value)}
+                            >
+                                {a.label}
+                            </button>
                         ))}
-                    </select>
+                    </div>
                     {errors.alignment && <p className="error-msg">{errors.alignment}</p>}
                 </div>
                 <div className="sword-container">

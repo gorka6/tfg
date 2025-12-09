@@ -42,7 +42,8 @@
 .stats-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 15px;
+    column-gap: 150px;
+    row-gap: 30px;
 }
 
 .submit-btn {
@@ -83,3 +84,21 @@
     margin-bottom: 10px;
 }
 
+.alignment-grid {
+    margin-top: 2rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+}
+
+.alignment-item {
+    padding: 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+.alignment-item.selected {
+    font-weight: bold;
+}
