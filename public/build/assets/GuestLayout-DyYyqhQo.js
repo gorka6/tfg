@@ -1,0 +1,1 @@
+import{a as r,j as s}from"./app-BHM8Qecn.js";import{H as t,F as e}from"./Footer-Ds5pLnZk.js";function n({children:o}){const{auth:a}=r().props;return s.jsxs("div",{children:[s.jsx(t,{auth:a}),s.jsx("main",{className:"app-main",children:o}),s.jsx(e,{auth:a})]})}export{n as G};

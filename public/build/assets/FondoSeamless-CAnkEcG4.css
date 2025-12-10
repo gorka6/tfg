@@ -1,0 +1,1 @@
+.fondo-seamless{position:relative;max-width:1200px;width:100%;gap:3rem;padding:3em 4em 4em;box-sizing:border-box}.fondo-seamless:before{content:"";position:absolute;inset:0;background:url(/images/web/fondoSeamless.png) center/cover no-repeat;opacity:.8;z-index:-1;box-shadow:0 0 60px 40px #000 inset}
