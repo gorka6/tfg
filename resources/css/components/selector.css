@@ -1,16 +1,14 @@
-/* Contenedor del Selector */
 .selector {
   display: flex;
-  flex-wrap: wrap;        /* permite que se vayan a la siguiente línea si no caben */
-  gap: 1rem;              /* espacio entre cada opción */
-  align-items: center;    /* centra verticalmente los elementos */
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
 }
 
-/* Cada opción individual */
 .selector label {
   display: flex;
   align-items: center;
-  gap: 1rem;            /* espacio entre checkbox y texto */
+  gap: 1rem;
   cursor: pointer;
   padding: 0.25rem 0.5rem;
   transition: background 0.2s;
@@ -21,7 +19,6 @@
     background: rgba(90, 0, 0, 0.212);
 }
 
-/* Checkbox */
 .selector input[type="checkbox"] {
   cursor: pointer;
 }

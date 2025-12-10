@@ -38,7 +38,7 @@ export default function FichaCard({ ficha, t }) {
                     target="_blank"
                     rel="noopener noreferrer"
                 >
-                    Ver PDF
+                    {t.index.pdf}
                 </a>
 
                 <Link href={route("fichas.edit", ficha.id)}>

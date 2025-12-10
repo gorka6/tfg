@@ -31,7 +31,8 @@ export default {
     firstsheet: "Create your first sheet",
     show: "View",
     edit: "Edit",
-    delete: "Delete"
+    delete: "Delete",
+    pdf: "See PDF"
   },
   login: {
     password: "Password",

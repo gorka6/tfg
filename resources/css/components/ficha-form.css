@@ -62,14 +62,14 @@
 .form-section {
     display: flex;
     flex-direction: column;
-    align-items: center; /* centra el input y la espada */
+    align-items: center;
     justify-content: center;
 }
 
 .sword-container {
     display: flex;
-    justify-content: center; /* centra el contenido horizontalmente */
-    width: 100%; /* ocupa todo el ancho del contenedor de la sección */
+    justify-content: center;
+    width: 100%;
     margin-top: 2rem;
 }
 

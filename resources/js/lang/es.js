@@ -32,7 +32,8 @@ export default {
     firstsheet: "Crea tu primera ficha",
     show: "Ver",
     edit: "Editar",
-    delete: "Eliminar"
+    delete: "Eliminar",
+    pdf: "Ver PDF"
   },
   login: {
     password: "Contraseña",

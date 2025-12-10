@@ -2,7 +2,6 @@
   box-sizing: border-box;
 }
 
-/* Contenedor principal */
 .header {
   position: relative;
   display: flex;
@@ -23,7 +22,6 @@
   z-index: 9999 !important;
 }
 
-/* ===== ZONA IZDA (controles) ===== */
 .header-left {
   display: flex;
   align-items: center;
@@ -50,8 +48,6 @@
   box-shadow: 0 16px 40px 6px rgba(0, 0, 0, 0.8);
 }
 
-
-/* ===== BLOQUE CENTRO (absolutely centered) =====*/
 .header-center {
   position: absolute;
   left: 50%;
@@ -126,8 +122,6 @@
   object-fit: contain;
 }
 
-
-/* ===== ZONA DERECHA (auth) ===== */
 .header-right {
   display: flex;
   gap: 0.75rem;
@@ -149,7 +143,6 @@
   border: none;
 }
 
-/* separación mínima entre links de login/register */
 .header-auth-links a {
   display: inline-block;
   margin-left: 0.5rem;
@@ -164,8 +157,6 @@
   font-weight: bolder;
 }
 
-
-/* tamaño un poco mayor para el nombre del usuario */
 .dropdown-trigger {
   font-size: 1.6rem;
   font-weight: 600;

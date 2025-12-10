@@ -1,35 +1,24 @@
-/* Contenedor general de la página de login */
 .login-page {
     display: flex;
     justify-content: center;
-    /* centra horizontalmente */
     align-items: center;
-    /* centra verticalmente */
     width: 100%;
     box-sizing: border-box;
 }
 
-/* Contenedor flex con imágenes a los lados */
 .login-flex-wrapper {
     display: flex;
     align-items: center;
-    /* centra verticalmente */
     justify-content: center;
-    /* centra horizontalmente */
     gap: 4rem;
-    /* espacio entre imágenes y formulario */
 }
 
 .login-side-image {
     width: 250px;
     border-radius: 3%;
     box-shadow: 15px 20px 16px rgba(0, 0, 0, 0.589);
-    /* derecha 10px, abajo 20px */
 }
 
-
-
-/* Formulario centrado */
 .login-wrapper {
     display: flex;
     flex-direction: column;
@@ -39,7 +28,6 @@
     margin-top: 1.4em;
 }
 
-/* Formulario interno */
 .login-wrapper form {
     width: 100%;
     display: flex;
@@ -49,7 +37,6 @@
     font-size: x-large;
 }
 
-/* Inputs centrados */
 .login-email,
 .login-password {
     display: flex;
@@ -58,7 +45,6 @@
     width: 100%;
 }
 
-/* Checkbox centrado horizontalmente */
 .login-remember {
     display: flex;
     align-items: center;
@@ -76,7 +62,6 @@
     transform: scale(1.1);
 }
 
-/* Botón + forgot password centrados */
 .login-actions {
     display: flex;
     flex-direction: column;
@@ -85,13 +70,11 @@
     margin-top: 1rem;
 }
 
-/* Mensaje de estado centrado */
 .login-status {
     text-align: center;
     margin-bottom: 1rem;
 }
 
-/* Título del login */
 .login-tip {
     margin: 1.5rem 0;
     text-align: center;
@@ -100,7 +83,6 @@
     font-size: xx-large;
 }
 
-/* Botón principal */
 .login-button {
     background-color: #222;
     font-size: medium;
@@ -115,7 +97,6 @@
 
 }
 
-/* Registro / enlace */
 .login-register {
     margin-top: 2rem;
     font-size: x-large;
