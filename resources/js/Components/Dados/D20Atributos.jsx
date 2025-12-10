@@ -79,7 +79,7 @@ export default function D20Atributos({ ficha, bonus, savThrow1, savThrow2 }) {
                 <div className="d20-results">
                     {resultado ? (
                         <>
-                            <p className="d20-result-line result-title">{t.throws.results}</p>
+                            <p className="d20-result-line result-title">{t.throws.result}</p>
                             <p className="d20-result-line">d20: <strong>{resultado.d20}</strong></p>
                             <p className="d20-result-line">
                                 {t.throws.base_mod} ({t.create[atributo]}):
