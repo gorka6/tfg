@@ -247,6 +247,25 @@ export default function FichaForm({
                         alt="Espada decorativa"
                     />
                 </div>
+                {/* Background */}
+                <div className="form-group">
+                    <label htmlFor="background" className="form-label">{t.create.background}</label>
+                    <GridSelect
+                        options={backgroundsOptions}
+                        value={data.background_id}
+                        onChange={(value) => setData("background_id", Number(value))}
+                        placeholder={t.create.background}
+                        mode="backgrounds"
+                    />
+                    {errors.background_id && <p className="error-msg">{errors.background_id}</p>}
+                </div>
+                <div className="sword-container">
+                    <img
+                        className="sword"
+                        src="/images/web/form/sword.png"
+                        alt="Espada decorativa"
+                    />
+                </div>
                 {/* Stats */}
                 <div className="stats-grid">
                     <div className="form-group">
@@ -303,25 +322,7 @@ export default function FichaForm({
                         alt="Espada decorativa"
                     />
                 </div>
-                {/* Background */}
-                <div className="form-group">
-                    <label htmlFor="background" className="form-label">{t.create.background}</label>
-                    <GridSelect
-                        options={backgroundsOptions}
-                        value={data.background_id}
-                        onChange={(value) => setData("background_id", Number(value))}
-                        placeholder={t.create.background}
-                        mode="backgrounds"
-                    />
-                    {errors.background_id && <p className="error-msg">{errors.background_id}</p>}
-                </div>
-                <div className="sword-container">
-                    <img
-                        className="sword"
-                        src="/images/web/form/sword.png"
-                        alt="Espada decorativa"
-                    />
-                </div>
+
                 <PrimaryButton disabled={processing} type="submit" className="submit-btn">
                     {processing
                         ? t.create.saving
