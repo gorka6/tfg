@@ -1,11 +1,5 @@
 # Proyecto TFG
 
-## Repositorio
-
-[https://github.com/gorka6/tfg](https://github.com/gorka6/tfg)
-
----
-
 ## 1. Requisitos previos
 
 * Node.js versión LTS (v18 o superior)
