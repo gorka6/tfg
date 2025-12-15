@@ -49,9 +49,9 @@ export default function FichaForm({
         t.languages
     );
 
-    const classSkillsFiltered = filtraOpciones(classesSkills, "class_id", selectedClassId);
     const skillsOptions = opcionesBuild(
-        classSkillsFiltered.map(cs => ({ id: cs.skill_id, name: cs.skill.name })),
+        filtraOpciones(classesSkills, "class_id", selectedClassId).map(cs =>
+            ({ id: cs.skill_id, name: cs.skill.name })),
         t.skills
     );
 
@@ -65,13 +65,7 @@ export default function FichaForm({
     /* Handlers */
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (onSubmit) {
-            onSubmit();
-        } else {
-            post(route("fichas.store"), {
-                onSuccess: () => reset(),
-            });
-        }
+        onSubmit();
     };
 
     const onRaceChange = (value) => {

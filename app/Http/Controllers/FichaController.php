@@ -8,23 +8,15 @@ use Illuminate\Validation\Rules\Enum;
 use App\Enums\Alignment;
 use App\Models\AttributeBonus;
 use App\Models\CharacterClass;
-use App\Models\Language;
 use App\Models\RaceLanguage;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Redirect;
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use Illuminate\Support\Facades\DB;
 use Barryvdh\DomPDF\Facade\Pdf;
 
 
 class FichaController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     public function index()
     {
         $fichas = Auth::user()

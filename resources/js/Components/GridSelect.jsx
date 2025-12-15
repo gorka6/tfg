@@ -2,7 +2,7 @@ import { useState } from "react";
 import "../../css/components/grid-select.css";
 import { useContextoIdioma } from "@/Contexts/ContextoIdioma";
 
-export default function GridSelect({ options = [], value, onChange, label, mode, disabled = false, placeholder }) {
+export default function GridSelect({ options = [], value, onChange, mode, disabled = false, placeholder }) {
     const [open, setOpen] = useState(false);
     const selected = options.find(o => o.value === value);
     const { t } = useContextoIdioma();
